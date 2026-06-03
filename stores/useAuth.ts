@@ -52,7 +52,13 @@ export const useAuth = defineStore('useAuth', () => {
       if (!('success' in res) || res.success !== true) throw res
       setUser(res.data)
       return res.data
-    } catch {
+    } catch (error: unknown) {
+      const status = (error as any)?.statusCode ?? (error as any)?.response?.status
+      if (status === 401 || status === 403) {
+        setUser(null)
+        return null
+      }
+      console.error('[fetchMe] unexpected error', error)
       return userCookie.value
     }
   }

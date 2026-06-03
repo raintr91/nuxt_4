@@ -9,9 +9,11 @@ export default defineEventHandler(async (event) => {
     })
 
     return response
-  } catch (error) {
+  } catch (error: unknown) {
+    const status = (error as any)?.response?.status ?? (error as any)?.statusCode ?? 500
+    console.error('[work-orders.get] upstream error', error)
     throw createError({
-      statusCode: 500,
+      statusCode: status >= 400 && status < 600 ? status : 500,
       statusMessage: 'Failed to fetch work orders'
     })
   }

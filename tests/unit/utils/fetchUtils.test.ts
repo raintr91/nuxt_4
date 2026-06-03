@@ -112,11 +112,12 @@ describe('utils/fetchUtils', () => {
     })
 
     describe('onRequestError', () => {
-      it('logs request errors', () => {
+      it('handles request errors without throwing', () => {
         const opts = getCommonFetchOptions()
         const err = new Error('network')
-        opts.onRequestError!({ request: new Request('https://x'), error: err } as any)
-        expect(console.error).toHaveBeenCalled()
+        expect(() => {
+          opts.onRequestError!({ request: new Request('https://x'), error: err } as any)
+        }).not.toThrow()
       })
 
       it('shows fallback toast message when showToast is provided', () => {

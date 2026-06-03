@@ -40,7 +40,9 @@ function logTechnicalError(payload: {
       occurredAt: new Date().toISOString(),
       ...payload
     }
-  }).catch(() => undefined)
+  }).catch((err) => {
+    if (import.meta.dev) console.warn('[logTechnicalError] failed to send', err)
+  })
 }
 /* c8 ignore stop */
 
@@ -110,7 +112,7 @@ export function getCommonFetchOptions(
       }
 
       options.headers = headers
-      console.log('Request started:', request)
+      if (import.meta.dev) console.log('Request started:', request)
     },
 
     onRequestError({ request, error }: { request: Request; error: Error }) {
@@ -123,7 +125,7 @@ export function getCommonFetchOptions(
         technicalMessage: error?.message,
         stack: error?.stack
       })
-      console.error('Request error:', request, error)
+      if (import.meta.dev) console.error('Request error:', request, error)
     },
 
     onResponse({ request, response }: { request: Request; response: any }) {
@@ -137,7 +139,7 @@ export function getCommonFetchOptions(
       if (typeof nextRefreshToken === 'string' && nextRefreshToken.length > 0) {
         refreshToken.value = nextRefreshToken
       }
-      console.log('Response received:', request, response)
+      if (import.meta.dev) console.log('Response received:', request, response)
     },
 
     onResponseError({ request, response, error }: { request: Request | string; response: any; error?: Error }) {

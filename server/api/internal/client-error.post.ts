@@ -13,7 +13,12 @@ type ClientErrorLogPayload = {
 }
 
 export default defineEventHandler(async (event) => {
-  const payload = (await readBody<ClientErrorLogPayload>(event).catch(() => ({}))) || {}
+  let payload: ClientErrorLogPayload
+  try {
+    payload = (await readBody<ClientErrorLogPayload>(event)) || {}
+  } catch {
+    throw createError({ statusCode: 400, statusMessage: 'Invalid request body' })
+  }
 
   const logsDir = resolve(process.cwd(), 'logs')
   await mkdir(logsDir, { recursive: true })
@@ -29,6 +34,11 @@ export default defineEventHandler(async (event) => {
     occurredAt: payload.occurredAt || new Date().toISOString()
   }
 
-  await appendFile(resolve(logsDir, 'portal-errors.log'), `${JSON.stringify(record)}\n`, 'utf8')
+  try {
+    await appendFile(resolve(logsDir, 'portal-errors.log'), `${JSON.stringify(record)}\n`, 'utf8')
+  } catch (err) {
+    console.error('[client-error] failed to write log', err)
+    throw createError({ statusCode: 500, statusMessage: 'Failed to persist error log' })
+  }
   return { ok: true }
 })

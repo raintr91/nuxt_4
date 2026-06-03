@@ -16,7 +16,8 @@ export default defineNuxtRouteMiddleware(async (to) => {
   if (!auth.user) {
     try {
       await auth.fetchMe()
-    } catch {
+    } catch (error) {
+      console.error('[rbac] fetchMe failed, redirecting to login', error)
       auth.logout()
       return navigateTo({
         path: '/auth/login',

@@ -25,6 +25,8 @@ const onSubmit = handleSubmit(async (values) => {
     await submitLogin(values)
   } catch (e) {
     if (applyValidationErrorsToForm(e, setErrors)) return
+    // Non-validation errors are already surfaced via apiError ref
+    // from useAuthLoginForm — no further action needed here.
   }
 })
 </script>
