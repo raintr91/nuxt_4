@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { DataTableColumn } from '~/components/molecules/layout/useDataTableLogic'
 import type { ApiResponse } from '~/types/api/common'
+import { assertApiSuccess } from '~/types/api/common'
 
 type SearchPayload = {
   items?: Record<string, unknown>[]
@@ -59,9 +60,7 @@ async function fetchItems() {
 
     const res = await $apiFetch<ApiResponse<unknown> & { meta?: { pagination?: { total?: number } } }>(`/api/${path}`, fetchOptions)
 
-    if (!('success' in res) || res.success !== true) {
-      throw new Error(res.message || `Cannot load ${props.title}`)
-    }
+    assertApiSuccess(res, `Cannot load ${props.title}`)
 
     items.value = normalizeRows(res.data)
     totalRecords.value = res.meta?.pagination?.total ?? items.value.length
@@ -88,12 +87,7 @@ onMounted(fetchItems)
       </AtButton>
     </div>
 
-    <div
-      v-if="errorMsg"
-      class="rounded-lg border border-destructive/30 bg-destructive/10 p-3 text-sm text-destructive"
-    >
-      {{ errorMsg }}
-    </div>
+    <DataErrorAlert :message="errorMsg" />
 
     <DataTablePage
       :title="title"

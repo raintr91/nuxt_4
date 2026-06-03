@@ -72,7 +72,7 @@ function formatMetric(value: unknown, precision = 2): string {
 
       <div class="overflow-auto p-4">
         <div v-if="loading" class="py-8 text-center text-sm text-muted-foreground">読み込み中 レビューデータ...</div>
-        <div v-else-if="error" class="rounded-lg border border-destructive/30 bg-destructive/10 p-3 text-sm text-destructive">{{ error }}</div>
+        <DataErrorAlert v-else-if="error" :message="error" />
         <div v-else-if="!rows.length" class="py-8 text-center text-sm text-muted-foreground">該当データがありません。</div>
         <div v-else class="overflow-x-auto">
           <table class="min-w-full divide-y divide-border text-sm">

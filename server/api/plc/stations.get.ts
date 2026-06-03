@@ -1,16 +1,7 @@
-export default defineEventHandler(async (event) => {
-  const config = useRuntimeConfig()
+import { createApiProxyHandler } from '~/server/utils/createApiProxyHandler'
 
-  try {
-    const response = await $fetch(`${config.public.plcApiBase}/stations`, {
-      method: 'GET'
-    })
-
-    return response
-  } catch (error) {
-    throw createError({
-      statusCode: 500,
-      statusMessage: 'Failed to fetch PLC stations'
-    })
-  }
+export default createApiProxyHandler({
+  baseConfigKey: 'plcApiBase',
+  path: 'stations',
+  errorMessage: 'Failed to fetch PLC stations'
 })

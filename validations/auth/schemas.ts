@@ -6,6 +6,16 @@ import { commonValidationMessages as cm } from '~/validations/common/messages'
 
 const email = rules.email(m.emailInvalid)
 const password = z.string().min(8, m.passwordMin8).max(128, cm.maxLength(128))
+const passwordConfirmation = z.string().min(8, m.passwordMin8).max(128, cm.maxLength(128))
+
+function withPasswordConfirmation<T extends z.ZodRawShape>(shape: T) {
+  return z
+    .object({ ...shape, password, password_confirmation: passwordConfirmation })
+    .refine((v) => v.password === v.password_confirmation, {
+      message: m.passwordMismatch,
+      path: ['password_confirmation']
+    })
+}
 
 export const loginSchema = toTypedSchema(
   z.object({
@@ -15,17 +25,10 @@ export const loginSchema = toTypedSchema(
 )
 
 export const registerSchema = toTypedSchema(
-  z
-    .object({
-      name: z.string().optional(),
-      email,
-      password,
-      password_confirmation: z.string().min(8, m.passwordMin8).max(128, cm.maxLength(128))
-    })
-    .refine((v) => v.password === v.password_confirmation, {
-      message: m.passwordMismatch,
-      path: ['password_confirmation']
-    })
+  withPasswordConfirmation({
+    name: z.string().optional(),
+    email
+  })
 )
 
 export const forgotPasswordSchema = toTypedSchema(
@@ -35,30 +38,16 @@ export const forgotPasswordSchema = toTypedSchema(
 )
 
 export const resetPasswordSchema = toTypedSchema(
-  z
-    .object({
-      email,
-      token: rules.required(m.tokenRequired),
-      password,
-      password_confirmation: z.string().min(8, m.passwordMin8).max(128, cm.maxLength(128))
-    })
-    .refine((v) => v.password === v.password_confirmation, {
-      message: m.passwordMismatch,
-      path: ['password_confirmation']
-    })
+  withPasswordConfirmation({
+    email,
+    token: rules.required(m.tokenRequired)
+  })
 )
 
 export const changePasswordSchema = toTypedSchema(
-  z
-    .object({
-      current_password: rules.required(m.currentPasswordRequired),
-      password,
-      password_confirmation: z.string().min(8, m.passwordMin8).max(128, cm.maxLength(128))
-    })
-    .refine((v) => v.password === v.password_confirmation, {
-      message: m.passwordMismatch,
-      path: ['password_confirmation']
-    })
+  withPasswordConfirmation({
+    current_password: rules.required(m.currentPasswordRequired)
+  })
 )
 
 // Backward-compatible wrapper (older imports can keep using this)

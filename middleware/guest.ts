@@ -1,4 +1,5 @@
 import { createRouteGuardHandler } from '~/composables/useRouteGuard'
+import { AUTH_COOKIE_NAMES } from '~/utils/authCookies'
 
 /**
  * Guest-only: redirect to redirectTo (or query.redirect) when user is already logged in.
@@ -6,7 +7,7 @@ import { createRouteGuardHandler } from '~/composables/useRouteGuard'
  */
 export default defineNuxtRouteMiddleware(
   createRouteGuardHandler({
-    cookieName: 'auth_token',
+    cookieName: AUTH_COOKIE_NAMES.token,
     mode: 'guest',
     redirectTo: '/',
     redirectQueryKey: 'redirect'

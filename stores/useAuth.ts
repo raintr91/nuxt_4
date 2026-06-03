@@ -1,6 +1,5 @@
 import { defineStore } from 'pinia'
 import { computed } from 'vue'
-import { useCookie } from 'nuxt/app'
 
 import type {
   ChangePasswordRequest,
@@ -12,24 +11,13 @@ import type {
   TokenResponse
 } from '~/types/api/auth'
 import type { ApiResponse } from '~/types/api/common'
+import { assertApiSuccess } from '~/types/api/common'
+import { useAuthCookies } from '~/utils/authCookies'
 
 export const useAuth = defineStore('useAuth', () => {
   const { $apiFetch } = useNuxtApp()
 
-  const tokenCookie = useCookie<string | null>('auth_token', {
-    sameSite: 'lax',
-    secure: false
-  })
-
-  const refreshTokenCookie = useCookie<string | null>('refresh_token', {
-    sameSite: 'lax',
-    secure: false
-  })
-
-  const userCookie = useCookie<MeResponse | null>('auth_user', {
-    sameSite: 'lax',
-    secure: false
-  })
+  const { token: tokenCookie, refreshToken: refreshTokenCookie, user: userCookie } = useAuthCookies()
 
   const token = computed(() => tokenCookie.value)
   const isAuthenticated = computed(() => Boolean(tokenCookie.value))
@@ -49,7 +37,7 @@ export const useAuth = defineStore('useAuth', () => {
     if (!tokenCookie.value) { setUser(null); return null }
     try {
       const res = await $apiFetch<ApiResponse<MeResponse>>('/api/auth/me', { method: 'GET' })
-      if (!('success' in res) || res.success !== true) throw res
+      assertApiSuccess(res)
       setUser(res.data)
       return res.data
     } catch {
@@ -70,7 +58,7 @@ export const useAuth = defineStore('useAuth', () => {
       method: 'POST',
       body: payload
     })
-    if (!('success' in res) || res.success !== true) throw res
+    assertApiSuccess(res)
 
     const issuedToken = res.data.accessToken ?? res.data.token ?? null
     if (!issuedToken) {
@@ -93,7 +81,7 @@ export const useAuth = defineStore('useAuth', () => {
       method: 'POST',
       body: { name: payload.name ?? 'User', email: payload.email, password: payload.password }
     })
-    if (!('success' in res) || res.success !== true) throw res
+    assertApiSuccess(res)
     setTokensFromResponse(res.data)
     await fetchMe()
     return res.data
@@ -104,7 +92,7 @@ export const useAuth = defineStore('useAuth', () => {
       method: 'POST',
       body: payload
     })
-    if (!('success' in res) || res.success !== true) throw res
+    assertApiSuccess(res)
     return res
   }
 
@@ -113,7 +101,7 @@ export const useAuth = defineStore('useAuth', () => {
       method: 'POST',
       body: payload
     })
-    if (!('success' in res) || res.success !== true) throw res
+    assertApiSuccess(res)
     return res
   }
 

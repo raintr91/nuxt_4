@@ -1,12 +1,6 @@
 import { createRouteGuardHandler } from '~/composables/useRouteGuard'
+import { AUTH_GUARD_OPTIONS } from '~/middleware/_authGuardOptions'
 
 export default defineNuxtRouteMiddleware(
-  createRouteGuardHandler({
-    cookieName: 'auth_token',
-    mode: 'require',
-    // Public routes: landing page + auth/reset + error pages
-    skipPaths: ['/auth', '/password/reset', '/404', '/forbidden'],
-    redirectTo: '/auth/login',
-    redirectQueryKey: 'redirect'
-  })
+  createRouteGuardHandler(AUTH_GUARD_OPTIONS)
 )

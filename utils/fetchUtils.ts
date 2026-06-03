@@ -1,5 +1,6 @@
-import { navigateTo, useCookie } from 'nuxt/app'
+import { navigateTo } from 'nuxt/app'
 import { ApiValidationError } from '~/utils/apiValidation'
+import { useAuthCookies } from '~/utils/authCookies'
 
 export type ApiError = {
   success?: false
@@ -79,9 +80,7 @@ export function getCommonFetchOptions(
   showToast?: ToastShow,
   portalHeaders?: PortalHeaders
 ) {
-  const token = useCookie<string | null>('auth_token')
-  const refreshToken = useCookie<string | null>('refresh_token')
-  const authUser = useCookie('auth_user')
+  const { token, refreshToken, user: authUser } = useAuthCookies()
 
   return {
     onRequest({ request, options }: { request: Request; options: any }) {
