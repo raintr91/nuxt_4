@@ -321,6 +321,66 @@ describe('utils/fetchUtils', () => {
 
         expect(error.message).toBe('サーバー処理中にエラーが発生しました。（500）')
       })
+
+      it('parses status from error message when response has no status', () => {
+        const opts = getCommonFetchOptions()
+        const error = new Error('fetch failed with 500 error')
+        expect(() => opts.onResponseError!({ response: { _data: {} }, error } as any)).toThrow(
+          'サーバー処理中にエラーが発生しました。（500）'
+        )
+      })
+
+      it('falls back to network error when no status anywhere', () => {
+        const opts = getCommonFetchOptions()
+        const error = new Error('network timeout')
+        expect(() => opts.onResponseError!({ response: { _data: {} }, error } as any)).toThrow(
+          'サーバーへ接続できません。ネットワークをご確認ください。'
+        )
+      })
+
+      it('throws login-specific message on 401 for login request', () => {
+        cookieState.auth_token.value = 'tok'
+        const opts = getCommonFetchOptions()
+        expect(() =>
+          opts.onResponseError!({
+            request: 'https://x/api/auth/login',
+            response: { status: 401, _data: { message: 'Invalid credentials' } }
+          } as any)
+        ).toThrow('Invalid credentials')
+      })
+
+      it('throws default login message on 401 for login request without backend message', () => {
+        cookieState.auth_token.value = 'tok'
+        const opts = getCommonFetchOptions()
+        expect(() =>
+          opts.onResponseError!({
+            request: 'https://x/api/auth/login',
+            response: { status: 401, _data: {} }
+          } as any)
+        ).toThrow('ログインIDが見つかりません。メールアドレスをご確認ください。')
+      })
+
+      it('uses user_message from backend when available', () => {
+        cookieState.auth_token.value = 'tok'
+        const opts = getCommonFetchOptions()
+        expect(() =>
+          opts.onResponseError!({
+            request: 'https://x/api/auth/login',
+            response: { status: 401, _data: { user_message: 'Custom user msg', message: 'Technical' } }
+          } as any)
+        ).toThrow('Custom user msg')
+      })
+
+      it('uses user_message for non-422 errors instead of status fallback', () => {
+        const showToast = vi.fn()
+        const opts = getCommonFetchOptions(undefined, showToast)
+        expect(() =>
+          opts.onResponseError!({
+            response: { status: 403, _data: { user_message: 'No access' } }
+          } as any)
+        ).toThrow('No access')
+        expect(showToast).toHaveBeenCalledWith({ message: 'No access', type: 'error', title: '通知' })
+      })
     })
   })
 })
