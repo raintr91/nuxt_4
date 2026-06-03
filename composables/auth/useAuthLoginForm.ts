@@ -15,7 +15,8 @@ export function useAuthLoginForm() {
     try {
       isSubmitting.value = true
       await auth.login(values)
-      const redirect = typeof route.query.redirect === 'string' ? route.query.redirect : '/'
+      const raw = typeof route.query.redirect === 'string' ? route.query.redirect : '/'
+      const redirect = (raw.startsWith('/') && !raw.startsWith('//')) ? raw : '/'
       await navigateTo(redirect)
     } catch (e: any) {
       if (isApiValidationError(e)) throw e

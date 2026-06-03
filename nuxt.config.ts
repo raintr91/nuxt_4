@@ -11,7 +11,7 @@ function resolvePublicApiBase(): string {
 export default defineNuxtConfig({
   srcDir: '.',
   compatibilityDate: '2026-01-31',
-  devtools: { enabled: true },
+  devtools: { enabled: import.meta.dev },
   watchers: {
     chokidar: {
       usePolling: true,

@@ -16,19 +16,21 @@ import type { ApiResponse } from '~/types/api/common'
 export const useAuth = defineStore('useAuth', () => {
   const { $apiFetch } = useNuxtApp()
 
+  const secureCookie = process.env.NODE_ENV !== 'development'
+
   const tokenCookie = useCookie<string | null>('auth_token', {
     sameSite: 'lax',
-    secure: false
+    secure: secureCookie
   })
 
   const refreshTokenCookie = useCookie<string | null>('refresh_token', {
     sameSite: 'lax',
-    secure: false
+    secure: secureCookie
   })
 
   const userCookie = useCookie<MeResponse | null>('auth_user', {
     sameSite: 'lax',
-    secure: false
+    secure: secureCookie
   })
 
   const token = computed(() => tokenCookie.value)

@@ -14,6 +14,10 @@ export type RouteGuardOptions = {
   redirectQueryKey?: string
 }
 
+function isSafeRedirect(url: string): boolean {
+  return url.startsWith('/') && !url.startsWith('//')
+}
+
 /**
  * Abstract route guard factory. Returns a handler (to, from) for use with defineNuxtRouteMiddleware.
  *
@@ -51,7 +55,8 @@ export function createRouteGuardHandler(options: RouteGuardOptions) {
       }
     } else {
       if (hasToken) {
-        const dest = (to.query[redirectQueryKey] as string) || redirectTo
+        const raw = (to.query[redirectQueryKey] as string) || redirectTo
+        const dest = isSafeRedirect(raw) ? raw : redirectTo
         return navigateTo(dest, { replace: true })
       }
     }

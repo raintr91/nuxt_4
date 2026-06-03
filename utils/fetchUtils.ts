@@ -110,7 +110,7 @@ export function getCommonFetchOptions(
       }
 
       options.headers = headers
-      console.log('Request started:', request)
+      if (import.meta.dev) console.log('Request started:', request)
     },
 
     onRequestError({ request, error }: { request: Request; error: Error }) {
@@ -137,7 +137,7 @@ export function getCommonFetchOptions(
       if (typeof nextRefreshToken === 'string' && nextRefreshToken.length > 0) {
         refreshToken.value = nextRefreshToken
       }
-      console.log('Response received:', request, response)
+      if (import.meta.dev) console.log('Response received:', request, response)
     },
 
     onResponseError({ request, response, error }: { request: Request | string; response: any; error?: Error }) {
