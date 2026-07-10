@@ -1,11 +1,11 @@
 ---
-description: Import alias — @/ trong apps/web/src
-globs: apps/web/src/**/*
+description: Import alias — @/ trong src
+globs: src/**/*
 alwaysApply: false
 ---
 
 # Import alias
 
-- Use `@/` → `apps/web/src` (no `../` between layers)
+- Use `@/` → `src` (no `../` between layers)
 - `@portal/models` for shared Zod contracts
 - Do not apply to generated shadcn files under `components/ui/` unless editing intentionally

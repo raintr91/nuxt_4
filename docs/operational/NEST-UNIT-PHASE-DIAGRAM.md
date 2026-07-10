@@ -1,5 +1,7 @@
 # API unit phase — Dev lane (Jest / Nest)
 
+> **DEPRECATED:** `apps/api` removed — use **pytest** in `fast-api-base` (`fast-unit-gen`). [factory-ai-stack](./factory-ai-stack.md).
+
 > **Dev-only** — lane Jest cho `apps/api`, **độc lập** Vitest portal ([UNIT-PHASE-DIAGRAM](./UNIT-PHASE-DIAGRAM.md)) và E2E ([TEST-PHASE-DIAGRAM](./TEST-PHASE-DIAGRAM.md)).  
 > Nằm trong phase **2c API** — [BACKEND-PHASE-DIAGRAM](./BACKEND-PHASE-DIAGRAM.md) · [FULL-CYCLE-PIPELINE-DIAGRAM](./FULL-CYCLE-PIPELINE-DIAGRAM).  
 > Hub codegen: [BACKEND-CODEGEN](./BACKEND-CODEGEN.md) · Skills: `/api-code` (sau grill) · verify Jest trong HANDOFF

@@ -1,37 +1,75 @@
 {
-  "generatedAt": "2026-07-09T12:56:08.829Z",
-  "specFile": "docs/features/yaml/_example/contract-pilot/ir/spec.yaml",
-  "profile": "list",
-  "entity": "sample-item",
-  "module": "sample-items",
-  "shell": "DataListPage",
-  "shellVariant": "standard",
-  "commonSpecRef": "docs/features/yaml/common/list-page/common-list-page.bundle.yaml",
-  "designRegistry": "/home/vutv/workspace/portal/shared/portal-design.registry.json",
-  "slotBindings": [],
-  "componentFiles": {},
+  "spec": "/home/vutv/workspace/portal/docs/features/yaml/_example/contract-pilot/backend/01-backend-spec.yaml",
+  "module": "Example",
+  "entity": "SampleItem",
+  "profile": "crud-standard",
   "files": [
     {
-      "layer": "service",
-      "path": "apps/web/src/services/sample-item.service.ts",
-      "template": "list/service.ts.hbs"
+      "id": "router",
+      "relativePath": "src/app/modules/example/sample_item/router.py",
+      "template": "router.py.j2",
+      "layer": "router"
     },
     {
-      "layer": "hook",
-      "path": "apps/web/src/hooks/sample-item/useSampleItemList.ts",
-      "template": "list/useList.ts.hbs"
+      "id": "schemas_request",
+      "relativePath": "src/app/modules/example/sample_item/schemas/request.py",
+      "template": "schemas_request.py.j2",
+      "layer": "schemas"
     },
     {
-      "layer": "page",
-      "path": "apps/web/src/app/(dashboard)/sample-items/page.tsx",
-      "template": "list/page.tsx.hbs"
+      "id": "schemas_response",
+      "relativePath": "src/app/modules/example/sample_item/schemas/response.py",
+      "template": "schemas_response.py.j2",
+      "layer": "schemas"
     },
     {
-      "layer": "mock",
-      "path": "apps/web/src/mocks/sample-item.mock.ts",
-      "template": "list/mock.ts.hbs"
+      "id": "presenter",
+      "relativePath": "src/app/modules/example/sample_item/presenters/sample_item_presenter.py",
+      "template": "presenter.py.j2",
+      "layer": "presenter"
+    },
+    {
+      "id": "service_search",
+      "relativePath": "src/app/modules/example/sample_item/services/search_service.py",
+      "template": "service_search.py.j2",
+      "layer": "service"
+    },
+    {
+      "id": "service_create",
+      "relativePath": "src/app/modules/example/sample_item/services/create_service.py",
+      "template": "service_create.py.j2",
+      "layer": "service"
+    },
+    {
+      "id": "service_update",
+      "relativePath": "src/app/modules/example/sample_item/services/update_service.py",
+      "template": "service_update.py.j2",
+      "layer": "service"
+    },
+    {
+      "id": "service_delete",
+      "relativePath": "src/app/modules/example/sample_item/services/delete_service.py",
+      "template": "service_delete.py.j2",
+      "layer": "service"
+    },
+    {
+      "id": "test_router",
+      "relativePath": "tests/test_sample_item_router.py",
+      "template": "test_router.py.j2",
+      "layer": "test"
     }
   ],
-  "tags": [],
-  "skipped": []
+  "written": [
+    "src/app/modules/example/sample_item/router.py",
+    "src/app/modules/example/sample_item/schemas/request.py",
+    "src/app/modules/example/sample_item/schemas/response.py",
+    "src/app/modules/example/sample_item/presenters/sample_item_presenter.py",
+    "src/app/modules/example/sample_item/services/search_service.py",
+    "src/app/modules/example/sample_item/services/create_service.py",
+    "src/app/modules/example/sample_item/services/update_service.py",
+    "src/app/modules/example/sample_item/services/delete_service.py",
+    "tests/test_sample_item_router.py"
+  ],
+  "skipped": [],
+  "generatedAt": "2026-07-09T14:54:19.580768+00:00"
 }

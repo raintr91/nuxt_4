@@ -1,6 +1,6 @@
 ---
 description: hooks, services, stores, validations — delta vs invariants
-globs: apps/web/src/hooks/**/*,apps/web/src/services/**/*,apps/web/src/stores/**/*,apps/web/src/validations/**/*
+globs: src/hooks/**/*,src/services/**/*,src/stores/**/*,src/validations/**/*
 alwaysApply: false
 ---
 

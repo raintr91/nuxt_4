@@ -33,6 +33,6 @@ pnpm portal:remove --spec docs/features/.../feature.spec.yaml
 
 ## Liên quan
 
-- Auth bypass: mọi stage **trừ** `wire` — `apps/web/src/middleware.ts`
+- Auth bypass: mọi stage **trừ** `wire` — `src/middleware.ts`
 - Xóa code: `pnpm portal:remove --spec <file>`
 - Session handoff: `.harness/progress.md`

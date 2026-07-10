@@ -7,9 +7,9 @@ import {
 
 describe('page-lifecycle.mjs helpers', () => {
   it('maps Next page file to route path', () => {
-    expect(routePathFromPageFile('apps/web/src/app/(dashboard)/hotels/page.tsx')).toBe('/hotels')
-    expect(routePathFromPageFile('apps/web/src/app/(dashboard)/admin/hotels/page.tsx')).toBe('/admin/hotels')
-    expect(routePathFromPageFile('apps/web/src/app/(dashboard)/page.tsx')).toBe('/')
+    expect(routePathFromPageFile('src/app/(dashboard)/hotels/page.tsx')).toBe('/hotels')
+    expect(routePathFromPageFile('src/app/(dashboard)/admin/hotels/page.tsx')).toBe('/admin/hotels')
+    expect(routePathFromPageFile('src/app/(dashboard)/page.tsx')).toBe('/')
   })
 
   it('does not downgrade stage by default', () => {

@@ -12,6 +12,7 @@ disable-model-invocation: true
 **In (primary):**
 
 - `.cursor/rules/`, `.cursor/skills/`, `.cursor/extracts/`
+- **Root project maps** (shared Cursor + Kilo): `team-projects.json` · `legacy-projects.json` · `*.example.json` — [PROJECT-MAPS](docs/operational/PROJECT-MAPS.md)
 - `docs/operational/` — `FEATURE-ARTIFACT-FLOWS.md`, `FEATURE-ARTIFACT-COMMANDS.md`, `PROMPT-TEMPLATES.md`, pipeline diagrams
 - Scripts serving AI: `scripts/spec/`, `scripts/docs/render-docs.mjs`, extract-registry validate
 - `shared/portal-design.registry.json` when tied to grill/codegen **workflow** (not app UI work)
@@ -29,7 +30,7 @@ disable-model-invocation: true
 
 - App technical base is **done**; current mission = **AI support for team**.
 - Feature docs = **chuột bạch** — no backward-compat preservation for old spec paths.
-- Legacy external repos = read-once into trace; portal feature yaml is disposable pilot data.
+- Legacy external repos = resolve via root `team-projects` / `legacy-projects`; read-once into trace; portal feature yaml is disposable pilot data.
 
 ## Workflow priorities
 

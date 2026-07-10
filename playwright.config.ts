@@ -20,8 +20,8 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
   workers: 1,
-  outputDir: 'apps/web/test-results',
-  reporter: [['html', { open: 'never', outputFolder: 'apps/web/playwright-report' }], ['list']],
+  outputDir: 'test-results',
+  reporter: [['html', { open: 'never', outputFolder: 'playwright-report' }], ['list']],
   use: {
     baseURL,
     trace: 'on-first-retry',

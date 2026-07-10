@@ -1,6 +1,6 @@
 ---
 description: Portal Base — UI components và data-testid cho Playwright
-globs: apps/web/src/app/**/*,apps/web/src/components/**/*
+globs: src/app/**/*,src/components/**/*
 alwaysApply: false
 ---
 
@@ -41,7 +41,7 @@ Gắn **một lần** ở `Button`, `Input`, `DataPageHeader`, `ConfirmDialog`, 
 <input data-testid={testId} />
 ```
 
-Helper: `apps/web/src/lib/test-id.ts`
+Helper: `src/lib/test-id.ts`
 
 ## Checklist page mới
 

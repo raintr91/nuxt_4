@@ -1,6 +1,8 @@
 # Backend API — quick reference
 
-NestJS API in `apps/api/` · TypeORM (MySQL) · CQRS · shared Zod via `@portal/models`.
+> **DEPRECATED:** Use **fast-api-base** — `~/workspace/fast-api-base/docs/operational/FAST-API-QUICKSTART.md` · [factory-ai-stack](./factory-ai-stack.md).
+
+NestJS API in `apps/api/` (**removed**) · TypeORM (MySQL) · CQRS · shared Zod via `@portal/models`.
 
 ---
 

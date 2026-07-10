@@ -4,7 +4,7 @@
   "files.watcherExclude": {
     "**/node_modules/**": true,
     "**/.pnpm-store/**": true,
-    "**/apps/web/.next/**": true,
+    "**/.next/**": true,
     "**/.git/objects/**": true,
     "**/coverage/**": true,
     "**/playwright-report/**": true,
@@ -21,7 +21,7 @@
   "search.exclude": {
     "**/node_modules": true,
     "**/.pnpm-store": true,
-    "**/apps/web/.next": true,
+    "**/.next": true,
     "**/coverage": true,
     "**/playwright-report": true,
     "**/test-results": true,

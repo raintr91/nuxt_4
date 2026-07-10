@@ -5,7 +5,7 @@ alwaysApply: true
 
 # Portal Invariants
 
-Next.js 15 auth-first (`apps/web`). Detail: `docs/operational/ARCHITECTURE.md`, `E2E-TESTIDS.md`, `portal-base` skill.
+Next.js 15 auth-first (`src`). Detail: `docs/operational/ARCHITECTURE.md`, `E2E-TESTIDS.md`, `portal-base` skill.
 
 ## Layers (bắt buộc)
 
@@ -21,4 +21,4 @@ Next.js 15 auth-first (`apps/web`). Detail: `docs/operational/ARCHITECTURE.md`, 
 - Registry: `shared/portal-design.registry.json` · `#shell: DataListPage` · `portal-design-vocabulary.mdc` (glob)
 - ~200 lines/file · ~20 lines/fn → `portal-code-size.mdc` (glob)
 - Playwright + `data-testid` before spec → `portal-base-ui-testid.mdc`, `portal-base-e2e.mdc` (glob)
-- Imports: `@/` trong `apps/web/src` — no `../` → `portal-import-alias.mdc` (glob)
+- Imports: `@/` trong `src` — no `../` → `portal-import-alias.mdc` (glob)

@@ -6,17 +6,17 @@ const DOC_REL = 'docs/operational/PAGE-LIFECYCLE.md'
 const STAGE_ORDER = ['design-spec', 'prototype', 'test', 'wire']
 
 /**
- * apps/web/src/app/(dashboard)/hotels/page.tsx → /hotels
- * apps/web/src/app/(dashboard)/hotels/page.tsx → /hotels
+ * src/app/(dashboard)/hotels/page.tsx → /hotels
+ * src/app/(dashboard)/hotels/page.tsx → /hotels
  * @param {string} relativePagePath
  */
 export function routePathFromPageFile(relativePagePath) {
   const normalized = relativePagePath.replace(/\\/g, '/')
 
-  const nextMatch = normalized.match(/^apps\/web\/src\/app\/\(dashboard\)\/(.+)\/page\.tsx$/)
+  const nextMatch = normalized.match(/^src\/app\/\(dashboard\)\/(.+)\/page\.tsx$/)
   if (nextMatch) return `/${nextMatch[1]}`
 
-  const nextRootMatch = normalized.match(/^apps\/web\/src\/app\/\(dashboard\)\/page\.tsx$/)
+  const nextRootMatch = normalized.match(/^src\/app\/\(dashboard\)\/page\.tsx$/)
   if (nextRootMatch) return '/'
 
   return null
@@ -245,7 +245,7 @@ ${rows.length ? rows.join('\n') : '| _—_ | — | — | — | — | — |'}
 
 ## Liên quan
 
-- Auth bypass: mọi stage **trừ** \`wire\` — \`apps/web/src/middleware.ts\`
+- Auth bypass: mọi stage **trừ** \`wire\` — \`src/middleware.ts\`
 - Xóa code: \`pnpm portal:remove --spec <file>\`
 - Session handoff: \`.harness/progress.md\`
 `

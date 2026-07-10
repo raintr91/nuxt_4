@@ -1,6 +1,8 @@
 # Nest API structure — common layer
 
-Port Laravel `api/src/app/Http/*` traits/bases → `apps/api/src/common/`.
+> **DEPRECATED:** `apps/api` đã xóa. Target = **`~/workspace/fast-api-base`** — [FAST-API-STRUCTURE](../../../fast-api-base/docs/operational/FAST-API-STRUCTURE.md) · [factory-ai-stack](./factory-ai-stack.md).
+
+Port Laravel `api/src/app/Http/*` traits/bases → `apps/api/src/common/` (**archived**).
 
 | Laravel | Nest (`apps/api/src/common/`) |
 |---------|-------------------------------|

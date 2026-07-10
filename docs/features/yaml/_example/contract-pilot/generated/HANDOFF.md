@@ -1,24 +1,13 @@
-# HANDOFF — Contract gen pilot
+# fast-gen HANDOFF — SampleItem
 
-Generated from `docs/features/yaml/_example/contract-pilot/ir/spec.yaml` (profile: **list**).
+- Spec: `/home/vutv/workspace/portal/docs/features/yaml/_example/contract-pilot/backend/01-backend-spec.yaml`
+- Module: `Example` / entity `SampleItem`
+- Route prefix: `/sample-items`
 
-## Files
-
-- `apps/web/src/services/sample-item.service.ts`
-- `apps/web/src/hooks/sample-item/useSampleItemList.ts`
-- `apps/web/src/app/(dashboard)/sample-items/page.tsx`
-- `apps/web/src/mocks/sample-item.mock.ts`
-
-## Prototype next (/prototype)
-
-_portal:gen does not emit component code for `#needs-component` / `#needs-ui` — implement molecules in /prototype, then re-run gen._
-
-- **contract-gen**: Run `pnpm contract:gen --spec <ir/spec.yaml>` before portal:gen if @portal/models entity package is missing.
-
-## Commands
+## Verify
 
 ```bash
-pnpm docs:render
-# after spec edits
-pnpm portal:gen --spec ... --force  # re-generate after /prototype components
+cd ~/workspace/fast-api-base
+PYTHONPATH=tools:src .venv/bin/pytest -q
+PYTHONPATH=tools:src .venv/bin/uvicorn app.main:app --port 4000 --app-dir src
 ```

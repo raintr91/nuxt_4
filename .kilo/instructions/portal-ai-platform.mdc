@@ -6,7 +6,8 @@ alwaysApply: true
 # Portal AI platform
 
 - **Default:** `.cursor/rules`, `.cursor/skills`, `.cursor/extracts`, `docs/operational/`, `scripts/spec|docs/`.
-- **App** (`pages/`, `components/`, …): base done — edit only on explicit feature request.
+- **Project maps (shared Cursor + Kilo):** root `team-projects.json` · `legacy-projects.json` · `*.example.json` — [PROJECT-MAPS](docs/operational/PROJECT-MAPS.md).
+- **App** (`src/`, …): base done — edit only on explicit feature request.
 - **`docs/features/**`:** guinea pig — no backward-compat for old spec paths; delete blockers.
-- **Legacy repos:** read-once into trace; portal yaml is disposable.
+- **Legacy repos:** resolve via root project maps; read-once into trace; portal yaml is disposable.
 - **App work:** apply `portal-invariants.mdc` + glob rules. Detail: `/portal-ai-platform` skill.

@@ -107,7 +107,7 @@ deploy:
 
 | Layer | Dev (nặng) | Production (nhẹ) |
 |-------|------------|------------------|
-| Portal | node_modules, Vitest, polling | `next build` (`apps/web`) → standalone image |
+| Portal | node_modules, Vitest, polling | `next build` (`src`) → standalone image |
 | API | full `vendor/`, dev tools | `composer install --no-dev` + PHP-FPM image |
 | Gateway stack | 10+ containers | 1 ingress + managed DB (RDS) — không LocalStack |
 
@@ -127,7 +127,7 @@ workspace/
   pnpm-workspace.yaml
   node_modules/         # DUY NHẤT (hoisted)
   apps/
-    web/                  # @portal/web — Next.js
+    web/                  # portal — Next.js
   packages/
     ui/                 # chỉ src + package.json (peer deps)
     models/

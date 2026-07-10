@@ -1,8 +1,8 @@
 /**
- * Next.js app paths under apps/web/src (portal-gen output root).
+ * Next.js app paths under src/ (portal-gen output root).
  */
 
-export const WEB_SRC = 'apps/web/src'
+export const WEB_SRC = 'src'
 
 /** @param {string} routePath e.g. /hotels */
 export function routeToAppPagePath(routePath) {

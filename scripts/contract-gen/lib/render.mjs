@@ -4,13 +4,14 @@ import { fileURLToPath } from 'node:url'
 
 import Handlebars from 'handlebars'
 
-import { fieldInScope, zodForRelation, zodForScalar } from './field-zod.mjs'
+import { fieldInScope, zodForArray, zodForRelation, zodForScalar } from './field-zod.mjs'
 
 const templatesDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../templates')
 
 Handlebars.registerHelper('zodField', (field, mode) => {
   if (!field) return 'z.unknown()'
   if (field.kind === 'relation') return zodForRelation(field, mode ?? 'read')
+  if (field.kind === 'array') return zodForArray(field)
   if (field.kind === 'fk') return 'fields.id.optional()'
   return zodForScalar(field)
 })
@@ -48,7 +49,7 @@ export function renderHandoffMarkdown(plan, specPath) {
     '## Manual follow-up',
     '',
     '- Confirm `kind: relation` + `persistence.type` when grill infers from columns only.',
-    '- ORM entity (TypeORM/Prisma) is generated separately via `nest:gen` — not in contract:gen.',
+    '- Backend scaffold: `fast-gen write` in fast-api-base (see FAST-CODEGEN.md).',
     ''
   )
 

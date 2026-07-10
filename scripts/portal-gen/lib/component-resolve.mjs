@@ -3,7 +3,7 @@ import path from 'node:path'
 
 import { toKebabCase } from './naming.mjs'
 
-const WEB_MOLECULES = 'apps/web/src/components/molecules'
+const WEB_MOLECULES = 'src/components/molecules'
 
 /**
  * MoDataTable → mo-data-table.tsx
@@ -15,7 +15,7 @@ function moleculeFileName(moName) {
 }
 
 /**
- * Find existing molecule file for MoName under apps/web/src/components/molecules.
+ * Find existing molecule file for MoName under src/components/molecules.
  * @param {string} root
  * @param {string} moName e.g. MoStatusChip
  */

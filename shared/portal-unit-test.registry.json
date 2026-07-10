@@ -16,7 +16,7 @@
   "commonBaselines": {
     "description": "Repo-wide tests — không gen lại per feature; tham chiếu khi /unit gap",
     "portal": [
-      "apps/web/src/services/shared/api-response.ts",
+      "src/services/shared/api-response.ts",
       "tests/unit/lib/data-table-logic.test.ts"
     ],
     "legacyReference": {

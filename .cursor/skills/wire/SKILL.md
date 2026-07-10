@@ -15,7 +15,7 @@ Doc hub: `docs/operational/WIRE-PHASE-DIAGRAM.md` · `docs/operational/FEATURE-A
 
 - Viết docs, integration note và handoff bằng tiếng Việt.
 - Giữ nguyên contract key, route path, API field, model name và code identifier.
-- Nếu nhắc `legacy`, resolve qua JSON `team-projects` hoặc `legacy-projects` trước khi dùng để align integration behavior.
+- Nếu nhắc `legacy`, resolve qua root `team-projects.json` / `legacy-projects.json` (hoặc `*.local.json`) — extract `legacy/project-config.md`. Không đoán path.
 
 ## Load policy
 
@@ -36,7 +36,7 @@ Doc hub: `docs/operational/WIRE-PHASE-DIAGRAM.md` · `docs/operational/FEATURE-A
 ## Order
 
 1. Align `models/` schemas/types with real API.
-2. Add/update `apps/web/src/services/*` using `apiFetch` from `@/lib/api-client`.
+2. Add/update `src/services/*` using `apiFetch` from `@/lib/api-client`.
 3. Update composables to call services.
 4. Update validations when form API errors require it.
 5. Bind pages/components to composables.

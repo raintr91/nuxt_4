@@ -1,0 +1,279 @@
+# Factory AI Platform — TODO (portal-base + fast-api)
+# Cập nhật: 2026-07-09
+#
+# STACK CHÍNH (2 repo — không dùng Laravel api cho product này):
+#   portal/  → Next.js 15 FE (/portal-base layers)
+#   fast/    → ~/workspace/fast-api-base — FastAPI backend DUY NHẤT cho portal này
+#              (alias stack: fast)
+#
+# Laravel ~/workspace/api — CHỈ THAM KHẢO (read-only):
+#   - Cấu trúc docs/operational, docs/features, harness
+#   - Pattern api-gen, registry, skills (/api-spec → map /fast-spec)
+#   - Common traits Laravel → port sang Python layer tương ứng (bảng dưới)
+#   - KHÔNG wire, KHÔNG deploy, KHÔNG team-projects stack v2-mairy cho Factory AI
+#
+# Nest apps/api in portal — DEPRECATE, thay bằng fast.
+#
+# Nguyên tắc (/portal-ai-platform):
+# - Ưu tiên: DỰNG BASE fast-api TRƯỚC, portal doc slim SAU
+# - Một concern / PR
+# - Không dual path (fast xong → xóa nest)
+# - Cập nhật artifact-graph khi thêm fast:gen
+
+================================================================================
+MỤC TIÊU SẢN PHẨM
+================================================================================
+
+Factory AI Platform (một portal Next.js + một API FastAPI):
+
+  Module 1 — Knowledge Hub     RAG + citation (SOP, Manual, ISO…)
+  Module 2 — Maintenance Copilot  QR máy + workflow alarm
+  Module 3 — Factory AI Agent     tools: Knowledge, MES, CMMS (mock → thật)
+
+FE (/portal-base):
+  app/components → hooks → services → @portal/models → apiFetch → fast:4000
+
+================================================================================
+THAM KHẢO LARAVEL api → PYTHON fast (common layer map)
+================================================================================
+
+Đọc ~/workspace/api/src/app/Http/* và api/docs — implement tương đương trên fast:
+
+  Laravel / Nest (portal cũ)     Python fast (src/app/common/)
+  --------------------------     ---------------------------
+  BaseController + ApiResponse   common/http/api_response.py + exception_handlers
+  EntrySearchTrait               services/mixins/search_mixin.py hoặc BaseReadService
+  EntryCreate/Update Trait       services/commands/* (CQRS-lite folder)
+  BaseAction / BaseWriteHandler  common/services/base_write_service.py (ABC)
+  BaseQuery + BaseCriteria       common/services/base_read_service.py + criteria.py
+  BaseResource                   common/presenters/base.py (to_contract)
+  FormRequest                    modules/*/schemas/request.py (Pydantic)
+  BasePolicy                     common/auth/policies.py + Depends()
+  BaseMiddleware               Starlette middleware / dependencies
+  SelectItemTrait                common/services/select_item.py
+  Pagination helper              common/pagination.py
+  Module Routes/api.php          modules/*/router.py → include main.py
+
+Pattern đã chốt cho fast:
+  - Router mỏng (như Controller)
+  - Service layer (KHÔNG CommandBus ceremony)
+  - Presenter transform entity → contract keys (portal-contract-naming)
+  - Pydantic response + envelope { success, data, message }
+  - ABC + Mixin + Protocol thay PHP trait
+
+================================================================================
+ƯU TIÊN #1 — WAVE FAST-BASE (~/workspace/fast-api-base) — LÀM TRƯỚC
+================================================================================
+
+--- FAST-B1: Repo scaffold ---
+
+[x] B1   mkdir ~/workspace/fast-api-base + git init + README
+[x] B2   pyproject.toml (uv): fastapi, uvicorn, pydantic, typer, jinja2, pyyaml, httpx, pytest
+[x] B3   src/app/main.py — FastAPI app, CORS, include routers
+[x] B4   GET /health → api_response.success({ status: "ok" })
+[x] B5   .env.example — PORT=4000, CORS_ORIGINS, (MES/LLM sau)
+
+--- FAST-B2: common layer (port Laravel/Nest common) ---
+
+[x] B6   common/http/api_response.py      # success/error envelope — khớp portal services
+[x] B7   common/http/exception_handlers.py
+[x] B8   common/presenters/base.py        # port BaseResource → to_contract()
+[x] B9   common/pagination.py             # items + total / meta.pagination
+[x] B10  common/auth/dependencies.py      # stub get_current_user, plant_id
+[x] B11  common/auth/policies.py          # port BasePolicy
+[x] B12  common/services/base_read_service.py   # optional stub
+[x] B13  common/services/base_write_service.py  # optional stub
+[x] B14  common/mixins/timestamps.py
+[x] B15  modules/health/router.py         # ping contract test từ portal
+
+--- FAST-B3: clients (gọi ngoài — stub) ---
+
+[x] B16  clients/base.py — httpx async client
+[x] B17  clients/mes_client.py — mock downtime/alarms
+[x] B18  clients/cmms_client.py — mock PM schedule
+[x] B19  clients/llm_client.py — stub
+
+--- FAST-B4: module skeleton (chưa RAG thật) ---
+
+[x] B20  modules/knowledge/router.py + schemas + services/query_service.py (stub citation)
+[x] B21  modules/maintenance/router.py + workflows/ stub
+[x] B22  modules/agent/router.py + tools/ stub (Protocol AgentTool)
+
+--- FAST-B5: docs + harness (mirror api repo layout, nội dung fast) ---
+
+[x] B23  docs/index.md
+[x] B24  docs/operational/FAST-API-STRUCTURE.md      # bảng map trait ở trên
+[x] B25  docs/operational/FAST-API-QUICKSTART.md
+[x] B26  docs/operational/FAST-CODEGEN.md           # sau khi có fast_gen
+[x] B27  docs/operational/FAST-BACKEND-PHASE-DIAGRAM.md
+[x] B28  docs/operational/TEAM-AI-BACKEND-WORKFLOW.md  # /fast-spec → /fast-code
+[x] B29  .harness/progress.md + portalRefs → portal ir/spec paths
+[x] B30  .cursor/skills: fast-spec, grill-fast-spec, fast-code
+        (copy workflow từ ~/workspace/api/.cursor/skills/api-* — đổi path/lệnh)
+
+--- FAST-B6: devops ---
+
+[x] B31  docker/Dockerfile + docker-compose (:4000)
+[x] B32  pytest smoke: test_health.py, test_api_response_envelope.py
+[x] B33  Verify: curl localhost:4000/api/health → envelope đúng format portal parse được
+
+Gate FAST-BASE xong khi:
+  [x] /health + envelope OK
+  [x] common layer files tồn tại (http, presenters, pagination)
+  [x] 3 module router stub mount được
+  [x] pytest pass
+  [x] README chạy được: uvicorn app.main:app --reload --port 4000 --app-dir src
+        (hoặc: python -m venv .venv && pip install -e . && PYTHONPATH=src uvicorn ...)
+
+================================================================================
+ƯU TIÊN #2 — WAVE FAST-GEN (Jinja2 + Typer — sau FAST-BASE gate)
+================================================================================
+
+Tham khảo: ~/workspace/api/scripts/api-gen + portal/scripts/nest-gen (plan only)
+
+[x] C1   tools/fast_gen/: cli.py, plan.py, registry.py, render.py (Jinja2)
+[x] C2   read_spec.py, wire.py (list→search), write_files.py, write_handoff.py
+[x] C3   shared/fast-codegen.registry.json
+[x] C4   shared/fast-unit-test.registry.json
+[x] C5   Templates .j2: router, schemas, service_search/create, presenter, pytest
+[x] C6   scripts/fast-gen + python -m fast_gen.cli registry | dry | write
+[x] C7   scripts/fast-unit-gen + python -m fast_unit_gen.cli write
+[x] C8   openapi subcommand → backend/02-openapi.yaml
+[x] C9   Pilot: contract-pilot backend/01-backend-spec.yaml — dry + write + pytest green
+
+================================================================================
+ƯU TIÊN #3 — WAVE PORTAL (sau fast có /health + envelope)
+================================================================================
+
+--- Portal wire FE → fast (portal-base) ---
+
+[x] P1   .env.example — NEXT_PUBLIC_API_URL=http://127.0.0.1:4000
+[x] P2   lib/api-client.ts trỏ fast (default 127.0.0.1:4000)
+[x] P3   ARCHITECTURE.md — FE monorepo; BE = ~/workspace/fast-api-base
+[x] P4   WIRE-PHASE-DIAGRAM — wire → fast-api-base :4000
+[x] P5   MONOREPO-STRATEGY.md — fast target; Nest deprecate note
+
+--- Portal slim (xóa Nest dual path) ---
+
+[x] P6   Xóa apps/api/ (Nest)
+[x] P7   Xóa scripts/nest-gen, nest-unit-gen, nest .hbs, shared/nest-*.json
+[x] P8   package.json bỏ nest:*, BE openapi:gen
+[x] P9   Deprecate portal docs: BACKEND-CODEGEN, NEST-*, TEAM-AI-BACKEND-WORKFLOW
+        → link fast/docs/operational/
+
+--- Portal AI infra docs (ngắn, sau P1–P5) ---
+
+[x] P10  REPO-SPLIT-MAP.md — portal vs fast (2 repo)
+[x] P11  FEATURE-ARTIFACT-COMMANDS — fast:gen thay nest:gen
+[x] P12  artifact-graph.md — phase fast:gen, /fast-spec
+[x] P13  team-projects.json — factory-ai-stack: portal + fast ONLY
+
+--- Portal đã làm (giữ log) ---
+
+  [x] src/public thật; xóa root public/mocks/playwright-report
+  [x] Playwright → playwright-report
+  [x] portal-gen / unit-gen / testcase:gen → Next paths
+  [x] Xóa portal-gen model.*.hbs dead
+
+================================================================================
+ƯU TIÊN #4 — WIRE + E2E + FACTORY PILOT (portal + fast cùng chạy)
+================================================================================
+
+[x] W1   docker-compose: portal web + fast api
+[x] W2   e2e_test.sh — prerequisite fast :4000
+[x] W3   TEST-PHASE-DIAGRAM — target fast
+[x] W4   factory/knowledge-hub: ir/spec + testcase
+[x] W5   portal: contract:gen → portal:gen → unit-gen
+[x] W6   fast: backend spec → fast-gen → POST /knowledge/query stub
+[x] W7   /wire: services gọi fast thật, mocks off
+[x] W8   E2E smoke knowledge-hub
+
+================================================================================
+CONTRACT portal ↔ fast (/portal-base + portal-contract-naming)
+================================================================================
+Hub doc: docs/operational/CONTRACT-PORTAL-FAST.md
+
+[x] SSOT field keys: portal docs/features/.../ir/spec.yaml
+[x] contract:gen → packages/models (Zod) — portal
+    kind: array + items (citations) · contract-gen field-zod.mjs
+[x] fast Pydantic/OpenAPI — CÙNG keys, không rename layer
+    knowledge-hub/backend/02-openapi.yaml exported
+[x] Envelope: { success, data, message }
+[x] List: { items, total } hoặc meta.pagination — khớp parseApiData FE
+    sample-items wired → fast GET /sample-items · E2E _example/sample-items.spec.ts
+[x] Auth: cookie/header — align middleware portal + fast dependencies
+    stub: auth_token → Bearer · fast get_current_user (JWT production sau)
+
+================================================================================
+CODEGEN OWNER (2 repo)
+================================================================================
+
+PORTAL:
+  portal:gen, portal:unit-gen, testcase:gen, contract:gen
+  scripts/spec, docs/render, run-phase.mjs
+  tests/e2e, tests/unit (vitest)
+  packages/models
+
+FAST:
+  tools/fast_gen (Jinja2 + Typer)
+  docs/features/.../backend/
+  tests/ (pytest)
+
+XÓA khỏi PORTAL:
+  nest-gen, nest-unit-gen, apps/api
+
+KHÔNG DÙNG cho Factory AI:
+  ~/workspace/api Laravel runtime (chỉ đọc tham khảo)
+
+================================================================================
+DONE CRITERIA
+================================================================================
+
+FAST-BASE (gate 1):
+  [x] fast chạy :4000, /api/health, envelope đúng
+  [x] common/http + presenters + pagination có mặt
+  [x] pytest smoke green
+  [x] FAST-API-STRUCTURE.md có bảng trait map
+
+INTEGRATION (gate 2):
+  [x] portal NEXT_PUBLIC_API_URL → fast-api-base (env + api-client default)
+  [x] Không nest/apps/api trên portal (P6–P9)
+  [x] team-projects: portal ↔ fast
+
+PRODUCT PILOT (gate 3):
+  [x] fast-gen dry + write pass contract-pilot
+  [x] knowledge-hub stub E2E hoặc curl end-to-end
+
+================================================================================
+THỨ TỰ THỰC HIỆN (đã sửa — fast trước)
+================================================================================
+
+1. FAST-B1 → B6–B15 (scaffold + common layer + health)     ← BẮT ĐẦU TỪ ĐÂY
+2. FAST-B16–B22 (clients + module stubs)
+3. FAST-B31–B33 (docker + pytest + gate)
+4. FAST-B23–B30 (docs + skills — có thể song song bước 2)
+5. FAST-GEN C1–C9 (sau gate 1)
+6. PORTAL P1–P9 (wire + slim nest)
+7. PORTAL P10–P13 + W1–W8 (docs AI + factory pilot)
+
+================================================================================
+WAVE DOCS PARITY (2026-07-10) — Python-only, không node/pnpm
+================================================================================
+
+[x] D1  docs/features/yaml + md layout parity portal (bundle · ir · backend · api-test)
+[x] D2  tools/fast_spec: split · merge · docs_render · api_contract (Python)
+[x] D3  Xóa package.json · vitest · toàn bộ scripts/**/*.mjs
+[x] D4  pytest *.api-test.yaml thay vitest contract (test_api_contract_yaml.py)
+[x] D5  docs/templates/backend-api.bundle.yaml · api-contract-test.yaml
+[x] D6  FEATURE-ARTIFACT-LAYOUT · FEATURE-ARTIFACT-FLOWS · FAST-ARTIFACT-COMMANDS
+[x] D7  MkDocs Material — ./scripts/docs-dev / docs-build (thay VitePress, Python-only)
+[x] D8  Docs: không E2E trong fast; không pnpm; MkDocs :8001 trong QUICKSTART + COMMANDS
+
+================================================================================
+SAU NÀY (không block base)
+================================================================================
+
+- C# .NET MES/CMMS gateway — fast clients HTTP
+- RAG/vector DB thật (Demo 1 production)
+- Factory module 2–3 đầy đủ
+- Storybook, MoSearchForm codegen — optional

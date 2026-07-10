@@ -1,0 +1,14 @@
+{
+  "spec": "docs/features/yaml/factory/knowledge-hub/ir/spec.yaml",
+  "entities": [
+    "KnowledgeQuery"
+  ],
+  "written": [
+    "packages/models/src/knowledge-hub/knowledge-hub.read.schema.ts",
+    "packages/models/src/knowledge-hub/knowledge-hub.write.schema.ts",
+    "packages/models/src/knowledge-hub/knowledge-hub.types.ts",
+    "packages/models/src/knowledge-hub/index.ts"
+  ],
+  "skipped": [],
+  "generatedAt": "2026-07-09T15:43:54.911Z"
+}

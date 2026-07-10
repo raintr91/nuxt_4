@@ -7,7 +7,7 @@ Bổ sung chi tiết cho [SKILL.md](SKILL.md). Đọc khi cần template code đ
 ## Service template
 
 ```ts
-// apps/web/src/services/work-order.service.ts
+// src/services/work-order.service.ts
 import { WorkOrderListResponseSchema } from '@portal/models/work-order';
 import { apiFetch } from '@/lib/api-client';
 import { assertApiSuccess, parseApiData } from '@/services/shared/api-response';
@@ -26,7 +26,7 @@ export function createWorkOrderService(fetch = apiFetch) {
 ## Hook list template
 
 ```ts
-// apps/web/src/hooks/work-order/useWorkOrderList.ts
+// src/hooks/work-order/useWorkOrderList.ts
 'use client';
 
 import { useCallback, useState } from 'react';
@@ -54,7 +54,7 @@ export function useWorkOrderList() {
 ## Page + testId template
 
 ```tsx
-// apps/web/src/app/(dashboard)/work-orders/page.tsx
+// src/app/(dashboard)/work-orders/page.tsx
 'use client';
 
 import { useEffect } from 'react';
@@ -102,7 +102,7 @@ test.describe('Work orders', () => {
 
 ## Auth login reference ids
 
-`apps/web/src/components/auth/login-card.tsx` · route `/login/`:
+`src/components/auth/login-card.tsx` · route `/login/`:
 
 | testId | Element |
 |--------|---------|
@@ -123,7 +123,7 @@ test.describe('Work orders', () => {
 ## Thư mục quan trọng
 
 ```
-apps/web/src/
+src/
 ├── app/(auth)|/(dashboard)/
 ├── hooks/
 ├── services/

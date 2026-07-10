@@ -98,7 +98,7 @@ Chi tiết promote & grill default: [UNIT-REGISTRY-PROMOTION](./UNIT-REGISTRY-PR
 
 | Đọc | Không đọc |
 |-----|-----------|
-| `unit.manifest.json`, `UNIT-HANDOFF.md` | `apps/web/src/app/`, `components/` |
+| `unit.manifest.json`, `UNIT-HANDOFF.md` | `src/app/`, `components/` |
 | `codegen.manifest` `files[]` (logic layers) | inventory `tests/unit/` |
 | spec `requirements` filter `reqIds` manifest | E2E testcase YAML |
 | source 1 file / gap | `portal-design.registry` |

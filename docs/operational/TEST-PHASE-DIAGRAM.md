@@ -4,6 +4,8 @@
 > Nằm trong [FULL-CYCLE-PIPELINE-DIAGRAM](./FULL-CYCLE-PIPELINE-DIAGRAM) phase **2a Tests**.  
 > Hub: [PORTAL-CODEGEN](./PORTAL-CODEGEN.md) · Skills: `/test` · `/grill-test` · `testcase:gen`
 
+**Wire E2E prerequisite:** `fast-api-base` chạy `:4000` — `scripts/e2e_test.sh` kiểm tra `GET /api/health` trước Playwright. Pilot: `tests/e2e/factory/knowledge-hub.spec.ts`.
+
 Trạng thái codegen E2E (portal repo):
 
 | PR | Tên | Trạng thái | Deliverable |

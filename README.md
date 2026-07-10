@@ -1,6 +1,7 @@
 # Portal Base (Next.js 15)
 
-Auth-first Next.js monorepo — shadcn dashboard, kiến trúc 4 tầng trong `apps/web`, harness AI cho feature mới.
+Auth-first Next.js — shadcn dashboard, kiến trúc 4 tầng trong `src/`, harness AI cho feature mới.  
+Workspace còn `packages/models` (`@portal/models`).
 
 ## Quick start
 
@@ -9,13 +10,13 @@ pnpm install
 pnpm dev
 ```
 
-FE chạy tại `apps/web` (mặc định port 3000). API Nest: `pnpm dev:api`.
+FE tại root (mặc định port 3000). API: `~/workspace/fast-api-base` `:4000`.
 
 ## Commands
 
 | Command | Mô tả |
 |---------|--------|
-| `pnpm dev` | Next dev (`@portal/web`) |
+| `pnpm dev` | Next dev |
 | `pnpm build` | Next production build |
 | `pnpm test:unit` | Vitest |
 | `pnpm test:e2e` | Playwright — đọc [E2E-TESTIDS](docs/operational/E2E-TESTIDS.md) trước |
@@ -33,7 +34,7 @@ FE chạy tại `apps/web` (mặc định port 3000). API Nest: `pnpm dev:api`.
 
 Auth-first skeleton: `/login`, `/` (protected dashboard), middleware cookie `auth_token`.
 
-API client (`apiFetch` trong `apps/web/src/lib/api-client.ts`) gọi `NEXT_PUBLIC_API_URL/api/*`.
+API client (`apiFetch` trong `src/lib/api-client.ts`) gọi `NEXT_PUBLIC_API_URL/api/*`.
 
 ## Team AI harness
 

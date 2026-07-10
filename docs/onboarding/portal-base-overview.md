@@ -6,7 +6,7 @@
 
 Portal Base giúp team và AI làm nhanh hơn nhưng vẫn giữ pattern.
 
-- Next.js 15 auth-first portal (`apps/web`).
+- Next.js 15 auth-first portal (`src`).
 - shadcn/ui primitives.
 - Molecules/organisms dùng lại.
 - 4 tầng rõ ràng.
@@ -45,10 +45,10 @@ Rule quan trọng:
 ## UI Tiers
 
 ```text
-apps/web/src/components/ui/          shadcn primitives
-apps/web/src/components/molecules/   mo-*
-apps/web/src/components/organisms/   data-*
-apps/web/src/app/(dashboard)/        orchestration only
+src/components/ui/          shadcn primitives
+src/components/molecules/   mo-*
+src/components/organisms/   data-*
+src/app/(dashboard)/        orchestration only
 ```
 
 Lợi ích:
@@ -60,7 +60,7 @@ Lợi ích:
 
 ## Common Helpers
 
-- `apiFetch` wrapper (`apps/web/src/lib/api-client.ts`).
+- `apiFetch` wrapper (`src/lib/api-client.ts`).
 - `@portal/models`: API contract + types.
 - `validations/`: form validation schema.
 - `react-hook-form` + zod resolver.

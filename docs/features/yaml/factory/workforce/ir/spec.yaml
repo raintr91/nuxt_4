@@ -1,0 +1,44 @@
+id: factory-workforce-check-in
+title: Workforce Check-In
+status: wire
+owner: portal-team
+summary: Shared contract — FE Zod + fast Pydantic + line Contracts (same keys)
+
+codegen:
+  profile: kiosk
+  entity: workforce
+  module: factory
+
+entities:
+  - name: WorkforceCheckIn
+    fields:
+      - key: badge_id
+        kind: scalar
+        type: string
+        scopes: [form, request]
+      - key: station_id
+        kind: scalar
+        type: string
+        scopes: [form, request]
+        nullable: true
+      - key: plant_id
+        kind: scalar
+        type: integer
+        scopes: [form, request]
+        nullable: true
+      - key: checked_in
+        kind: scalar
+        type: boolean
+        scopes: [response]
+      - key: employee_name
+        kind: scalar
+        type: string
+        scopes: [response]
+      - key: shift_id
+        kind: scalar
+        type: string
+        scopes: [response]
+        nullable: true
+
+tags:
+  - "#wire-only: network"

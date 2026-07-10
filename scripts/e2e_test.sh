@@ -37,17 +37,29 @@ export PLAYWRIGHT_BASE_URL="${PLAYWRIGHT_BASE_URL:-http://127.0.0.1:${E2E_PORT}}
 echo "Base URL: $PLAYWRIGHT_BASE_URL"
 echo "E2E port: $E2E_PORT"
 
+FAST_API_URL="${NEXT_PUBLIC_API_URL:-http://127.0.0.1:4000}"
+echo "Fast API: $FAST_API_URL"
+
 echo ""
-echo "--- Playwright E2E tests -> apps/web/playwright-report/ ---"
-rm -rf "$ROOT_DIR/apps/web/playwright-report" "$ROOT_DIR/apps/web/test-results"
+echo "--- Prerequisite: fast-api-base /api/health ---"
+if ! curl -sf "${FAST_API_URL}/api/health" >/dev/null; then
+  echo "FATAL: fast-api-base is not reachable at ${FAST_API_URL}/api/health"
+  echo "Start: cd ~/workspace/fast-api-base && PYTHONPATH=src .venv/bin/uvicorn app.main:app --port 4000 --app-dir src"
+  exit 1
+fi
+echo "fast-api-base: OK"
+
+echo ""
+echo "--- Playwright E2E tests -> playwright-report/ ---"
+rm -rf "$ROOT_DIR/playwright-report" "$ROOT_DIR/test-results"
 
 set +e
 pnpm exec playwright test "$@"
 PLAYWRIGHT_EXIT=$?
 set -e
 
-if [ -f "$ROOT_DIR/apps/web/playwright-report/index.html" ]; then
-  echo "Report: apps/web/playwright-report/index.html"
+if [ -f "$ROOT_DIR/playwright-report/index.html" ]; then
+  echo "Report: playwright-report/index.html"
 fi
 
 echo "=== e2e_test.sh finished (exit $PLAYWRIGHT_EXIT) at $(date '+%F %T') ==="

@@ -2,7 +2,7 @@
 
 > **Doc chính:** [Portal codegen (gen + unit)](../../docs/operational/PORTAL-CODEGEN.md) — đọc trước khi quên thứ tự lệnh.
 
-Generate 4-layer scaffold from feature `spec.yaml` (Handlebars templates) into **`apps/web/src/`**.
+Generate 4-layer scaffold from feature `spec.yaml` (Handlebars templates) into **`src/`**.
 
 **Models:** `portal:gen` **không** sinh `models/`. Chạy `pnpm contract:gen --spec .../ir/spec.yaml` trước để có `@portal/models` (`packages/models/src/`).
 
@@ -38,25 +38,25 @@ Copy `docs/templates/spec.yaml`. Required:
 - `api.endpoints` with `action: list` or `create`
 - `tags` — see `.cursor/extracts/codegen/tags.md`
 
-**Lifecycle:** Khi ghi `apps/web/src/app/(dashboard)/**/page.tsx`, portal-gen cập nhật registry (`prototype`) + `pnpm portal:lifecycle sync`. Xóa: `pnpm portal:remove --spec <file>`. Doc: `docs/operational/PAGE-LIFECYCLE.md`.
+**Lifecycle:** Khi ghi `src/app/(dashboard)/**/page.tsx`, portal-gen cập nhật registry (`prototype`) + `pnpm portal:lifecycle sync`. Xóa: `pnpm portal:remove --spec <file>`. Doc: `docs/operational/PAGE-LIFECYCLE.md`.
 
 ## Output (Next.js)
 
-- `apps/web/src/app/(dashboard)/{route}/page.tsx`
-- `apps/web/src/hooks/{entity}/use{Entity}List.ts`
-- `apps/web/src/services/{entity}.service.ts`
-- `apps/web/src/mocks/{entity}.mock.ts`
-- `apps/web/src/validations/{entity}/schemas.ts` (create profile)
+- `src/app/(dashboard)/{route}/page.tsx`
+- `src/hooks/{entity}/use{Entity}List.ts`
+- `src/services/{entity}.service.ts`
+- `src/mocks/{entity}.mock.ts`
+- `src/validations/{entity}/schemas.ts` (create profile)
 - `docs/features/{feature}/generated/HANDOFF.md` + `codegen.manifest.json`
 
 ## Templates
 
 ```
 scripts/portal-gen/templates/
-  list/       — DataListPage; wires cell slots when Mo* exists under apps/web
+  list/       — DataListPage; wires cell slots when Mo* exists under src
   create/     — form scaffold (planned)
 scripts/portal-gen/lib/
-  web-paths.mjs       — apps/web/src path helpers
+  web-paths.mjs       — src path helpers
   design-registry.mjs — load registry, resolve shell, validate tags
 ```
 

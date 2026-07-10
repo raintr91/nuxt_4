@@ -1,137 +1,371 @@
-openapi: 3.0.3
+openapi: 3.1.0
 info:
-  title: Contract pilot API
+  title: Factory AI API
+  description: FastAPI backend for Factory AI Platform (portal-base)
   version: 0.1.0
-servers:
-  - url: http://localhost:4000
-    description: Local dev
 paths:
+  /api/health:
+    get:
+      tags:
+      - health
+      summary: Health Check
+      operationId: health_check_api_health_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                additionalProperties: true
+                type: object
+                title: Response Health Check Api Health Get
+  /api/knowledge/query:
+    post:
+      tags:
+      - knowledge
+      summary: Knowledge Query
+      operationId: knowledge_query_api_knowledge_query_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/KnowledgeQueryRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                additionalProperties: true
+                type: object
+                title: Response Knowledge Query Api Knowledge Query Post
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/maintenance/machines/{machine_id}:
+    get:
+      tags:
+      - maintenance
+      summary: Get Machine
+      operationId: get_machine_api_maintenance_machines__machine_id__get
+      parameters:
+      - name: machine_id
+        in: path
+        required: true
+        schema:
+          type: string
+          title: Machine Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                title: Response Get Machine Api Maintenance Machines  Machine Id  Get
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/maintenance/step/ack:
+    post:
+      tags:
+      - maintenance
+      summary: Ack Step
+      operationId: ack_step_api_maintenance_step_ack_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              additionalProperties: true
+              type: object
+              title: Body
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                additionalProperties: true
+                type: object
+                title: Response Ack Step Api Maintenance Step Ack Post
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/maintenance/alarms/{alarm_id}/ack:
+    post:
+      tags:
+      - maintenance
+      summary: Ack Alarm
+      operationId: ack_alarm_api_maintenance_alarms__alarm_id__ack_post
+      parameters:
+      - name: alarm_id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Alarm Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                title: Response Ack Alarm Api Maintenance Alarms  Alarm Id  Ack Post
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /api/agent/chat:
+    post:
+      tags:
+      - agent
+      summary: Agent Chat
+      operationId: agent_chat_api_agent_chat_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AgentChatRequest'
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                additionalProperties: true
+                type: object
+                title: Response Agent Chat Api Agent Chat Post
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
   /api/sample-items:
     get:
-      operationId: sample-item.search
       tags:
-        - Example
-      summary: search SampleItem
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/SampleItemCollection"
+      - example
+      summary: Search Sample Item
+      operationId: search_sample_item_api_sample_items_get
       parameters:
-        - name: page
-          in: query
-          schema:
-            type: integer
-        - name: per_page
-          in: query
-          schema:
-            type: integer
-    post:
-      operationId: sample-item.create
-      tags:
-        - Example
-      summary: create SampleItem
+      - name: page
+        in: query
+        required: false
+        schema:
+          type: integer
+          minimum: 1
+          default: 1
+          title: Page
+      - name: per_page
+        in: query
+        required: false
+        schema:
+          type: integer
+          maximum: 100
+          minimum: 1
+          default: 20
+          title: Per Page
       responses:
-        "200":
-          description: OK
+        '200':
+          description: Successful Response
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/SampleItemResource"
+                type: object
+                additionalProperties: true
+                title: Response Search Sample Item Api Sample Items Get
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    post:
+      tags:
+      - example
+      summary: Create Sample Item
+      operationId: create_sample_item_api_sample_items_post
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/SampleItemCreateRequest"
+              $ref: '#/components/schemas/SampleItemCreateRequest'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                title: Response Create Sample Item Api Sample Items Post
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
   /api/sample-items/{id}:
     patch:
-      operationId: sample-item.update
       tags:
-        - Example
-      summary: update SampleItem
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/SampleItemResource"
+      - example
+      summary: Update Sample Item
+      operationId: update_sample_item_api_sample_items__id__patch
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Id
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/SampleItemUpdateRequest"
-    delete:
-      operationId: sample-item.delete
-      tags:
-        - Example
-      summary: delete SampleItem
+              $ref: '#/components/schemas/SampleItemUpdateRequest'
       responses:
-        "200":
-          description: OK
+        '200':
+          description: Successful Response
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/SampleItemDeleteResponse"
+                type: object
+                additionalProperties: true
+                title: Response Update Sample Item Api Sample Items  Id  Patch
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+    delete:
+      tags:
+      - example
+      summary: Delete Sample Item
+      operationId: delete_sample_item_api_sample_items__id__delete
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          title: Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+                title: Response Delete Sample Item Api Sample Items  Id  Delete
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
 components:
-  securitySchemes:
-    bearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
   schemas:
-    SampleItemSearchRequest:
-      type: object
+    AgentChatRequest:
       properties:
-        page:
-          type: integer
-        per_page:
-          type: integer
-      required:
-        - page
-        - per_page
-    SampleItemCreateRequest:
-      type: object
-      properties:
-        name:
+        message:
           type: string
+          minLength: 1
+          title: Message
+        tool:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Tool
+      type: object
       required:
-        - name
-    SampleItemUpdateRequest:
-      type: object
+      - message
+      title: AgentChatRequest
+    HTTPValidationError:
       properties:
-        name:
-          type: string
-          nullable: true
-    SampleItemResource:
-      type: object
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-          nullable: true
-      required:
-        - id
-    SampleItemCollection:
-      type: object
-      properties:
-        data:
-          type: array
+        detail:
           items:
-            $ref: "#/components/schemas/SampleItemResource"
-        meta:
-          type: object
-    SampleItemDeleteResponse:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
       type: object
+      title: HTTPValidationError
+    KnowledgeQueryRequest:
       properties:
-        success:
-          type: boolean
+        query:
+          type: string
+          minLength: 1
+          title: Query
+        plant_id:
+          anyOf:
+          - type: integer
+          - type: 'null'
+          title: Plant Id
+      type: object
       required:
-        - success
-security:
-  - bearerAuth: []
+      - query
+      title: KnowledgeQueryRequest
+    SampleItemCreateRequest:
+      properties:
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+      type: object
+      title: SampleItemCreateRequest
+    SampleItemUpdateRequest:
+      properties:
+        name:
+          anyOf:
+          - type: string
+          - type: 'null'
+          title: Name
+      type: object
+      title: SampleItemUpdateRequest
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError

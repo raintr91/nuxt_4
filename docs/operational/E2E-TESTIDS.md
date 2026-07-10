@@ -2,7 +2,7 @@
 
 Tài liệu quy ước gắn **`data-testid`** trên FE và viết Playwright E2E ổn định. Grill khai báo danh sách trong **`spec.ui.testIds.required`** (+ **`patterns`** khi id động); `portal:gen` emit markup; testcase YAML mirror list trước `/test`.
 
-> **Quick link:** [Docs Home](../index.md) · Template testcase: `docs/templates/testcase.yaml` · Helper: `apps/web/src/lib/test-id.ts`
+> **Quick link:** [Docs Home](../index.md) · Template testcase: `docs/templates/testcase.yaml` · Helper: `src/lib/test-id.ts`
 
 ---
 
@@ -21,7 +21,7 @@ Tài liệu quy ước gắn **`data-testid`** trên FE và viết Playwright E2
    - Label form (khi test cần assert text hoặc liên kết field)
 3. **Không dùng `id` HTML** làm selector chính — `id` dễ trùng, thay đổi theo form state, SSR hydration.
 4. **Ưu tiên `page.getByTestId()`** trong test; fallback `getByRole` khi semantic rõ (heading `h1`, `role="alert"`).
-5. Gắn test id **ở shared UI** (`apps/web/src/components/ui/*`, `molecules/*`, `organisms/*`) qua prop **`testId`** — page chỉ truyền giá trị.
+5. Gắn test id **ở shared UI** (`src/components/ui/*`, `molecules/*`, `organisms/*`) qua prop **`testId`** — page chỉ truyền giá trị.
 
 ### 1.2 Quy ước đặt tên
 
@@ -68,7 +68,7 @@ customers-page                          ← DataPageHeader testId="customers-pag
 
 ### 1.3 Prop `testId` trên shared UI
 
-Prop React **`testId`** map sang HTML **`data-testid`**. Helper: `apps/web/src/lib/test-id.ts`.
+Prop React **`testId`** map sang HTML **`data-testid`**. Helper: `src/lib/test-id.ts`.
 
 **Primitives đã hỗ trợ `testId`:**
 
@@ -92,7 +92,7 @@ Prop React **`testId`** map sang HTML **`data-testid`**. Helper: `apps/web/src/l
 <Input testId="customer-name-input" {...register('name')} />
 ```
 
-**Ví dụ auth login (reference):** `apps/web/src/components/auth/login-card.tsx` · route `/login/` — prefix `auth-login-*`.
+**Ví dụ auth login (reference):** `src/components/auth/login-card.tsx` · route `/login/` — prefix `auth-login-*`.
 
 ### 1.4 Checklist khi thêm page mới
 

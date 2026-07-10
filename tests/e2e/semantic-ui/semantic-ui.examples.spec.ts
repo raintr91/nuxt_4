@@ -2,7 +2,7 @@ import { expect, test, waitForSemanticUiReady } from '../fixtures/semantic-ui'
 
 test.describe('Semantic UI examples', () => {
   test('login page passes level 1 semantic smoke checks', async ({ page, consoleErrors }) => {
-    await page.goto('/auth/login')
+    await page.goto('/login')
     await waitForSemanticUiReady(page, {
       rootTestId: 'auth-login-page',
       waitForTestIds: ['auth-login-submit-btn'],

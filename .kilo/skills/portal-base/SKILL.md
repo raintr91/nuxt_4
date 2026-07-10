@@ -11,7 +11,7 @@ Auth-first Next.js · React 19 · Zustand · react-hook-form+Zod · shadcn/ui ·
 
 **Docs:** `docs/operational/ARCHITECTURE.md`, `E2E-TESTIDS.md` · **E2E skill:** `test/SKILL.md`
 
-**Legacy paths:** `team-projects.json` / `legacy-projects.json` — never guess.
+**Legacy / team paths (shared Cursor + Kilo):** root `team-projects.json` · `legacy-projects.json` — never guess. Templates: `*.example.json`. See `docs/operational/PROJECT-MAPS.md`.
 
 ## Layers
 

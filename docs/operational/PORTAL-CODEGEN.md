@@ -8,7 +8,7 @@ Hai pipeline app + unit **tách script**, **tách registry** — E2E `testcase:g
 
 | Pipeline | Lệnh | Registry | Output app / test |
 |----------|------|----------|-------------------|
-| **App scaffold** | `pnpm portal:gen` | `shared/portal-design.registry.json` | `apps/web/src/` (`app/`, `hooks/`, `services/`, `mocks/`, …) |
+| **App scaffold** | `pnpm portal:gen` | `shared/portal-design.registry.json` | `src/` (`app/`, `hooks/`, `services/`, `mocks/`, …) |
 | **Unit tests** | `pnpm portal:unit-gen` | `shared/portal-unit-test.registry.json` | `tests/unit/…` (một file / layer) |
 | **E2E tests** | `pnpm testcase:gen` | `shared/portal-e2e-test.registry.json` | `tests/e2e/…` + Page Objects |
 
@@ -88,7 +88,7 @@ pnpm test:e2e tests/e2e/chain-hotels/
 
 | Artifact | Path |
 |----------|------|
-| App layers | `apps/web/src/` — `app/`, `hooks/`, `services/`, `mocks/`, `validations/` (create) |
+| App layers | `src/` — `app/`, `hooks/`, `services/`, `mocks/`, `validations/` (create) |
 | Manifest | `docs/features/yaml/.../{function}/generated/codegen.manifest.json` |
 | Handoff prototype | `docs/features/yaml/.../{function}/generated/HANDOFF.md` |
 
@@ -96,7 +96,7 @@ pnpm test:e2e tests/e2e/chain-hotels/
 
 **UI registry:** `#shell: DataListPage`, `#needs-component:…`, `#wire-only:…` — xem [DESIGN-REGISTRY-PROMOTION](./DESIGN-REGISTRY-PROMOTION.md), [NEEDS-COMPONENT-FLOW](./NEEDS-COMPONENT-FLOW.md).
 
-**Lifecycle:** ghi `apps/web/src/app/(dashboard)/**/page.tsx` → cập nhật stage `prototype` — [PAGE-LIFECYCLE](./PAGE-LIFECYCLE.md).
+**Lifecycle:** ghi `src/app/(dashboard)/**/page.tsx` → cập nhật stage `prototype` — [PAGE-LIFECYCLE](./PAGE-LIFECYCLE.md).
 
 **Không gen:** component `Mo*` (prototype implement); unit test (pipeline riêng).
 

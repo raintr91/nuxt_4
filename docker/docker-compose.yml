@@ -19,7 +19,7 @@ services:
       - /workspace/portal/docker/entrypoint-dev.sh
       - sh
       - -c
-      - mkdir -p /tmp/corepack /tmp/cache /tmp/config && cd /workspace/portal && if [ ! -x apps/web/node_modules/.bin/next ]; then corepack pnpm install; fi && corepack pnpm run dev
+      - mkdir -p /tmp/corepack /tmp/cache /tmp/config && cd /workspace/portal && if [ ! -x node_modules/.bin/next ]; then corepack pnpm install; fi && corepack pnpm run dev
     environment:
       HOST_UID: "${HOST_UID:-1000}"
       HOST_GID: "${HOST_GID:-1000}"
@@ -40,36 +40,16 @@ services:
       - default
       - shared
 
-  api-node:
-    container_name: ${PORTAL_STACK_PREFIX:-base}-api-node
-    image: node:24
-    user: "0:0"
-    working_dir: /workspace
-    command:
-      - /bin/sh
-      - /workspace/portal/docker/entrypoint-dev.sh
-      - sh
-      - -c
-      - mkdir -p /tmp/corepack /tmp/cache /tmp/config && cd /workspace/portal && if [ ! -d apps/api/node_modules ]; then corepack pnpm install; fi && corepack pnpm run dev:api
+  fast-api:
+    container_name: ${PORTAL_STACK_PREFIX:-base}-fast-api
+    build:
+      context: ${FAST_API_BASE_PATH:-../../fast-api-base}
+      dockerfile: docker/Dockerfile
+    ports:
+      - "4000:4000"
     environment:
-      HOST_UID: "${HOST_UID:-1000}"
-      HOST_GID: "${HOST_GID:-1000}"
       PORT: "4000"
-      DB_HOST: "${DB_HOST:-mysql84}"
-      DB_PORT: "${DB_PORT:-3306}"
-      DB_USER: "${DB_USER:-root}"
-      DB_PASSWORD: "${DB_PASSWORD:-secret}"
-      DB_NAME: "${DB_NAME:-portal}"
-      DB_SYNCHRONIZE: "${DB_SYNCHRONIZE:-true}"
-      DB_LOGGING: "${DB_LOGGING:-false}"
-      HOME: /tmp
-      COREPACK_HOME: /tmp/corepack
-      XDG_CACHE_HOME: /tmp/cache
-      XDG_CONFIG_HOME: /tmp/config
-    volumes:
-      - ..:/workspace/portal
-      - portal_node_modules:/workspace/portal/node_modules
-      - portal_pnpm_store:/workspace/portal/.pnpm-store
+      CORS_ORIGINS: "http://localhost:3000,http://127.0.0.1:3005,http://localhost:3005"
     networks:
       - default
       - shared

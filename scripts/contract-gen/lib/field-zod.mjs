@@ -26,8 +26,25 @@ function embedZod(embedFields) {
   return `z.object({\n${lines.join('\n')}\n})`
 }
 
+function zodForArrayItem(field) {
+  if (field.kind === 'relation') return zodForRelation(field, 'read')
+  if (field.kind === 'fk') return 'fields.id.optional()'
+  return zodForScalar(field)
+}
+
+export function zodForArray(field) {
+  const itemFields = field.items ?? []
+  if (itemFields.length === 0) {
+    return 'z.array(z.unknown())'
+  }
+  const lines = itemFields.map((item) => `  ${item.key}: ${zodForArrayItem(item)},`)
+  const arrayExpr = `z.array(z.object({\n${lines.join('\n')}\n}))`
+  return field.optional ? `${arrayExpr}.optional()` : arrayExpr
+}
+
 export function zodForScalar(field) {
   const type = field.type ?? 'string'
+  if (type === 'array') return zodForArray(field)
   const mapper = SCALAR_ZOD[type] ?? SCALAR_ZOD.string
   let expr = mapper(field)
   if (field.readOnly && !expr.includes('.optional()')) {

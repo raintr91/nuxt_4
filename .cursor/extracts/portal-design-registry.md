@@ -18,7 +18,7 @@
 |--------|------------------|
 | `#shell:` | `shells` |
 | `#pattern:` | `patterns` |
-| `#ui:` | `components` (auto-discover `apps/web/src/components/ui/*`) |
+| `#ui:` | `components` (auto-discover `src/components/ui/*`) |
 | `#widget:` | `fieldWidgets` |
 | `#render:` | `detailRenders` |
 | `#shape:` | `fieldWidgets` shapes |

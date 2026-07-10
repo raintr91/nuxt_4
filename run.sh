@@ -1,5 +1,5 @@
 #!/bin/bash
-# Portal web dev (Next.js @ apps/web)
+# Portal web dev (Next.js at repo root)
 
 set -euo pipefail
 
@@ -13,7 +13,7 @@ if [ ! -d "node_modules" ]; then
   pnpm install
 fi
 
-echo "Starting Next.js dev server (apps/web)..."
+echo "Starting Next.js dev server (root)..."
 echo "Default port: 3000 (override with PORT)"
 echo ""
 

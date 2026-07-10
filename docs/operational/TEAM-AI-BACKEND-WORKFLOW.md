@@ -1,7 +1,9 @@
 # Team AI Backend Workflow (Nest — in-repo)
 
+> **DEPRECATED:** Dùng **fast-api-base** — `~/workspace/fast-api-base/docs/operational/TEAM-AI-BACKEND-WORKFLOW.md` · commands `/fast-spec`, `/fast-code` · [factory-ai-stack](./factory-ai-stack.md).
+
 Progressive disclosure: **một session = một command**.  
-API code: `apps/api/` · Contracts: `packages/models/` · Spec: `docs/features/yaml/.../ir/`
+API code: `apps/api/` (**removed**) · Contracts: `packages/models/` · Spec: `docs/features/yaml/.../ir/`
 
 Session mới: đọc `.harness/progress.md` trước khi tiếp tục cùng feature slug.
 

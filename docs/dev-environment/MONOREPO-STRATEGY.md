@@ -8,13 +8,15 @@ Mục tiêu: dev nhẹ, release khả thi, module/package **chỉ chứa source*
 
 | Thành phần | Vị trí |
 |------------|--------|
-| Next.js 15 FE | `apps/web` (`@portal/web`) |
-| Nest API | `apps/api` (`@portal/api`) |
+| Next.js 15 FE | `src` (`portal`) |
 | Zod contracts | `packages/models` (`@portal/models`) |
-| `pnpm-workspace` | `.`, `packages/*`, `apps/*` |
+| **FastAPI (target BE)** | `~/workspace/fast-api-base` — repo riêng, `:4000` |
+| `pnpm-workspace` | `.`, `packages/*` |
 
-**Local Docker:** `docker/docker-compose.yml` — `frontend-node` + `api-node`  
-**Prod:** Nest image từ `docker/api/Dockerfile` · Next build (`apps/web`) → Node standalone hoặc static host (member chọn)
+**Local dev wire:** `NEXT_PUBLIC_API_URL=http://127.0.0.1:4000` + chạy fast-api-base song song `pnpm dev`.
+
+**Local Docker:** `docker/docker-compose.yml` — có thể thêm fast service (W1)  
+**Prod:** FastAPI image từ `fast-api-base/docker` · Next build (`src`)
 
 ---
 
@@ -26,28 +28,29 @@ Mục tiêu: dev nhẹ, release khả thi, module/package **chỉ chứa source*
 portal/
 ├── package.json              # orchestration scripts
 ├── pnpm-workspace.yaml
-├── apps/web/                 # Next.js — app/, hooks/, services/, components/
-├── apps/api/                 # NestJS + CQRS
+├── src/                 # Next.js — app/, hooks/, services/, components/
 ├── packages/models/          # @portal/models — contract:gen
 └── docker/
+
+~/workspace/fast-api-base/    # FastAPI backend (Factory AI)
 ```
 
 Chạy từ root:
 
 ```bash
 pnpm install
-pnpm dev                      # Next @ apps/web
-pnpm dev:api                  # Nest :4000
-pnpm --filter @portal/web build
-pnpm --filter @portal/api build
+pnpm dev                      # Next @ src
+# FastAPI (repo riêng):
+# cd ~/workspace/fast-api-base && PYTHONPATH=src .venv/bin/uvicorn app.main:app --port 4000 --app-dir src
+pnpm build
 ```
 
-Codegen & phase diagrams: [BACKEND-CODEGEN](../operational/BACKEND-CODEGEN.md) · [BACKEND-PHASE-DIAGRAM](../operational/BACKEND-PHASE-DIAGRAM.md) · [ARCHITECTURE](../operational/ARCHITECTURE.md).
+Codegen & phase diagrams: [REPO-SPLIT-MAP](../operational/REPO-SPLIT-MAP.md) · [BACKEND-CODEGEN](../operational/BACKEND-CODEGEN.md) · [ARCHITECTURE](../operational/ARCHITECTURE.md).
 
 ### Migration tiếp theo (optional)
 
 1. ~~Tách `models/` → `packages/models`~~ — done (`@portal/models`)
-2. ~~Move FE → `apps/web`~~ — done
+2. ~~Move FE → `src`~~ — done
 3. Tách shared UI package chỉ khi có app FE thứ hai
 
 ---
@@ -71,7 +74,7 @@ Module = code + `composer.json` optional (path repo). **Không** nhân `vendor/`
 | App | Image |
 |-----|--------|
 | Nest API | `docker/api/Dockerfile` multi-stage |
-| Next FE | CI build `apps/web` → Node image hoặc static host |
+| Next FE | CI build `src` → Node image hoặc static host |
 
 ```dockerfile
 # docker/api/Dockerfile — chỉ api + models
@@ -96,7 +99,7 @@ RUN pnpm --filter @portal/api build
 
 | Câu hỏi | Trả lời |
 |---------|---------|
-| Next FE ở đâu? | `apps/web` (`@portal/web`) |
+| Next FE ở đâu? | `src` (`portal`) |
 | Nest API? | `apps/api` — prod Docker riêng |
 | Zod SSOT? | `packages/models` — `contract:gen` |
 | Prod FE? | Next build artifact — runtime do member chọn |

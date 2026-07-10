@@ -1,6 +1,6 @@
 ---
 description: /wire API integration — replace mocks with real services
-globs: "apps/web/src/{services,hooks}/**/*.{ts,tsx}"
+globs: "src/{services,hooks}/**/*.{ts,tsx}"
 alwaysApply: false
 ---
 

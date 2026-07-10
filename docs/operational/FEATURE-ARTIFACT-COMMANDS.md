@@ -87,20 +87,76 @@ Lệnh tổng hợp chạy tuần tự các bước hạt nhân của mỗi phas
 
 ---
 
-## Nest API (`nest:gen`)
+## Fast API (`fast-gen` — repo `fast-api-base`)
+
+> **Spec SSOT trong fast-api-base** — `docs/features/yaml/.../`. Không author `backend/` trên portal.  
+> **Python-native** — `./scripts/*` + `make test` (không pnpm / không E2E). Docs site: MkDocs `./scripts/docs-dev` `:8001`. Chi tiết: fast `docs/operational/FAST-ARTIFACT-COMMANDS.md` · [REPO-SPLIT-MAP](./REPO-SPLIT-MAP.md)
 
 | Lệnh | Mục đích |
 |------|----------|
-| `pnpm nest:registry` | Validate `shared/nest-codegen.registry.json` |
-| `pnpm nest:gen:dry --spec .../backend/01-backend-spec.yaml` | Plan CQRS scaffold |
-| `pnpm nest:gen --spec ...` | Write `apps/api/src/modules/...` |
-| `pnpm nest:unit-registry` | Validate `shared/nest-unit-test.registry.json` |
-| `pnpm nest:unit-gen --spec .../backend/01-backend-spec.yaml` | Handler/resource Jest specs |
-| `pnpm openapi:gen --spec .../backend/01-backend-spec.yaml` | Write `02-openapi.yaml` |
-| `pnpm --filter @portal/api test` | Run API unit tests |
-| `pnpm dev:api` | Nest dev :4000 |
+| `./scripts/spec-split …/{function}.bundle.yaml` | bundle → `ir/spec.yaml` + `backend/01-backend-spec.yaml` |
+| `./scripts/spec-split-all` | Quét `docs/features/yaml/**/*.bundle.yaml` |
+| `./scripts/spec-merge …/{function}.bundle.yaml` | `ir/*` → bundle SSOT |
+| `./scripts/docs-render` | bundle → `docs/features/md/` |
+| `./scripts/fast-gen registry` | Validate `shared/fast-codegen.registry.json` |
+| `./scripts/fast-gen dry --spec …/backend/01-backend-spec.yaml` | Plan module scaffold |
+| `./scripts/fast-gen write --spec …/backend/01-backend-spec.yaml` | Write `src/app/modules/...` |
+| `./scripts/fast-gen openapi --spec …/backend/02-openapi.yaml` | Write `backend/02-openapi.yaml` |
+| `./scripts/fast-unit-gen write --spec …` | pytest scaffold |
+| `make test` | pytest API + `*.api-test.yaml` contract (thay vitest) |
+| `./scripts/docs-dev` | MkDocs Material preview `:8001` (thay VitePress) |
 
-Prerequisite: `pnpm contract:gen` cho `@portal/models`.
+**Prerequisite:** `pnpm contract:gen` (portal) cho `@portal/models` — cùng field keys.
+
+**Dev server:**
+
+```bash
+cd ~/workspace/fast-api-base
+PYTHONPATH=src .venv/bin/uvicorn app.main:app --port 4000 --app-dir src
+```
+
+**Skills (fast-api-base):** `/fast-spec` → `/grill-fast-spec` → `/fast-code`
+
+---
+
+## Line client (`line-gen` — repo `line`)
+
+> **Spec SSOT trong line** — `docs/features/yaml/.../ir/spec.yaml` (`clients.line`).  
+> **.NET-native** — không pnpm. Docs: DocFX `./scripts/docs-dev` `:8081`.
+
+| Lệnh | Mục đích |
+|------|----------|
+| `./scripts/spec-split …/workforce.bundle.yaml` | `portal-feature-bundle/v1` → `ir/{spec,legacy,design}.yaml` |
+| `./scripts/spec-split-all` · `./scripts/spec-merge` · `./scripts/docs-render` | Parity portal tooling |
+| `./scripts/docs-dev` | DocFX preview `:8081` (thay VitePress) |
+| `./scripts/line-gen dry --spec …/ir/spec.yaml` | Scriban dry (`tools/LineGen`) |
+| `./scripts/line-gen write --spec …/ir/spec.yaml` | Write `src/Line.App/Generated/` |
+| `./scripts/contract-sync --openapi …/backend/02-openapi.yaml` | Keys ↔ `Line.Contracts` |
+| `./scripts/smoke-wire.sh` | Curl fast check-in |
+| `dotnet test` | xUnit only (thay vitest) |
+
+**Skills (line):** `/line-spec` → `/grill-line-spec` → `/line-prototype` → `/line-wire` → `/grill-line-api`
+
+Docs: `~/workspace/line/docs/operational/LINE-ARTIFACT-COMMANDS.md`
+
+---
+
+## Integration OT (`integration-gen` — repo `integration`)
+
+> **Spec SSOT trong integration** — `docs/features/yaml/.../integration/01-integration-spec.yaml`.  
+> **.NET-native** — không pnpm. Docs: DocFX `./scripts/docs-dev` `:8082`.
+
+| Lệnh | Mục đích |
+|------|----------|
+| `./scripts/spec-split …/downtime.bundle.yaml` | bundle → ir + `integration/01-integration-spec.yaml` |
+| `./scripts/docs-render` · `./scripts/docs-dev` | md + DocFX `:8082` |
+| `./scripts/integration-gen dry --spec …/01-integration-spec.yaml` | Scriban dry |
+| `./scripts/integration-gen write --spec …/01-integration-spec.yaml` | Write `src/Integration.*/Generated/` |
+| `dotnet test` | xUnit only (thay vitest) |
+
+**Skills (integration):** `/integration-spec` → `/grill-integration-spec` → `/integration-code` → `/grill-integration`
+
+Docs: `~/workspace/integration/docs/operational/INTEGRATION-ARTIFACT-COMMANDS.md`
 
 ---
 
@@ -138,7 +194,7 @@ Prerequisite: `pnpm contract:gen` cho `@portal/models`.
 ## Ví dụ end-to-end (hotel-list)
 
 ```bash
-# Sau dev-grill
+# Sau dev-grill (portal)
 pnpm spec:split -- docs/features/yaml/admin/hotel/list/hotel-list.bundle.yaml
 pnpm portal:gen:dry --spec docs/features/yaml/admin/hotel/list/ir/spec.yaml
 pnpm portal:gen --spec docs/features/yaml/admin/hotel/list/ir/spec.yaml
@@ -146,6 +202,10 @@ pnpm docs:render
 
 pnpm portal:unit-gen --spec docs/features/yaml/admin/hotel/list/ir/spec.yaml
 pnpm testcase:gen --feature admin/hotel
+
+# Backend (fast-api-base) — Factory AI
+pnpm contract:gen --spec docs/features/yaml/factory/knowledge-hub/ir/spec.yaml
+cd ~/workspace/fast-api-base && ./scripts/spec-split-all && ./scripts/fast-gen write --spec docs/features/yaml/factory/knowledge-hub/backend/01-backend-spec.yaml
 ```
 
 Thứ tự team command: [DESIGN-PHASE-DIAGRAM](./DESIGN-PHASE-DIAGRAM.md) · [FEATURE-ARTIFACT-FLOWS](./FEATURE-ARTIFACT-FLOWS.md)

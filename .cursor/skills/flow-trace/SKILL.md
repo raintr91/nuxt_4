@@ -18,7 +18,7 @@ Technical path map — not spec/UI design. Hub: `docs/flow-trace/index.md`
 | `legacy/project-config.md`, legacy/API/scenario/fullsco routes·jobs·mail | `ir/design.yaml`, codegen, `portal:gen` |
 | Portal bundles — `api`/routes only | `docs:render`, `testcase:gen` |
 
-Repos: resolve `team-projects.json` / `legacy-projects.json` — list at start; gaps if missing checkout. **Write:** only `docs/flow-trace/`.
+Repos: resolve root `team-projects.json` / `legacy-projects.json` (see `legacy/project-config.md`) — list at start; gaps if missing checkout. **Write:** only `docs/flow-trace/`.
 
 ## Output
 

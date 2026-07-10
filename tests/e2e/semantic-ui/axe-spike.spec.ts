@@ -3,7 +3,7 @@ import { scanA11y } from '../helpers/semantic-ui/accessibility'
 
 test.describe('Semantic UI axe spike', () => {
   test('inspects AxeBuilder result shape on login page', async ({ page }, testInfo) => {
-    await page.goto('/auth/login')
+    await page.goto('/login')
     await waitForSemanticUiReady(page, {
       rootTestId: 'auth-login-page',
       waitForTestIds: ['auth-login-submit-btn'],

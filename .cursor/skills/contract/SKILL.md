@@ -22,7 +22,7 @@ pnpm contract:gen --spec .../ir/spec.yaml
 
 ## Scope
 
-- Write `@portal/models` only — not Nest modules, not `apps/web` UI unless asked.
+- Write `@portal/models` only — not Nest modules, not `src` UI unless asked.
 - Enrich missing `entities.fields` in spec (dev-grill) before gate.
 - HANDOFF only for ambiguous relations (`openQuestions`).
 

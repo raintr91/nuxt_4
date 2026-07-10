@@ -1,6 +1,6 @@
 ---
 description: /prototype, /grill-prototype — UI prototype with mock API boundary
-globs: "apps/web/src/{app,components,hooks,mocks}/**/*.{tsx,ts}"
+globs: "src/{app,components,hooks,mocks}/**/*.{tsx,ts}"
 alwaysApply: false
 ---
 

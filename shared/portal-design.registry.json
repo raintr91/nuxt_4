@@ -44,7 +44,7 @@
       },
       "portal": {
         "layer": "organism",
-        "path": "apps/web/src/components/organisms/data-list-page.tsx",
+        "path": "src/components/organisms/data-list-page.tsx",
         "status": "implemented",
         "layout": "dashboard"
       },
@@ -82,7 +82,7 @@
       },
       "portal": {
         "layer": "organism",
-        "path": "apps/web/src/components/organisms/data-table-page.tsx",
+        "path": "src/components/organisms/data-table-page.tsx",
         "status": "planned"
       },
       "when": "Table đơn giản, không full search/filter shell"
@@ -95,7 +95,7 @@
       },
       "portal": {
         "layer": "organism",
-        "path": "apps/web/src/components/organisms/data-form-page.tsx",
+        "path": "src/components/organisms/data-form-page.tsx",
         "status": "planned"
       },
       "defaultFor": {
@@ -116,7 +116,7 @@
       },
       "portal": {
         "layer": "organism",
-        "path": "apps/web/src/components/organisms/data-detail-page.tsx",
+        "path": "src/components/organisms/data-detail-page.tsx",
         "status": "planned"
       },
       "defaultFor": {

@@ -38,7 +38,7 @@ export async function loadDesignRegistry(root) {
  * @param {Record<string, unknown>} raw
  */
 async function discoverShadcnComponents(root, raw) {
-  const uiDir = path.join(root, 'apps/web/src/components/ui')
+  const uiDir = path.join(root, 'src/components/ui')
   const aliases = raw.componentAliases ?? {}
   /** @type {Record<string, object>} */
   const components = {}
@@ -66,7 +66,7 @@ async function discoverShadcnComponents(root, raw) {
       disambiguate: extra.disambiguate,
       portal: {
         layer: 'ui',
-        path: `apps/web/src/components/ui/${entry.name}`,
+        path: `src/components/ui/${entry.name}`,
         status: 'implemented'
       }
     }

@@ -38,7 +38,7 @@ Template: `docs/templates/feature.bundle.yaml` · rules: `docs/templates/bundle-
 
 ## Rules
 
-- Do not edit `apps/web/src/app/`, `apps/web/src/components/`, `apps/web/src/hooks/`, `apps/web/src/services/`, or production mocks.
+- Do not edit `src/app/`, `src/components/`, `src/hooks/`, `src/services/`, or production mocks.
 - Do not run `portal:gen` — that is `/prototype` after `/dev-grill-docs`.
 - Do not add `codegen`, `tags`, `ui.filters`, `ui.columns` in `/spec` round 1.
 - Do not run full Playwright/Vitest; deferred to `/prototype`, `/test`, or `/unit`.

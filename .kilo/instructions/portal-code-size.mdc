@@ -1,6 +1,6 @@
 ---
 description: Portal — ~200 lines/file, ~20 lines/function; split when exceeded
-globs: "apps/web/src/**/*.{tsx,ts},tests/**/*.{ts,tsx}"
+globs: "src/**/*.{tsx,ts},tests/**/*.{ts,tsx}"
 alwaysApply: false
 ---
 

@@ -1,42 +1,48 @@
-# Backend codegen — `contract:gen` + `nest:gen` + `nest:unit-gen`
+# Backend codegen — `contract:gen` + `fast-gen` (Factory AI)
+
+> **DEPRECATED (Nest):** `nest:gen`, `nest:unit-gen`, `apps/api` đã xóa khỏi portal. Backend target = **`~/workspace/fast-api-base`** — xem `fast-api-base/docs/operational/FAST-CODEGEN.md` · [factory-ai-stack](./factory-ai-stack.md) · [REPO-SPLIT-MAP](./REPO-SPLIT-MAP.md).
 
 > **Doc chính backend (đọc file này trước).** Lệnh tra cứu: [FEATURE-ARTIFACT-COMMANDS](./FEATURE-ARTIFACT-COMMANDS.md) · Flow: [BACKEND-PHASE-DIAGRAM](./BACKEND-PHASE-DIAGRAM.md).  
-> **API unit lane (Jest):** [NEST-UNIT-PHASE-DIAGRAM](./NEST-UNIT-PHASE-DIAGRAM.md) · **Portal Vitest:** [UNIT-PHASE-DIAGRAM](./UNIT-PHASE-DIAGRAM.md)
-
-Ba pipeline backend **tách script**, **tách registry** — song song portal `portal:gen`:
+> **Portal Vitest:** [UNIT-PHASE-DIAGRAM](./UNIT-PHASE-DIAGRAM.md)
 
 | Pipeline | Lệnh | Registry | Output |
 |----------|------|----------|--------|
 | **Contract Zod** | `pnpm contract:gen` | `shared/contract-field.registry.json` | `packages/models/src/…` |
-| **Nest scaffold** | `pnpm nest:gen` | `shared/nest-codegen.registry.json` | `apps/api/src/modules/…` |
-| **API unit tests** | `pnpm nest:unit-gen` | `shared/nest-unit-test.registry.json` | `apps/api/…/*.spec.ts` (Jest) |
-| **OpenAPI artifact** | `pnpm openapi:gen` | — | `backend/02-openapi.yaml` |
+| **FastAPI scaffold** | `fast-gen write` | `fast-api-base/shared/fast-codegen.registry.json` | `fast-api-base/src/app/modules/…` |
+| **FastAPI unit tests** | `fast-unit-gen write` | `fast-api-base/shared/fast-unit-test.registry.json` | `fast-api-base/tests/` |
+| **OpenAPI artifact** | `fast-gen openapi` | — | `backend/02-openapi.yaml` |
 
 ---
 
-## Thứ tự chạy (feature backend mới)
+## Legacy Nest (archived)
+
+Các lệnh `pnpm nest:gen`, `pnpm nest:unit-gen`, `pnpm openapi:gen` **đã gỡ**. Tham chiếu lịch sử: git history · [NEST-API-STRUCTURE](./NEST-API-STRUCTURE.md).
+
+---
+
+## Thứ tự chạy (feature backend mới — Factory AI)
 
 ```text
 /dev-grill-docs  →  ir/spec.yaml + entities.fields
        ↓
 pnpm contract:gen --spec …/ir/spec.yaml
        ↓
-/api-spec  →  backend/01-backend-spec.yaml (+ 03-mock)
+/fast-spec  →  backend/01-backend-spec.yaml (+ 03-mock optional)
        ↓
-pnpm openapi:gen --spec …/backend/01-backend-spec.yaml
+/grill-fast-spec  →  fast-gen dry · approval approved
        ↓
-/grill-api-spec  →  nest:gen:dry · approval approved
+/fast-code  →  fast-gen write --spec …/backend/01-backend-spec.yaml
        ↓
-/api-code  →  pnpm nest:gen --spec …/backend/01-backend-spec.yaml
+fast-gen openapi  →  backend/02-openapi.yaml
        ↓
-pnpm nest:unit-gen --spec …/backend/01-backend-spec.yaml
+fast-unit-gen write  →  pytest green
        ↓
-pnpm --filter @portal/api test   — [NEST-UNIT-PHASE-DIAGRAM](./NEST-UNIT-PHASE-DIAGRAM.md)
-       ↓
-/grill-api  →  audit HANDOFF · repository wiring
+/grill-api  →  audit keys + envelope + pagination
        ↓
 /wire  — [WIRE-PHASE-DIAGRAM](./WIRE-PHASE-DIAGRAM.md)
 ```
+
+Diagram: fast `FAST-BACKEND-PHASE-DIAGRAM.md` · Contract hub: [CONTRACT-PORTAL-FAST](./CONTRACT-PORTAL-FAST.md).
 
 **Prerequisite:** `portal:gen` **không** sinh models — luôn `contract:gen` trước ([PORTAL-CODEGEN](./PORTAL-CODEGEN.md)).
 

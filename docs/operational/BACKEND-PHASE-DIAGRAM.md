@@ -1,5 +1,7 @@
 # Backend / API phase (Nest in-repo)
 
+> **DEPRECATED:** Backend phase target = **fast-api-base** (`~/workspace/fast-api-base/docs/operational/FAST-BACKEND-PHASE-DIAGRAM.md`) · [factory-ai-stack](./factory-ai-stack.md).
+
 > Hub: [BACKEND-CODEGEN](./BACKEND-CODEGEN.md) · [TEAM-AI-BACKEND-WORKFLOW](./TEAM-AI-BACKEND-WORKFLOW.md) · [FULL-CYCLE-PIPELINE-DIAGRAM](./FULL-CYCLE-PIPELINE-DIAGRAM)
 
 Phase **2c API** — chạy **song song** portal scaffold (2a) và E2E prep (2b); converge tại **Wire** (phase 3).

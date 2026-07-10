@@ -11,7 +11,7 @@ disable-model-invocation: true
 
 ## Scope
 
-`apps/api/` + `packages/models/` — not `apps/web` unless asked.
+`apps/api/` + `packages/models/` — not `src` unless asked.
 
 ## Router
 

@@ -1,7 +1,6 @@
 import type { Page } from '@playwright/test'
 
-import * as chainHotelFixtures from '../fixtures/chain-hotel'
-import { mockAuthenticatedSession, mockChainAuthenticatedSession } from './session'
+import { mockAuthenticatedSession } from './session'
 
 export type TestcaseMockConfig = {
   method: string
@@ -10,16 +9,11 @@ export type TestcaseMockConfig = {
 }
 
 const SESSION_HANDLERS: Record<string, (page: Page) => Promise<void>> = {
-  mockAuthenticatedSession,
-  mockChainAuthenticatedSession
+  mockAuthenticatedSession
 }
 
-const FIXTURE_HANDLERS: Record<string, () => unknown> = {
-  chainHotelListSuccess: chainHotelFixtures.chainHotelListSuccess,
-  chainHotelListWithManagerSuccess: chainHotelFixtures.chainHotelListWithManagerSuccess,
-  chainHotelExportReportSuccess: chainHotelFixtures.chainHotelExportReportSuccess,
-  storeLoginFromAdminSuccess: chainHotelFixtures.storeLoginFromAdminSuccess
-}
+/** Register feature fixtures here as pilots land (sample-items, knowledge-hub, …). */
+const FIXTURE_HANDLERS: Record<string, () => unknown> = {}
 
 /** testcase YAML may use `/api/...`; Next `apiFetch` calls `NEXT_PUBLIC_API_URL/api/...`. */
 export function expandApiPathVariants(path: string): string[] {

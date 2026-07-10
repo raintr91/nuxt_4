@@ -19,17 +19,6 @@ const defaultUser = {
   status: 1
 }
 
-const chainUser = {
-  id: 10,
-  name: 'Chain User',
-  full_name: 'Chain Portal User',
-  email: 'chain@example.com',
-  role: 'OWNER',
-  active: true,
-  status: 1,
-  chain_id: 1
-}
-
 export function success<T>(data: T, message = 'OK'): ApiEnvelope<T> {
   return {
     success: true,
@@ -57,14 +46,7 @@ export async function mockAuthenticatedSession(page: Page) {
   await installAuthSession(page, defaultUser)
 }
 
-export async function mockChainAuthenticatedSession(page: Page) {
-  await installAuthSession(page, chainUser)
-}
-
-async function installAuthSession(
-  page: Page,
-  user: typeof defaultUser | typeof chainUser
-) {
+async function installAuthSession(page: Page, user: typeof defaultUser) {
   const baseUrl = getBaseUrl()
 
   await page.context().addCookies([

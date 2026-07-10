@@ -41,13 +41,13 @@ function pageCandidatesForRoute(routePath) {
   if (!normalized) return []
 
   if (normalized === '/') {
-    return ['apps/web/src/app/(dashboard)/page.tsx']
+    return ['src/app/(dashboard)/page.tsx']
   }
 
   const segments = normalized.split('/').filter(Boolean)
   const joined = segments.join('/')
 
   return [
-    `apps/web/src/app/(dashboard)/${joined}/page.tsx`
+    `src/app/(dashboard)/${joined}/page.tsx`
   ]
 }

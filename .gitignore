@@ -1,5 +1,5 @@
 # Next.js
-apps/web/.next/
+.next/
 out/
 
 # Legacy Nuxt (safe to delete if present)
@@ -22,8 +22,6 @@ logs
 *.log
 playwright-report/
 test-results/
-apps/web/playwright-report/
-apps/web/test-results/
 blob-report/
 playwright/.cache/
 coverage/
@@ -44,10 +42,11 @@ dist
 .env.*
 !.env.example
 !docker/.env.example
-!apps/web/.env.example
 docker/.env
 
-# Local AI mappings
+# Local AI mappings (machine-specific overrides)
+team-projects.local.json
+legacy-projects.local.json
 .cursor/legacy-projects.local.json
 .cursor/team-projects.local.json
 .cursor/skills/vendor/

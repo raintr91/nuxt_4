@@ -67,14 +67,14 @@ Ràng buộc:
 
 **Khi nào:** Nguồn sự thật là code legacy, chưa có spec.
 
-**Prerequisite:** `team-projects.json` / `legacy-projects.json` (nếu cross-repo).
+**Prerequisite:** root `team-projects.json` / `legacy-projects.json` (nếu cross-repo). See [PROJECT-MAPS](./PROJECT-MAPS.md).
 
 ```text
 /legacy-spec
 
 Module: {admin hotel list}
 Slug đích: {admin-hotel-list}
-Nguồn legacy: resolve từ team-projects / legacy-projects — không đoán path.
+Nguồn legacy: resolve từ root team-projects / legacy-projects — không đoán path ([PROJECT-MAPS](./PROJECT-MAPS.md)).
 
 Scope:
 - Chỉ đọc/phân tích code; KHÔNG sửa production code
@@ -109,7 +109,7 @@ Tham chiếu:
 - spec-split-by-function: chỉ 1 function (list), không gộp create/update
 
 Scope IN: docs/features/**, harness notes
-Scope OUT: `apps/web/src/app/`, `components/`, `mocks/`, E2E, unit
+Scope OUT: `src/app/`, `components/`, `mocks/`, E2E, unit
 
 Làm:
 1. Nếu spec.yaml đã có → verify gap (actors, fields, validation, routes, API, edge cases)
@@ -365,7 +365,7 @@ Inputs:
 
 Order:
 1. Align models/ với API thật
-2. `apps/web/src/services/*` + `apiFetch` + `parseApiData`
+2. `src/services/*` + `apiFetch` + `parseApiData`
 3. hooks gọi service
 4. validations nếu 422 cần map
 5. app/components bind hook
@@ -502,7 +502,7 @@ Chỉ khi **không** fit command cụ thể (shared component, review architectu
 @portal-base skill
 
 Task: {thêm testId cho FormField suffix pattern mới}
-Scope: `apps/web/src/components/molecules/mo-form-field.tsx` only
+Scope: `src/components/molecules/mo-form-field.tsx` only
 Không đọc reference.md trừ khi cần template code đầy đủ
 ```
 
