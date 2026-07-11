@@ -92,7 +92,7 @@ flowchart TB
 | Semantic Level 1–2 | UI “render được nhưng vỡ” (overflow, table lệch) | Functional pass |
 | Axe | WCAG A/AA, accessible names | Manual keyboard review |
 
-Chi tiết matcher: [E2E-SEMANTIC-UI-ASSERTIONS](./E2E-SEMANTIC-UI-ASSERTIONS.md) · extract: `.cursor/extracts/portal-e2e-semantic-tags.md`
+Chi tiết matcher: [E2E-SEMANTIC-UI-ASSERTIONS](./E2E-SEMANTIC-UI-ASSERTIONS.md) · extract: `.cursor/extracts/platform-e2e-semantic-tags.md`
 
 ---
 
@@ -301,7 +301,7 @@ Chưa implement — hiện delete/confirm chỉ có spec design + `.test.yaml` d
 | `scripts/testcase-gen/README.md` | CLI + steps supported |
 | `shared/portal-e2e-test.registry.json` | Bundle + matcher registry |
 | [E2E-SEMANTIC-UI-ASSERTIONS](./E2E-SEMANTIC-UI-ASSERTIONS.md) | Matcher design + levels |
-| `.cursor/extracts/portal-e2e-semantic-tags.md` | Hashtag cheat sheet |
+| `.cursor/extracts/platform-e2e-semantic-tags.md` | Hashtag cheat sheet |
 | `.cursor/extracts/test/readiness.md` | Gate trước `/test` |
 | `.cursor/skills/test/SKILL.md` | `/test` |
 | `.cursor/skills/grill-test/SKILL.md` | `/grill-test` |

@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "description": "Platform common patterns — portal hooks, services, helpers (namespace shared with fast-api-base).",
+  "entries": {
+    "export.csv": {
+      "status": "planned",
+      "tag": "#common:export-csv",
+      "kind": "service",
+      "path": "src/services/shared/export-csv.ts",
+      "symbol": "exportListToCsv",
+      "summary": "Toolbar export CSV — promote from inline list handlers",
+      "usedBy": [],
+      "specRefs": [],
+      "tests": "tests/unit/services/shared/export-csv.test.ts"
+    }
+  },
+  "aliasIndex": {
+    "export csv": "export.csv",
+    "export list": "export.csv",
+    "download csv": "export.csv"
+  }
+}

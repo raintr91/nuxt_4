@@ -10,7 +10,7 @@
 1. Mục tiêu: AI support team
 2. Cách vận hành mới
 3. Workflow phases
-4. E2E automation và Portal Base
+4. E2E automation và Platform Base
 5. Kết luận
 
 ---
@@ -189,7 +189,7 @@ Mới:
 - user story Markdown sinh kèm
 - BA/QA/Dev review trực tiếp flow
 
-Xem thêm: [Portal Base overview](./portal-base-overview.md).
+Xem thêm: [Platform Base overview](./platform-base-overview.md).
 
 ---
 
@@ -484,9 +484,9 @@ Example prompt:
 
 ---
 
-## 4. Portal Base Support Gì?
+## 4. Platform Base Support Gì?
 
-Portal Base là nền để AI gen nhanh hơn và ít lệch pattern hơn.
+Platform Base là nền để AI gen nhanh hơn và ít lệch pattern hơn.
 
 - Nuxt 4 auth-first portal
 - shadcn-vue + molecules + organisms
@@ -495,7 +495,7 @@ Portal Base là nền để AI gen nhanh hơn và ít lệch pattern hơn.
 - VitePress để review docs
 - Playwright + semantic UI helpers
 
-Xem thêm: [Portal Base overview](./portal-base-overview.md).
+Xem thêm: [Platform Base overview](./platform-base-overview.md).
 
 ---
 

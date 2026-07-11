@@ -1,4 +1,4 @@
-# E2E — Chuẩn hóa `data-testid` (Portal Base)
+# E2E — Chuẩn hóa `data-testid` (Platform Base)
 
 Tài liệu quy ước gắn **`data-testid`** trên FE và viết Playwright E2E ổn định. Grill khai báo danh sách trong **`spec.ui.testIds.required`** (+ **`patterns`** khi id động); `portal:gen` emit markup; testcase YAML mirror list trước `/test`.
 

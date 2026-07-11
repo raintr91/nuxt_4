@@ -61,6 +61,7 @@ Lệnh tổng hợp chạy tuần tự các bước hạt nhân của mỗi phas
 | Lệnh | Mục đích |
 |------|----------|
 | `pnpm portal:registry` | Validate design registry |
+| `pnpm platform-common:registry` | Validate logic common registry (`shared/platform-common.registry.json`) |
 | `pnpm portal:gen:dry --spec .../ir/spec.yaml` | Gate sau dev-grill (không ghi file) |
 | `pnpm portal:gen:dry` | Glob mọi `yaml/**/ir/spec.yaml` |
 | `pnpm portal:gen --spec .../ir/spec.yaml` | Scaffold app + `generated/HANDOFF.md` |
@@ -95,10 +96,24 @@ Lệnh tổng hợp chạy tuần tự các bước hạt nhân của mỗi phas
 
 ---
 
+## Platform mark (`/platform-mark`)
+
+Member marks common UI + logic — grill hỏi trước khi gắn tag. Hub: [PLATFORM-MARK](./PLATFORM-MARK.md)
+
+| Lệnh / skill | Mục đích |
+|--------------|----------|
+| `/platform-mark` | Gắn `#needs-component`, `#common:*`, … vào `ir/spec.yaml` + registry |
+| `/dev-grill-docs` | In bảng **Common candidates** — member A/B/C |
+| `pnpm platform-common:registry` | Validate `shared/platform-common.registry.json` |
+
+---
+
 ## AI infra
 
 | Lệnh | Mục đích |
 |------|----------|
+| `./scripts/platform-ai-link` | Mirror `platform-ai/` SSOT → `.cursor/` + `.kilo/` (sau clone / sửa skill) |
+| `pnpm factory:ai-sync` | Sync SSOT workspace bases → `~/factory/{portal,api,gateway}` — [FACTORY-PLATFORM-AI-SYNC](./FACTORY-PLATFORM-AI-SYNC.md) |
 | `pnpm extracts:validate` | Skill `extractBundle` ⊆ registry |
 
 ---

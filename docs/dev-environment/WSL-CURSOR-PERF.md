@@ -55,5 +55,5 @@ swap=4GB
 
 ## AI context (token, không phải crash)
 
-- Rules `alwaysApply`: `portal-invariants` + `portal-contract-naming` (~35 dòng)
-- Skill lớn (`portal-base`): opt-in — gõ `@portal-base` khi cần
+- Rules `alwaysApply`: `platform-invariants` + `platform-contract-naming` (~35 dòng)
+- Skill lớn (`platform-base`): opt-in — gõ `@platform-base` khi cần

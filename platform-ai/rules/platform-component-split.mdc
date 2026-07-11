@@ -1,0 +1,29 @@
+---
+description: Split pages/components — avoid all-in-one; use DataListPage
+globs: pages/**/*,components/**/*
+alwaysApply: false
+---
+
+# Component split
+
+No all-in-one page (header+filter+table+form+dialog in one file).
+
+| Signal | Action |
+|--------|--------|
+| Page > ~150 lines | Extract organism/molecule |
+| Repeated block ≥2 | Shared component |
+| List+search+table | Prefer `DataListPage` — slots for custom cells |
+| Dialog flow | `Mo*Dialog` + composable |
+
+```
+pages/ → orchestration only
+organisms/ → large sections
+molecules/Mo* → field groups, filters
+ui/ → shadcn primitives, no business logic
+```
+
+Dynamic routes: `pages/{m}/[id]/index.vue` (detail), `.../edit.vue` — not `[id].vue` alone.
+
+No `$apiFetch` in child components · no duplicate list shell when `DataListPage` fits.
+
+With size limits: `platform-code-size.mdc`

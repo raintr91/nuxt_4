@@ -116,7 +116,7 @@ pnpm portal:unit-gen --spec … --phase wire
 
 - `shared/portal-e2e-test.registry.json` · `pnpm portal:e2e-registry`
 - Hashtag `#e2e:semantic-*`, `#e2e:a11y-*` · `semantic-plan.mjs` codegen
-- Extract: `.cursor/extracts/portal-e2e-semantic-tags.md`
+- Extract: `.cursor/extracts/platform-e2e-semantic-tags.md`
 
 ### PR13b — Flow partials (planned)
 

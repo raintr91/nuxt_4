@@ -21,10 +21,27 @@ tags: []
 # - "#shell: DataListPage"
 # - "#pattern: CRUD"
 # - "#style: shadcn/ui"
-# - "#needs-component: MoXxx"
+# - "#needs-component: cell-status:MoStatusChip:label"
+# - "#needs-ui: Repeater"
+# - "#common:export-csv"  # logic — also add marks[] below
 # - "#custom-slot: cell-status"
 # - "#manual-composable: export-csv"
 # - "#skip-codegen: page"
+
+# Member / grill-confirmed marks (/platform-mark) — optional until promote common
+marks: []
+# - id: MK-STATUS-001
+#   kind: needs-component
+#   tag: "#needs-component: cell-status:MoStatusChip:label"
+#   registryId: MoStatusChip
+#   reason: "Cột status render custom"
+#   source: dev-grill-docs
+# - id: MK-EXPORT-001
+#   kind: common
+#   tag: "#common:export-csv"
+#   registryId: export.csv
+#   reason: "Toolbar export lặp list khác"
+#   source: platform-mark
 
 requirements:
   - id: REQ-FEATURE-001

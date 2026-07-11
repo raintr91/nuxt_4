@@ -12,6 +12,7 @@ pnpm docs:dev
 
 ## Operational
 
+- [platform-ai/README.md](../platform-ai/README.md) — SSOT skills/rules · `./scripts/platform-ai-link`
 - [Architecture](./operational/ARCHITECTURE.md)
 - [Full cycle (overview)](./operational/FULL-CYCLE-PIPELINE-DIAGRAM.md)
 - [Feature artifact flows](./operational/FEATURE-ARTIFACT-FLOWS.md)
@@ -23,7 +24,7 @@ pnpm docs:dev
 
 - [Feature Artifact Workflow Slides](./onboarding/team-ai-workflow-slides.md) — training; giữ `/design`
 - [YAML/Markdown workflow](./onboarding/yaml-markdown-ai-workflow.md)
-- [Portal Base overview](./onboarding/portal-base-overview.md)
+- [Platform Base overview](./onboarding/platform-base-overview.md)
 - [E2E automation (QA)](./onboarding/e2e-automation-playwright.md)
 
 ## Common UI

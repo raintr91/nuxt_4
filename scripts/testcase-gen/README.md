@@ -44,7 +44,7 @@ Registry: `shared/portal-e2e-test.registry.json` · `pnpm portal:e2e-registry`
 | `#skip-e2e-assert:{matcher}` | Remove one matcher from union |
 
 Union with `assertions.semantic.level1|layout|accessibility` in testcase YAML.  
-Extract: `.cursor/extracts/portal-e2e-semantic-tags.md`
+Extract: `.cursor/extracts/platform-e2e-semantic-tags.md`
 
 ## Prerequisites
 

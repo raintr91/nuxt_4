@@ -27,7 +27,7 @@
       "root": ".",
       "role": "frontend",
       "repo": "portal",
-      "skill": "portal-base",
+      "skill": "platform-base",
       "write": true
     },
     "api-be": {
@@ -41,7 +41,7 @@
       "root": "/home/your-user/workspace/erp-web",
       "role": "frontend",
       "repo": "portal",
-      "skill": "portal-base",
+      "skill": "platform-base",
       "write": true
     },
     "erp-api": {

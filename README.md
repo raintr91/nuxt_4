@@ -1,4 +1,4 @@
-# Portal Base (Nuxt 4)
+# Platform Base (Nuxt 4)
 
 Auth-first Nuxt 4 template — shadcn dashboard, kiến trúc 4 tầng, harness AI cho feature mới.
 

@@ -74,7 +74,7 @@ export default withMermaid(defineConfig({
         items: [
           { text: 'Feature Artifact Workflow Slides', link: '/onboarding/team-ai-workflow-slides' },
           { text: 'YAML/Markdown AI Workflow', link: '/onboarding/yaml-markdown-ai-workflow' },
-          { text: 'Portal Base Overview', link: '/onboarding/portal-base-overview' },
+          { text: 'Platform Base Overview', link: '/onboarding/platform-base-overview' },
           { text: 'E2E Automation Playwright', link: '/onboarding/e2e-automation-playwright' }
         ]
       },

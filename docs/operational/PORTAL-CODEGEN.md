@@ -192,7 +192,7 @@ Patterns **planned** (chưa gen): validation, composable, export — xem registr
 | `#e2e:a11y-wcag` | Axe WCAG scan scoped `rootTestId` |
 | `#skip-e2e-assert:{matcher}` | Bỏ một matcher khỏi union |
 
-Chi tiết: `.cursor/extracts/portal-e2e-semantic-tags.md` · tag đầy đủ: [bảng tag tham chiếu](#tag-tham-chieu) · `.cursor/extracts/codegen/tags.md`, `.cursor/extracts/portal-unit-test-tags.md`
+Chi tiết: `.cursor/extracts/platform-e2e-semantic-tags.md` · tag đầy đủ: [bảng tag tham chiếu](#tag-tham-chieu) · `.cursor/extracts/codegen/tags.md`, `.cursor/extracts/portal-unit-test-tags.md`
 
 ---
 

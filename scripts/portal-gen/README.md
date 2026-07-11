@@ -16,7 +16,7 @@ pnpm portal:gen --spec ... --force
 ## Design registry
 
 **Source:** `shared/portal-design.registry.json`  
-**Docs:** `.cursor/extracts/portal-design-registry.md` · Rule: `.cursor/rules/portal-design-vocabulary.mdc`
+**Docs:** `.cursor/extracts/platform-design-registry.md` · Rule: `.cursor/rules/platform-design-vocabulary.mdc`
 
 - shadcn/ui = canonical (`#ui: AlertDialog`)
 - List default shell: `#shell: DataListPage` (aliases: `DataListTable`, `common list`)

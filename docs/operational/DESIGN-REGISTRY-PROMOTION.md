@@ -5,7 +5,7 @@
 
 **Registry:** `shared/portal-design.registry.json`  
 **Validate:** `pnpm portal:registry`  
-**Agent extract:** `.cursor/extracts/portal-design-registry.md`
+**Agent extract:** `.cursor/extracts/platform-design-registry.md`
 
 ---
 

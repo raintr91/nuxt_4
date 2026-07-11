@@ -23,7 +23,7 @@ const MOVED_FLAT_STUBS = [
   '.cursor/extracts/portal-codegen-tags.md'
 ]
 
-const EXEMPT_SKILLS = new Set(['portal-base'])
+const EXEMPT_SKILLS = new Set(['platform-base'])
 
 function parseFrontmatter(content) {
   const match = content.match(/^---\r?\n([\s\S]*?)\r?\n---/)

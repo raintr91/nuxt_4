@@ -58,3 +58,13 @@ docker/.env
 .cursor/skills/vendor/
 .cursor/rules-vendor/
 .cursor/skills-vendor/
+
+# platform-ai-link mirror (SSOT: platform-ai/ — edit there, then run ./scripts/platform-ai-link)
+.cursor/skills/
+.cursor/rules/
+.cursor/extracts/
+.kilo/skills/
+.kilo/instructions/
+.kilo/extracts/
+.kilo/command/
+
