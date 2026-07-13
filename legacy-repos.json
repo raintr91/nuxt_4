@@ -1,31 +1,5 @@
 {
-  "description": "Legacy checkouts for /legacy-spec — read-only reference",
-  "defaultProject": "mairy-backend",
-  "projects": {
-    "mairy-backend": {
-      "root": "../mairy-backend",
-      "description": "Legacy Laravel backend for the Mairy/SaaS domain",
-      "write": false
-    },
-    "mairy-fullsco": {
-      "root": "../mairy-fullsco",
-      "description": "Legacy admin/fullSCO UI used as reference for SaaS admin portal",
-      "write": false
-    },
-    "mairy-frontend": {
-      "root": "../mairy-frontend",
-      "description": "Legacy Nuxt frontend used as reference for SaaS chain/store portals",
-      "write": false
-    },
-    "mairy-scenario": {
-      "root": "../mairy-scenario",
-      "description": "Legacy scenario/supporting frontend project for Mairy flows",
-      "write": false
-    },
-    "mairy-crawl": {
-      "root": "../mairy-crawl",
-      "description": "Legacy crawler/supporting project for Mairy integrations",
-      "write": false
-    }
-  }
+  "description": "Legacy checkouts for /legacy-spec — empty (base cluster only, no product legacy)",
+  "defaultProject": null,
+  "projects": {}
 }

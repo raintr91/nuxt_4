@@ -46,4 +46,4 @@ Do **not** share one `.codegraph/` across Win + WSL for the same tree (`CODEGRAP
 
 ## Sync
 
-Rule lives in `platform-ai/rules/codegraph.mdc` → `./scripts/platform-ai-link` → factory via `pnpm factory:ai-sync`.
+Rule lives in `platform-ai/rules/codegraph.mdc` → `./scripts/platform-ai-link` (per-repo; no cross-factory sync).

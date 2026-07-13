@@ -28,6 +28,6 @@ platform-ai/
 
 Commit **`platform-ai/`** only. Mirror `.cursor/` + `.kilo/` gitignored — sau clone chạy `./scripts/platform-ai-link`.
 
-**Factory deploy repos:** sau khi sửa SSOT, chạy `./scripts/factory-platform-ai-sync.sh` → `~/factory/{portal,api,gateway}`. Chi tiết: [FACTORY-PLATFORM-AI-SYNC.md](../docs/operational/FACTORY-PLATFORM-AI-SYNC.md).
+Mỗi base / factory repo giữ **SSOT riêng** (stack khác nhau) — không sync đè skill giữa repo. Chỉ dùng `./scripts/platform-ai-link` trong repo đó.
 
 Lần đầu migrate từ layout cũ: `./scripts/platform-ai-migrate-to-ssot` (một lần).

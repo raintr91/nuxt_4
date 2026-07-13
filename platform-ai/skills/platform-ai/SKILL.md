@@ -74,7 +74,8 @@ Do not load all extracts every phase. See `.cursor/extracts/artifact-graph.md` +
 |---------|-------|
 | `/platform-ai` | this skill |
 | `/platform-mark` | `platform-mark/SKILL.md` |
-| Factory sync | `scripts/factory-platform-ai-sync.sh` → `docs/operational/FACTORY-PLATFORM-AI-SYNC.md` |
+
+Mirror Cursor/Kilo: `./scripts/platform-ai-link` (trong repo này). Không sync đè skill sang base/stack khác.
 
 **Project maps (root):** `platform-repos.json` / `legacy-repos.json` — [PROJECT-MAPS](docs/operational/PROJECT-MAPS.md)  
 **CodeGraph:** `platform-ai/rules/codegraph.mdc` · [CODEGRAPH](docs/operational/CODEGRAPH.md)

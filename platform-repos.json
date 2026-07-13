@@ -1,33 +1,37 @@
 {
-  "defaultGroup": "v2-mairy-stack",
+  "defaultGroup": "platform-bases",
   "groups": {
-    "v2-mairy-stack": {
-      "description": "New SaaS Laravel API and three tenant portals for admin, chain, and store roles",
-      "primary": "v2-mairy-admin",
-      "projects": ["v2-mairy-admin", "v2-mairy-chain", "v2-mairy-store", "v2-mairy"],
-      "contract": {
-        "frontend": "v2-mairy-admin",
-        "backend": "v2-mairy",
-        "sourceOfTruth": "backend-model-database"
-      }
-    },
-    "mairy-legacy-stack": {
-      "description": "Legacy Mairy monolith, Nuxt store portal, and supporting systems used for code-to-spec analysis",
-      "primary": "mairy-backend",
-      "projects": ["mairy-backend", "mairy-frontend", "mairy-fullsco", "mairy-scenario", "mairy-crawl"],
-      "contract": {
-        "frontend": "mairy-frontend",
-        "backend": "mairy-backend",
-        "sourceOfTruth": "legacy-backend-model-database"
-      }
-    },
-    "portal-stack": {
-      "description": "This portal FE + sibling API (override paths in platform-repos.local.json)",
+    "platform-bases": {
+      "description": "Workspace base templates — FE / BE / fullstack (no product domain)",
       "primary": "portal",
-      "projects": ["portal", "api"],
+      "projects": [
+        "portal",
+        "nextjs",
+        "nuxt-nest",
+        "next-nest",
+        "fast-api-base",
+        "api",
+        "integration",
+        "line"
+      ]
+    },
+    "nuxt-nest-stack": {
+      "description": "Nuxt 4 FE + NestJS BE (monorepo)",
+      "primary": "nuxt-nest-fe",
+      "projects": ["nuxt-nest-fe", "nuxt-nest-be"],
       "contract": {
-        "frontend": "portal",
-        "backend": "api",
+        "frontend": "nuxt-nest-fe",
+        "backend": "nuxt-nest-be",
+        "sourceOfTruth": "docs-features-ir-spec"
+      }
+    },
+    "next-nest-stack": {
+      "description": "Next.js FE + NestJS BE (monorepo)",
+      "primary": "next-nest-fe",
+      "projects": ["next-nest-fe", "next-nest-be"],
+      "contract": {
+        "frontend": "next-nest-fe",
+        "backend": "next-nest-be",
         "sourceOfTruth": "docs-features-ir-spec"
       }
     }
@@ -38,7 +42,67 @@
       "role": "frontend",
       "repo": "portal",
       "skill": "platform-base",
-      "description": "Portal base (Next.js) — AI harness guinea pig",
+      "description": "Base Nuxt 4 (FE)",
+      "write": true
+    },
+    "nextjs": {
+      "root": "../nextjs",
+      "role": "frontend",
+      "repo": "nextjs",
+      "skill": "platform-base",
+      "description": "Base Next.js (FE)",
+      "write": true
+    },
+    "nuxt-nest": {
+      "root": "../nuxt_nest",
+      "role": "fullstack",
+      "repo": "nuxt_nest",
+      "skill": "platform-base",
+      "description": "Base Nuxt 4 + NestJS (FE+BE monorepo)",
+      "write": true
+    },
+    "nuxt-nest-fe": {
+      "root": "../nuxt_nest",
+      "role": "frontend",
+      "repo": "nuxt_nest",
+      "skill": "platform-base",
+      "write": true
+    },
+    "nuxt-nest-be": {
+      "root": "../nuxt_nest/apps/api",
+      "role": "backend",
+      "repo": "nuxt_nest",
+      "skill": "platform-base",
+      "write": true
+    },
+    "next-nest": {
+      "root": "../next_nest",
+      "role": "fullstack",
+      "repo": "next_nest",
+      "skill": "platform-base",
+      "description": "Base Next.js + NestJS (FE+BE monorepo)",
+      "write": true
+    },
+    "next-nest-fe": {
+      "root": "../next_nest",
+      "role": "frontend",
+      "repo": "next_nest",
+      "skill": "platform-base",
+      "write": true
+    },
+    "next-nest-be": {
+      "root": "../next_nest/server",
+      "role": "backend",
+      "repo": "next_nest",
+      "skill": "platform-base",
+      "write": true
+    },
+    "fast-api-base": {
+      "root": "../fast-api-base",
+      "role": "backend",
+      "repo": "fast-api-base",
+      "skill": "platform-base",
+      "description": "Base FastAPI (BE)",
       "write": true
     },
     "api": {
@@ -46,74 +110,24 @@
       "role": "backend",
       "repo": "api",
       "skill": "api-base",
-      "description": "Sibling API — override in platform-repos.local.json if needed",
+      "description": "Base Laravel 12 (BE)",
       "write": true
     },
-    "v2-mairy": {
-      "root": "../v2-mairy",
+    "integration": {
+      "root": "../integration",
       "role": "backend",
-      "repo": "v2-mairy",
-      "description": "New Laravel API for the Mairy SaaS rebuild",
-      "write": true
-    },
-    "v2-mairy-admin": {
-      "root": "../v2-mairy-admin",
-      "role": "frontend-admin",
-      "repo": "v2-mairy-admin",
+      "repo": "integration",
       "skill": "platform-base",
-      "description": "New admin portal for SaaS operations",
+      "description": "Base .NET (BE)",
       "write": true
     },
-    "v2-mairy-chain": {
-      "root": ".",
-      "role": "frontend-chain",
-      "repo": "portal",
+    "line": {
+      "root": "../line",
+      "role": "client",
+      "repo": "line",
       "skill": "platform-base",
-      "description": "Chain portal workspace (this repo when used as chain FE)",
+      "description": "Base WinForms — override in platform-repos.local.json for D:/workspace/line",
       "write": true
-    },
-    "v2-mairy-store": {
-      "root": "../v2-mairy-store",
-      "role": "frontend-store",
-      "repo": "v2-mairy-store",
-      "skill": "platform-base",
-      "description": "New store portal",
-      "write": true
-    },
-    "mairy-backend": {
-      "root": "../mairy-backend",
-      "role": "legacy-backend",
-      "repo": "mairy-backend",
-      "description": "Legacy Laravel monolith — read-only for /legacy-spec",
-      "write": false
-    },
-    "mairy-frontend": {
-      "root": "../mairy-frontend",
-      "role": "legacy-frontend-store",
-      "repo": "mairy-frontend",
-      "description": "Legacy Nuxt 3 store portal — reference",
-      "write": false
-    },
-    "mairy-fullsco": {
-      "root": "../mairy-fullsco",
-      "role": "legacy-fullsco",
-      "repo": "mairy-fullsco",
-      "description": "Legacy Fullsco UI — reference",
-      "write": false
-    },
-    "mairy-scenario": {
-      "root": "../mairy-scenario",
-      "role": "legacy-scenario-service",
-      "repo": "mairy-scenario",
-      "description": "Legacy scenario/survey service — reference",
-      "write": false
-    },
-    "mairy-crawl": {
-      "root": "../mairy-crawl",
-      "role": "legacy-crawler",
-      "repo": "mairy-crawl",
-      "description": "Legacy crawler — reference",
-      "write": false
     }
   }
 }

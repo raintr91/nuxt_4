@@ -38,7 +38,6 @@
     "portal:gen:dry:common": "node scripts/portal-gen/generate.mjs --yaml-root docs/common/yaml --dry-run",
     "portal:registry": "node scripts/portal-gen/validate-registry.mjs",
     "platform-common:registry": "node scripts/platform-common-registry.mjs validate",
-    "factory:ai-sync": "bash scripts/factory-platform-ai-sync.sh",
     "portal:unit-gen": "node scripts/portal-unit-gen/generate.mjs",
     "portal:unit-gen:dry": "node scripts/portal-unit-gen/generate.mjs --dry-run",
     "portal:unit-registry": "node scripts/portal-unit-gen/validate-registry.mjs",

@@ -1,16 +1,5 @@
 {
-  "description": "Optional legacy checkouts for /legacy-spec — empty for greenfield products",
+  "description": "Optional legacy checkouts for /legacy-spec — empty for base/greenfield",
   "defaultProject": null,
-  "projects": {
-    "legacy-backend": {
-      "root": "../legacy-backend",
-      "description": "Example legacy backend — read-only for /legacy-spec",
-      "write": false
-    },
-    "legacy-frontend": {
-      "root": "../legacy-frontend",
-      "description": "Example legacy frontend — read-only reference",
-      "write": false
-    }
-  }
+  "projects": {}
 }

@@ -1,25 +1,19 @@
 {
-  "defaultGroup": "portal-stack",
+  "defaultGroup": "platform-bases",
   "groups": {
-    "portal-stack": {
-      "description": "Portal FE and API BE that usually change together",
+    "platform-bases": {
+      "description": "Workspace base templates — FE / BE / fullstack",
       "primary": "portal",
-      "projects": ["portal", "api"],
-      "contract": {
-        "frontend": "portal",
-        "backend": "api",
-        "sourceOfTruth": "docs-features-ir-spec"
-      }
-    },
-    "erp-suite": {
-      "description": "Example suite with multiple related apps — copy & rename",
-      "primary": "erp-web",
-      "projects": ["erp-web", "erp-api", "erp-worker", "erp-legacy-admin"],
-      "contract": {
-        "frontend": "erp-web",
-        "backend": "erp-api",
-        "sourceOfTruth": "backend-model-database"
-      }
+      "projects": [
+        "portal",
+        "nextjs",
+        "nuxt-nest",
+        "next-nest",
+        "fast-api-base",
+        "api",
+        "integration",
+        "line"
+      ]
     }
   },
   "projects": {
@@ -27,6 +21,35 @@
       "root": ".",
       "role": "frontend",
       "repo": "portal",
+      "skill": "platform-base",
+      "description": "Base Nuxt 4 (FE)",
+      "write": true
+    },
+    "nextjs": {
+      "root": "../nextjs",
+      "role": "frontend",
+      "repo": "nextjs",
+      "skill": "platform-base",
+      "write": true
+    },
+    "nuxt-nest": {
+      "root": "../nuxt_nest",
+      "role": "fullstack",
+      "repo": "nuxt_nest",
+      "skill": "platform-base",
+      "write": true
+    },
+    "next-nest": {
+      "root": "../next_nest",
+      "role": "fullstack",
+      "repo": "next_nest",
+      "skill": "platform-base",
+      "write": true
+    },
+    "fast-api-base": {
+      "root": "../fast-api-base",
+      "role": "backend",
+      "repo": "fast-api-base",
       "skill": "platform-base",
       "write": true
     },
@@ -37,29 +60,19 @@
       "skill": "api-base",
       "write": true
     },
-    "erp-web": {
-      "root": "../erp-web",
-      "role": "frontend",
-      "repo": "portal",
+    "integration": {
+      "root": "../integration",
+      "role": "backend",
+      "repo": "integration",
       "skill": "platform-base",
       "write": true
     },
-    "erp-api": {
-      "root": "../erp-api",
-      "role": "backend",
-      "repo": "api",
-      "skill": "api-base",
+    "line": {
+      "root": "../line",
+      "role": "client",
+      "repo": "line",
+      "skill": "platform-base",
       "write": true
-    },
-    "erp-worker": {
-      "root": "../erp-worker",
-      "role": "worker",
-      "write": true
-    },
-    "erp-legacy-admin": {
-      "root": "../erp-legacy-admin",
-      "role": "legacy",
-      "write": false
     }
   }
 }

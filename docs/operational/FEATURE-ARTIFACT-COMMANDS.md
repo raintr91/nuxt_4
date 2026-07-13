@@ -113,7 +113,6 @@ Member marks common UI + logic — grill hỏi trước khi gắn tag. Hub: [PLA
 | Lệnh | Mục đích |
 |------|----------|
 | `./scripts/platform-ai-link` | Mirror `platform-ai/` SSOT → `.cursor/` + `.kilo/` (sau clone / sửa skill) |
-| `pnpm factory:ai-sync` | Sync SSOT workspace bases → `~/factory/{portal,api,gateway}` — [FACTORY-PLATFORM-AI-SYNC](./FACTORY-PLATFORM-AI-SYNC.md) |
 | Root `platform-repos.json` | Cross-repo map — [PROJECT-MAPS](./PROJECT-MAPS.md) |
 | `pnpm extracts:validate` | Skill `extractBundle` ⊆ registry |
 
