@@ -1,5 +1,5 @@
 ---
-name: portal-base
+name: platform-base
 description: Nuxt 4 app conventions — layers, testId, E2E; see invariants + ARCHITECTURE.md
 disable-model-invocation: true
 ---

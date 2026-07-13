@@ -29,6 +29,6 @@ Order: legacy|spec → bqa → dev → [grill-with] → prototype → grill-prot
 
 ## Implementation lane
 
-| `/model` | `/api` | `/grill-api` | `/wire` | `/test` | `/grill-test` | `/unit` | `/grill-unit` |
+| `/contract` | `/model` | `/api` | `/api-spec` | `/grill-api-spec` | `/api-code` | `/nest-base` | `/grill-api` | `/wire` | `/test` | `/grill-test` | `/unit` | `/grill-unit` |
 
 Aliases: `/e2e`→`/test` · `/backend`→`/api` · `/integrate`→`/wire`. `/design` deprecated → `/spec` or `/prototype`.

@@ -1,46 +1,34 @@
 ---
 name: api
 extractBundle: api
-description: /api — implement Laravel API from portal ir/spec.
+description: /api — Nest backend router in apps/api (in-repo).
 disable-model-invocation: true
 ---
 
-# /api — Backend API
+# /api — Backend API (in-repo)
 
-**Extracts:** `extractBundle: api` → `.cursor/extracts/extract-registry.json`
+**Extracts:** `extractBundle: api`
 
 ## Scope
 
-Backend work in the configured backend project (`api/`) only — not Portal frontend files.
+`apps/api/` + `packages/models/` — not Nuxt `pages/` unless asked.
 
-## Backend repo commands
+## Router
 
-In `api/` workspace (see `api/.cursor/skills/api/SKILL.md`):
+| State | Command |
+|-------|---------|
+| Missing Zod contracts | `/contract` → `pnpm contract:gen` |
+| No `backend/01-backend-spec.yaml` | `/api-spec` |
+| Portal delta | `/api-update-spec` |
+| Not codegen-ready | `/grill-api-spec` |
+| Approved | `/api-code` → `pnpm nest:gen` |
 
-| Command | Step |
-|---------|------|
-| `/api-spec` | Portal spec → backend spec + OpenAPI + mock YAML |
-| `/grill-api-spec` | Audit backend contract before code (run in `api/` repo) |
-| `/api-code` | Approved backend spec → Laravel implementation |
-| `/api` | Router — defaults to spec if no approved backend spec |
+Skills (port from `~/workspace/api/.cursor/skills/`): `api-spec`, `grill-api-spec`, `api-code`, `api-update-spec` — paths in-repo.
 
-Hashtags: `#call-external`, `#cross-entity-service` → `api/.cursor/extracts/`
-
-## Before Work (from Portal)
-
-1. Resolve backend from `team-projects` config; stop if missing.
-2. Read feature `spec.yaml` and testcase YAML.
-3. Align contract keys with Portal `models/`.
-
-## Rules
-
-- Do not implement backend in the portal workspace.
-- Do not modify Portal UI unless explicitly requested.
-- Endpoints, validation, resources, permissions, backend tests per backend repo conventions.
-- Report every project read or changed.
+Patterns: `/nest-base` · `docs/operational/TEAM-AI-BACKEND-WORKFLOW.md`
 
 ## Handoff
 
-Document paths, payloads, validation errors, permissions for `/wire`.
+→ `/grill-api` → `/wire`
 
-**Backend repo pipeline:** `/api-spec` → `/grill-api-spec` → `/api-code` in `api/`. Portal `/grill-api` runs after implementation, before `/wire`.
+Legacy Laravel `~/workspace/api` — read-only for pattern port, not default runtime.

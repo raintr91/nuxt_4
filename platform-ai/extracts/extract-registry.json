@@ -1,0 +1,149 @@
+{
+  "version": 1,
+  "bundles": {
+    "core": ["platform-ai/extracts/core/agent-discipline.md"],
+    "flow-trace": [
+      "platform-ai/extracts/core/agent-discipline.md",
+      "platform-ai/extracts/legacy/project-config.md",
+      "platform-ai/extracts/flow-trace.md"
+    ],
+    "legacy-spec": [
+      "platform-ai/extracts/core/agent-discipline.md",
+      "platform-ai/extracts/legacy/project-config.md",
+      "platform-ai/extracts/legacy/legacy-api-migration.md",
+      "platform-ai/extracts/legacy/evidence.md",
+      "platform-ai/extracts/spec/split.md",
+      "platform-ai/extracts/legacy-trace.md"
+    ],
+    "spec-requirement": [
+      "platform-ai/extracts/core/agent-discipline.md",
+      "platform-ai/extracts/spec/split.md",
+      "platform-ai/extracts/spec-incremental-blocks.md",
+      "platform-ai/extracts/common-ui-spec.md",
+      "docs/templates/bundle-authoring.md"
+    ],
+    "bqa-grill": [
+      "platform-ai/extracts/core/agent-discipline.md",
+      "platform-ai/extracts/grill/validation.md",
+      "platform-ai/extracts/grill/roles.md",
+      "platform-ai/extracts/common-ui-spec.md",
+      "platform-ai/extracts/spec/split.md",
+      "platform-ai/extracts/grill-tech-debt.md"
+    ],
+    "dev-grill": [
+      "platform-ai/extracts/core/agent-discipline.md",
+      "platform-ai/extracts/grill/roles.md",
+      "platform-ai/extracts/codegen/readiness.md",
+      "platform-ai/extracts/codegen/tags.md",
+      "platform-ai/extracts/legacy/legacy-api-migration.md",
+      "platform-ai/extracts/grill-tech-debt.md",
+      "platform-ai/extracts/spec-update-tags.md",
+      "platform-ai/extracts/portal-unit-test-tags.md"
+    ],
+    "grill-with-docs": [
+      "platform-ai/extracts/core/agent-discipline.md",
+      "platform-ai/extracts/grill/validation.md",
+      "platform-ai/extracts/grill/roles.md",
+      "platform-ai/extracts/codegen/readiness.md",
+      "platform-ai/extracts/codegen/tags.md",
+      "platform-ai/extracts/common-ui-spec.md",
+      "platform-ai/extracts/spec/split.md",
+      "platform-ai/extracts/grill-tech-debt.md"
+    ],
+    "update-spec": [
+      "platform-ai/extracts/core/agent-discipline.md",
+      "platform-ai/extracts/grill/roles.md",
+      "platform-ai/extracts/spec-update-delta.md",
+      "platform-ai/extracts/spec-update-tags.md",
+      "platform-ai/extracts/feature-lifecycle-status.md"
+    ],
+    "update-spec-legacy": [
+      "platform-ai/extracts/core/agent-discipline.md",
+      "platform-ai/extracts/legacy/project-config.md",
+      "platform-ai/extracts/legacy/legacy-api-migration.md",
+      "platform-ai/extracts/legacy/evidence.md",
+      "platform-ai/extracts/legacy-trace.md",
+      "platform-ai/extracts/spec-update-delta.md"
+    ],
+    "prototype": [
+      "platform-ai/extracts/core/agent-discipline.md",
+      "platform-ai/extracts/codegen/tags.md",
+      "platform-ai/extracts/common-ui-spec.md",
+      "platform-ai/extracts/legacy/legacy-api-migration.md"
+    ],
+    "grill-prototype": [
+      "platform-ai/extracts/core/agent-discipline.md",
+      "platform-ai/extracts/common-ui-spec.md",
+      "platform-ai/extracts/test/readiness.md",
+      "platform-ai/extracts/verify-gate.md"
+    ],
+    "test": [
+      "platform-ai/extracts/core/agent-discipline.md",
+      "platform-ai/extracts/test/readiness.md",
+      "platform-ai/extracts/verify-gate.md",
+      "platform-ai/extracts/spec/split.md"
+    ],
+    "grill-test": [
+      "platform-ai/extracts/core/agent-discipline.md",
+      "platform-ai/extracts/test/readiness.md",
+      "platform-ai/extracts/verify-gate.md"
+    ],
+    "unit": [
+      "platform-ai/extracts/core/agent-discipline.md",
+      "platform-ai/extracts/portal-unit-workflow.md",
+      "platform-ai/extracts/portal-unit-test-tags.md",
+      "platform-ai/extracts/portal-unit-test-common.md",
+      "platform-ai/extracts/verify-gate.md"
+    ],
+    "grill-unit": [
+      "platform-ai/extracts/core/agent-discipline.md",
+      "platform-ai/extracts/portal-unit-workflow.md",
+      "platform-ai/extracts/verify-gate.md"
+    ],
+    "model": [
+      "platform-ai/extracts/core/agent-discipline.md",
+      "platform-ai/extracts/legacy/project-config.md"
+    ],
+    "contract": [
+      "platform-ai/extracts/core/agent-discipline.md",
+      "platform-ai/extracts/codegen/readiness.md"
+    ],
+    "api-spec": [
+      "platform-ai/extracts/core/agent-discipline.md"
+    ],
+    "grill-api-spec": [
+      "platform-ai/extracts/core/agent-discipline.md"
+    ],
+    "api-code": [
+      "platform-ai/extracts/core/agent-discipline.md"
+    ],
+    "api-update-spec": [
+      "platform-ai/extracts/core/agent-discipline.md"
+    ],
+    "nest-base": [
+      "platform-ai/extracts/core/agent-discipline.md"
+    ],
+    "api": [
+      "platform-ai/extracts/core/agent-discipline.md",
+      "platform-ai/extracts/legacy/project-config.md",
+      "platform-ai/extracts/verify-gate.md"
+    ],
+    "wire": [
+      "platform-ai/extracts/core/agent-discipline.md",
+      "platform-ai/extracts/legacy/project-config.md",
+      "platform-ai/extracts/spec-update-tags.md",
+      "platform-ai/extracts/feature-lifecycle-status.md",
+      "platform-ai/extracts/verify-gate.md",
+      "platform-ai/extracts/wire/integration.md"
+    ],
+    "grill-api": [
+      "platform-ai/extracts/core/agent-discipline.md",
+      "platform-ai/extracts/legacy/legacy-api-migration.md"
+    ],
+    "portal-ai-platform": [
+      "platform-ai/extracts/feature-artifact.md",
+      "platform-ai/extracts/artifact-graph.md",
+      "platform-ai/extracts/extract-registry.json"
+    ]
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "defaultGroup": "nuxt-nest-stack",
+  "groups": {
+    "nuxt-nest-stack": {
+      "description": "Nuxt 4 FE + NestJS BE (this monorepo)",
+      "primary": "nuxt-nest-fe",
+      "projects": ["nuxt-nest-fe", "nuxt-nest-be"],
+      "contract": {
+        "frontend": "nuxt-nest-fe",
+        "backend": "nuxt-nest-be",
+        "sourceOfTruth": "docs-features-ir-spec"
+      }
+    },
+    "platform-bases": {
+      "description": "Workspace base templates",
+      "primary": "nuxt-nest",
+      "projects": [
+        "portal",
+        "nextjs",
+        "nuxt-nest",
+        "next-nest",
+        "fast-api-base",
+        "api",
+        "integration",
+        "line"
+      ]
+    }
+  },
+  "projects": {
+    "nuxt-nest": {
+      "root": ".",
+      "role": "fullstack",
+      "repo": "nuxt_nest",
+      "skill": "platform-base",
+      "description": "Base Nuxt 4 + NestJS",
+      "write": true
+    },
+    "nuxt-nest-fe": {
+      "root": ".",
+      "role": "frontend",
+      "repo": "nuxt_nest",
+      "skill": "platform-base",
+      "write": true
+    },
+    "nuxt-nest-be": {
+      "root": "apps/api",
+      "role": "backend",
+      "repo": "nuxt_nest",
+      "skill": "platform-base",
+      "write": true
+    },
+    "portal": {
+      "root": "../portal",
+      "role": "frontend",
+      "repo": "portal",
+      "skill": "platform-base",
+      "write": true
+    },
+    "nextjs": {
+      "root": "../nextjs",
+      "role": "frontend",
+      "repo": "nextjs",
+      "skill": "platform-base",
+      "write": true
+    },
+    "next-nest": {
+      "root": "../next_nest",
+      "role": "fullstack",
+      "repo": "next_nest",
+      "skill": "platform-base",
+      "write": true
+    },
+    "fast-api-base": {
+      "root": "../fast-api-base",
+      "role": "backend",
+      "repo": "fast-api-base",
+      "skill": "platform-base",
+      "write": true
+    },
+    "api": {
+      "root": "../api",
+      "role": "backend",
+      "repo": "api",
+      "skill": "api-base",
+      "write": true
+    },
+    "integration": {
+      "root": "../integration",
+      "role": "backend",
+      "repo": "integration",
+      "skill": "platform-base",
+      "write": true
+    },
+    "line": {
+      "root": "../line",
+      "role": "client",
+      "repo": "line",
+      "skill": "platform-base",
+      "write": true
+    }
+  }
+}

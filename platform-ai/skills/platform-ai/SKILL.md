@@ -1,5 +1,5 @@
 ---
-name: portal-ai-platform
+name: platform-ai
 extractBundle: portal-ai-platform
 description: /portal-ai-platform — team AI layer (.cursor, workflow).
 disable-model-invocation: true
