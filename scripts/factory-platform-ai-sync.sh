@@ -70,9 +70,13 @@ sync_portal() {
   copy_file "$src/scripts/platform-common-registry.mjs" "$dst/scripts/platform-common-registry.mjs"
   copy_file "$src/shared/platform-common.registry.json" "$dst/shared/platform-common.registry.json"
   chmod +x "$dst/scripts/platform-common-registry.mjs" 2>/dev/null || true
-  for doc in PLATFORM-MARK.md FEATURE-ARTIFACT-COMMANDS.md FEATURE-ARTIFACT-FLOWS.md PORTAL-CODEGEN.md; do
+  for doc in PLATFORM-MARK.md FEATURE-ARTIFACT-COMMANDS.md FEATURE-ARTIFACT-FLOWS.md PORTAL-CODEGEN.md CODEGRAPH.md PROJECT-MAPS.md; do
     copy_file "$src/docs/operational/$doc" "$dst/docs/operational/$doc"
   done
+  # Ensure .codegraph/ ignored on factory portal
+  if [ -f "$dst/.gitignore" ] && ! grep -q '^\.codegraph/' "$dst/.gitignore" 2>/dev/null; then
+    printf '\n# CodeGraph local index\n.codegraph/\n.codegraph-*/\n' >> "$dst/.gitignore"
+  fi
   copy_file "$src/AGENTS.md" "$dst/AGENTS.md"
   if [ -f "$dst/package.json" ] && ! grep -q 'platform-common:registry' "$dst/package.json" 2>/dev/null; then
     sed -i '/"portal:registry":/a\    "platform-common:registry": "node scripts/platform-common-registry.mjs validate",' "$dst/package.json"
@@ -97,10 +101,13 @@ sync_api() {
   copy_file "$src/scripts/platform-common-registry" "$dst/scripts/platform-common-registry"
   copy_file "$src/shared/platform-common.registry.json" "$dst/shared/platform-common.registry.json"
   chmod +x "$dst/scripts/platform-common-registry" 2>/dev/null || true
-  for doc in PLATFORM-MARK.md FAST-ARTIFACT-COMMANDS.md TEAM-AI-BACKEND-WORKFLOW.md; do
+  for doc in PLATFORM-MARK.md FAST-ARTIFACT-COMMANDS.md TEAM-AI-BACKEND-WORKFLOW.md CODEGRAPH.md; do
     copy_file "$src/docs/operational/$doc" "$dst/docs/operational/$doc"
   done
   copy_file "$src/AGENTS.md" "$dst/AGENTS.md"
+  if [ -f "$dst/.gitignore" ] && ! grep -q '^\.codegraph/' "$dst/.gitignore" 2>/dev/null; then
+    printf '\n# CodeGraph local index\n.codegraph/\n.codegraph-*/\n' >> "$dst/.gitignore"
+  fi
   log "api: done"
 }
 
@@ -111,10 +118,13 @@ sync_gateway() {
   require_dir "$dst"
   log "=== gateway: $src → $dst ==="
   sync_platform_ai_tree "$src" "$dst"
-  for doc in INTEGRATION-ARTIFACT-COMMANDS.md INTEGRATION-STRUCTURE.md TEAM-AI-INTEGRATION-WORKFLOW.md; do
+  for doc in INTEGRATION-ARTIFACT-COMMANDS.md INTEGRATION-STRUCTURE.md TEAM-AI-INTEGRATION-WORKFLOW.md CODEGRAPH.md; do
     copy_file "$src/docs/operational/$doc" "$dst/docs/operational/$doc"
   done
   copy_file "$src/AGENTS.md" "$dst/AGENTS.md"
+  if [ -f "$dst/.gitignore" ] && ! grep -q '^\.codegraph/' "$dst/.gitignore" 2>/dev/null; then
+    printf '\n# CodeGraph local index\n.codegraph/\n.codegraph-*/\n' >> "$dst/.gitignore"
+  fi
   log "gateway: done"
 }
 
@@ -140,9 +150,12 @@ sync_station() {
     [ -d "$src/.kilo/skills" ] && rsync_dir "$src/.kilo/skills" "$dst/.kilo/skills"
     [ -d "$src/.kilo/instructions" ] && rsync_dir "$src/.kilo/instructions" "$dst/.kilo/instructions"
   fi
-  for doc in LINE-ARTIFACT-COMMANDS.md LINE-CLIENT-STRUCTURE.md LINE-PHASE-DIAGRAM.md LINE-SPEC-WORKFLOW.md TEAM-AI-LINE-WORKFLOW.md; do
+  for doc in LINE-ARTIFACT-COMMANDS.md LINE-CLIENT-STRUCTURE.md LINE-PHASE-DIAGRAM.md LINE-SPEC-WORKFLOW.md TEAM-AI-LINE-WORKFLOW.md CODEGRAPH.md; do
     copy_file "$src/docs/operational/$doc" "$dst/docs/operational/$doc"
   done
+  if [ -f "$dst/.gitignore" ] && ! grep -q '^\.codegraph/' "$dst/.gitignore" 2>/dev/null; then
+    printf '\n# CodeGraph local index\n.codegraph/\n.codegraph-*/\n' >> "$dst/.gitignore"
+  fi
   log "station: done (line has no platform-ai SSOT yet — synced .cursor mirror)"
 }
 

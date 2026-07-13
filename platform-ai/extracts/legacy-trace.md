@@ -13,7 +13,7 @@ Per-function `ir/legacy.yaml` uses `legacyRef: { module, function, slice }` when
 
 ## Cross-repo paths
 
-- `legacy.repo` = slug `projects.*.repo` trong team-projects
+- `legacy.repo` = slug `projects.*.repo` trong platform-repos
 - `evidence.file` / `refs.*.file` = path **relative** legacy project root (resolve `root` từ config)
 - `refs` keys: `legacy://{entity}/{action}`
 

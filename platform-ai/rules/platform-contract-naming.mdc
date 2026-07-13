@@ -7,7 +7,7 @@ alwaysApply: true
 
 Same keys across FE schema, service params, API, BE DTO, DB, pivot payloads.
 
-Cross-repo only when `team-projects` maps `contract.frontend` + `contract.backend`; else workspace-only + say FE↔BE unavailable.
+Cross-repo only when `platform-repos` maps `contract.frontend` + `contract.backend`; else workspace-only + say FE↔BE unavailable.
 
 - No rename layers (`content` not `content_blog`)
 - No flatten `auth: { id, name }` → `auth_id`, `auth_name`

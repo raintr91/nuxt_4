@@ -243,7 +243,7 @@ Một session chỉ nên theo một command.
 
 Mặc định output docs/spec/testcase/handoff bằng tiếng Việt; giữ nguyên key contract, route, API field, code identifier.
 
-Khi nhắc `legacy`, agent phải đọc config JSON (`team-projects` / `legacy-projects`) để resolve path, không tự đoán.
+Khi nhắc `legacy`, agent phải đọc config JSON ở **repo root** (`platform-repos.json` / `legacy-repos.json`) để resolve path, không tự đoán. Xem `docs/operational/PROJECT-MAPS.md`.
 
 Nếu legacy là Laravel Blade/HTML cũ: route GET render page chỉ là evidence. Chuyển sang API backend + SPA frontend, không sinh API init page như `GET /auth/login` hoặc `GET /{entity}/create`; edit/copy dùng detail API lấy old data.
 

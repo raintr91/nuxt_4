@@ -12,7 +12,7 @@ Auth-first Nuxt 4 · Vue 3 · Pinia · vee-validate+Zod · shadcn-vue · Playwri
 
 **Docs:** `docs/operational/ARCHITECTURE.md`, `E2E-TESTIDS.md` · **E2E skill:** `test/SKILL.md`
 
-**Legacy paths:** `team-projects.json` / `legacy-projects.json` — never guess.
+**Legacy paths:** `platform-repos.json` / `legacy-repos.json` (repo root) — never guess. See `docs/operational/PROJECT-MAPS.md`.
 
 ## Layers
 

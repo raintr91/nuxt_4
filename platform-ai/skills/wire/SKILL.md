@@ -15,7 +15,7 @@ Doc hub: `docs/operational/WIRE-PHASE-DIAGRAM.md` · `docs/operational/FEATURE-A
 
 - Viết docs, integration note và handoff bằng tiếng Việt.
 - Giữ nguyên contract key, route path, API field, model name và code identifier.
-- Nếu nhắc `legacy`, resolve qua JSON `team-projects` hoặc `legacy-projects` trước khi dùng để align integration behavior.
+- Nếu nhắc `legacy`, resolve qua root `platform-repos.json` hoặc `legacy-repos.json` trước khi dùng để align integration behavior. See `docs/operational/PROJECT-MAPS.md`.
 
 ## Load policy
 

@@ -67,14 +67,14 @@ Ràng buộc:
 
 **Khi nào:** Nguồn sự thật là code legacy, chưa có spec.
 
-**Prerequisite:** `team-projects.json` / `legacy-projects.json` (nếu cross-repo).
+**Prerequisite:** root `platform-repos.json` / `legacy-repos.json` (nếu cross-repo). See [PROJECT-MAPS](./PROJECT-MAPS.md).
 
 ```text
 /legacy-spec
 
 Module: {admin hotel list}
 Slug đích: {admin-hotel-list}
-Nguồn legacy: resolve từ team-projects / legacy-projects — không đoán path.
+Nguồn legacy: resolve từ root platform-repos / legacy-repos — không đoán path ([PROJECT-MAPS](./PROJECT-MAPS.md)).
 
 Scope:
 - Chỉ đọc/phân tích code; KHÔNG sửa production code
@@ -262,7 +262,7 @@ Handoff: /wire hoặc /unit (parser) sau khi có API thật
 Feature: {admin-hotel-list}
 Portal spec: docs/features/yaml/admin/hotel/list/ir/spec.yaml
 
-Resolve backend từ team-projects — stop nếu thiếu config.
+Resolve backend từ platform-repos — stop nếu thiếu config.
 Đọc spec + testcase; align key với Portal models/.
 
 KHÔNG implement BE trong portal workspace.
@@ -286,7 +286,7 @@ Handoff Portal: /grill-api → /wire
 /api-spec
 
 Portal slug: {admin-hotel-list}
-Input: docs/features/.../yaml/admin/hotel/list/ir/spec.yaml (đọc từ portal qua team-projects path)
+Input: docs/features/.../yaml/admin/hotel/list/ir/spec.yaml (đọc từ portal qua platform-repos path)
 
 Output:
 - Backend spec + OpenAPI

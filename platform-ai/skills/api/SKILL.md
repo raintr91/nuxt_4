@@ -28,7 +28,7 @@ Hashtags: `#call-external`, `#cross-entity-service` → `api/.cursor/extracts/`
 
 ## Before Work (from Portal)
 
-1. Resolve backend from `team-projects` config; stop if missing.
+1. Resolve backend from root `platform-repos.json`; stop if missing.
 2. Read feature `spec.yaml` and testcase YAML.
 3. Align contract keys with Portal `models/`.
 

@@ -3,16 +3,16 @@
   "groups": {
     "portal-stack": {
       "description": "Portal FE and API BE that usually change together",
-      "primary": "portal-fe",
-      "projects": ["portal-fe", "api-be"],
+      "primary": "portal",
+      "projects": ["portal", "api"],
       "contract": {
-        "frontend": "portal-fe",
-        "backend": "api-be",
-        "sourceOfTruth": "backend-model-database"
+        "frontend": "portal",
+        "backend": "api",
+        "sourceOfTruth": "docs-features-ir-spec"
       }
     },
     "erp-suite": {
-      "description": "Example suite with multiple related apps",
+      "description": "Example suite with multiple related apps — copy & rename",
       "primary": "erp-web",
       "projects": ["erp-web", "erp-api", "erp-worker", "erp-legacy-admin"],
       "contract": {
@@ -23,14 +23,14 @@
     }
   },
   "projects": {
-    "portal-fe": {
+    "portal": {
       "root": ".",
       "role": "frontend",
       "repo": "portal",
       "skill": "platform-base",
       "write": true
     },
-    "api-be": {
+    "api": {
       "root": "../api",
       "role": "backend",
       "repo": "api",
@@ -38,26 +38,26 @@
       "write": true
     },
     "erp-web": {
-      "root": "/home/your-user/workspace/erp-web",
+      "root": "../erp-web",
       "role": "frontend",
       "repo": "portal",
       "skill": "platform-base",
       "write": true
     },
     "erp-api": {
-      "root": "/home/your-user/workspace/erp-api",
+      "root": "../erp-api",
       "role": "backend",
       "repo": "api",
       "skill": "api-base",
       "write": true
     },
     "erp-worker": {
-      "root": "/home/your-user/workspace/erp-worker",
+      "root": "../erp-worker",
       "role": "worker",
       "write": true
     },
     "erp-legacy-admin": {
-      "root": "/home/your-user/workspace/erp-legacy-admin",
+      "root": "../erp-legacy-admin",
       "role": "legacy",
       "write": false
     }

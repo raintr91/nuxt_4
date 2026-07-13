@@ -50,7 +50,12 @@ playwright/.cache/
 node_modules
 docker/.env
 
-# Local legacy source mappings for AI workflow
+# Local project maps (repo root SSOT — see docs/operational/PROJECT-MAPS.md)
+platform-repos.local.json
+legacy-repos.local.json
+.cursor/legacy-repos.local.json
+.cursor/platform-repos.local.json
+# Deprecated local map paths
 .cursor/legacy-projects.local.json
 .cursor/team-projects.local.json
 
@@ -67,4 +72,8 @@ docker/.env
 .kilo/instructions/
 .kilo/extracts/
 .kilo/command/
+
+# CodeGraph local index (do not commit)
+.codegraph/
+.codegraph-*/
 

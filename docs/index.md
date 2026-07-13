@@ -13,6 +13,8 @@ pnpm docs:dev
 ## Operational
 
 - [platform-ai/README.md](../platform-ai/README.md) — SSOT skills/rules · `./scripts/platform-ai-link`
+- [Project maps](./operational/PROJECT-MAPS.md) — root `platform-repos` / `legacy-repos` (Cursor + Kilo)
+- [CodeGraph](./operational/CODEGRAPH.md) — `codegraph_explore` for structural source
 - [Architecture](./operational/ARCHITECTURE.md)
 - [Full cycle (overview)](./operational/FULL-CYCLE-PIPELINE-DIAGRAM.md)
 - [Feature artifact flows](./operational/FEATURE-ARTIFACT-FLOWS.md)

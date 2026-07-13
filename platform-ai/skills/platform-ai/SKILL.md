@@ -76,6 +76,9 @@ Do not load all extracts every phase. See `.cursor/extracts/artifact-graph.md` +
 | `/platform-mark` | `platform-mark/SKILL.md` |
 | Factory sync | `scripts/factory-platform-ai-sync.sh` → `docs/operational/FACTORY-PLATFORM-AI-SYNC.md` |
 
+**Project maps (root):** `platform-repos.json` / `legacy-repos.json` — [PROJECT-MAPS](docs/operational/PROJECT-MAPS.md)  
+**CodeGraph:** `platform-ai/rules/codegraph.mdc` · [CODEGRAPH](docs/operational/CODEGRAPH.md)
+
 ## Rule layer
 
 - `platform-ai.mdc` — alwaysApply context (this doc expands it)

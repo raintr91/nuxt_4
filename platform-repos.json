@@ -1,0 +1,119 @@
+{
+  "defaultGroup": "v2-mairy-stack",
+  "groups": {
+    "v2-mairy-stack": {
+      "description": "New SaaS Laravel API and three tenant portals for admin, chain, and store roles",
+      "primary": "v2-mairy-admin",
+      "projects": ["v2-mairy-admin", "v2-mairy-chain", "v2-mairy-store", "v2-mairy"],
+      "contract": {
+        "frontend": "v2-mairy-admin",
+        "backend": "v2-mairy",
+        "sourceOfTruth": "backend-model-database"
+      }
+    },
+    "mairy-legacy-stack": {
+      "description": "Legacy Mairy monolith, Nuxt store portal, and supporting systems used for code-to-spec analysis",
+      "primary": "mairy-backend",
+      "projects": ["mairy-backend", "mairy-frontend", "mairy-fullsco", "mairy-scenario", "mairy-crawl"],
+      "contract": {
+        "frontend": "mairy-frontend",
+        "backend": "mairy-backend",
+        "sourceOfTruth": "legacy-backend-model-database"
+      }
+    },
+    "portal-stack": {
+      "description": "This portal FE + sibling API (override paths in platform-repos.local.json)",
+      "primary": "portal",
+      "projects": ["portal", "api"],
+      "contract": {
+        "frontend": "portal",
+        "backend": "api",
+        "sourceOfTruth": "docs-features-ir-spec"
+      }
+    }
+  },
+  "projects": {
+    "portal": {
+      "root": ".",
+      "role": "frontend",
+      "repo": "portal",
+      "skill": "platform-base",
+      "description": "Portal base (Next.js) — AI harness guinea pig",
+      "write": true
+    },
+    "api": {
+      "root": "../api",
+      "role": "backend",
+      "repo": "api",
+      "skill": "api-base",
+      "description": "Sibling API — override in platform-repos.local.json if needed",
+      "write": true
+    },
+    "v2-mairy": {
+      "root": "../v2-mairy",
+      "role": "backend",
+      "repo": "v2-mairy",
+      "description": "New Laravel API for the Mairy SaaS rebuild",
+      "write": true
+    },
+    "v2-mairy-admin": {
+      "root": "../v2-mairy-admin",
+      "role": "frontend-admin",
+      "repo": "v2-mairy-admin",
+      "skill": "platform-base",
+      "description": "New admin portal for SaaS operations",
+      "write": true
+    },
+    "v2-mairy-chain": {
+      "root": ".",
+      "role": "frontend-chain",
+      "repo": "portal",
+      "skill": "platform-base",
+      "description": "Chain portal workspace (this repo when used as chain FE)",
+      "write": true
+    },
+    "v2-mairy-store": {
+      "root": "../v2-mairy-store",
+      "role": "frontend-store",
+      "repo": "v2-mairy-store",
+      "skill": "platform-base",
+      "description": "New store portal",
+      "write": true
+    },
+    "mairy-backend": {
+      "root": "../mairy-backend",
+      "role": "legacy-backend",
+      "repo": "mairy-backend",
+      "description": "Legacy Laravel monolith — read-only for /legacy-spec",
+      "write": false
+    },
+    "mairy-frontend": {
+      "root": "../mairy-frontend",
+      "role": "legacy-frontend-store",
+      "repo": "mairy-frontend",
+      "description": "Legacy Nuxt 3 store portal — reference",
+      "write": false
+    },
+    "mairy-fullsco": {
+      "root": "../mairy-fullsco",
+      "role": "legacy-fullsco",
+      "repo": "mairy-fullsco",
+      "description": "Legacy Fullsco UI — reference",
+      "write": false
+    },
+    "mairy-scenario": {
+      "root": "../mairy-scenario",
+      "role": "legacy-scenario-service",
+      "repo": "mairy-scenario",
+      "description": "Legacy scenario/survey service — reference",
+      "write": false
+    },
+    "mairy-crawl": {
+      "root": "../mairy-crawl",
+      "role": "legacy-crawler",
+      "repo": "mairy-crawl",
+      "description": "Legacy crawler — reference",
+      "write": false
+    }
+  }
+}
