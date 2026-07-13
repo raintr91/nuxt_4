@@ -1,8 +1,8 @@
 # Unit test registry promotion
 
-**Sau khi pilot `portal:unit-gen` ổn** trên feature đầu — promote pattern trong `shared/portal-unit-test.registry.json` để grill/`/unit` gap và gen lần sau không lặp HANDOFF thừa.
+**Sau khi pilot `portal:unit-gen` ổn** trên feature đầu — promote pattern trong `registries/unit-test.registry.json` để grill/`/unit` gap và gen lần sau không lặp HANDOFF thừa.
 
-**Registry:** `shared/portal-unit-test.registry.json`  
+**Registry:** `registries/unit-test.registry.json`  
 **Validate:** `pnpm portal:unit-registry`  
 **Agent extract:** `.cursor/extracts/portal-unit-test-tags.md`, `portal-unit-test-common.md`
 
@@ -41,7 +41,7 @@
 ## Checklist promote (cuối pilot feature)
 
 1. [ ] `pnpm portal:unit-gen --spec …` + `pnpm exec vitest run` trên file gen — pass
-2. [ ] `shared/portal-unit-test.registry.json`:
+2. [ ] `registries/unit-test.registry.json`:
    - Pattern `status: implemented`, `template` + `output` đúng
    - `promotedFeatures[]` thêm slug feature (vd `chain-hotel-list`)
 3. [ ] `pnpm portal:unit-registry` — exit 0

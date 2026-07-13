@@ -2,7 +2,7 @@
 
 Source of truth: **`docs/features/yaml/common/{pattern}/*.bundle.yaml`** → render → **`docs/features/md/common/{pattern}/*.md`**.
 
-**Design registry (shadcn canonical + shells):** `shared/portal-design.registry.json` — `#shell: DataListPage`, `#widget:`, `#ui:`. Validate: `pnpm portal:registry`. **Codegen hub:** [PORTAL-CODEGEN.md](/operational/PORTAL-CODEGEN). **Promotion sau prototype:** [DESIGN-REGISTRY-PROMOTION.md](/operational/DESIGN-REGISTRY-PROMOTION).
+**Design registry (shadcn canonical + shells):** `registries/design.registry.json` — `#shell: DataListPage`, `#widget:`, `#ui:`. Validate: `pnpm portal:registry`. **Codegen hub:** [PORTAL-CODEGEN.md](/operational/PORTAL-CODEGEN). **Promotion sau prototype:** [DESIGN-REGISTRY-PROMOTION.md](/operational/DESIGN-REGISTRY-PROMOTION).
 
 Agent: `.cursor/extracts/common-ui-spec.md`. Trước khi copy UI legacy ad hoc, bám common bundle hoặc ghi `#legacy-global-ui-violation` kèm evidence.
 

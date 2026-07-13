@@ -167,7 +167,7 @@ async function writeRemovalHandoff(featureDir, specFile, routePath, deletedPaths
 
 async function resolveSpecFromRoute(root, route) {
   const { readFile: rf } = await import('node:fs/promises')
-  const registry = JSON.parse(await rf(path.join(root, 'shared/page-lifecycle.registry.json'), 'utf8'))
+  const registry = JSON.parse(await rf(path.join(root, 'registries/page-lifecycle.registry.json'), 'utf8'))
   const normalized = route.startsWith('/') ? route.replace(/\/$/, '') || '/' : `/${route}`
   const entry = registry.routes[normalized]
 

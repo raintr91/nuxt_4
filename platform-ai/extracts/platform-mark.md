@@ -51,7 +51,7 @@ Logic marks may also set `commonRefs: [export.csv]` on `api.endpoints[]` when en
 
 ## Registry — platform common
 
-Each `entries.{id}` in `shared/platform-common.registry.json`:
+Each `entries.{id}` in `registries/common.registry.json`:
 
 - `status`: `planned` | `implemented`
 - `tag`: `#common:{kebab-id}`
@@ -64,7 +64,7 @@ Validate: `pnpm platform-common:registry`
 
 ## Registry — design (UI)
 
-Mo*, shells, widgets: `shared/portal-design.registry.json`  
+Mo*, shells, widgets: `registries/design.registry.json`  
 Validate: `pnpm portal:registry`
 
 Do **not** duplicate Mo* entries in `platform-common.registry.json`.

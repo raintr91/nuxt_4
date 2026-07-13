@@ -1,14 +1,14 @@
 #!/usr/bin/env node
 /**
- * Validate shared/platform-common.registry.json
- * Usage: node scripts/platform-common-registry.mjs [validate|show]
+ * Validate registries/common.registry.json
+ * Usage: node registries/validate-common.mjs [validate|show]
  */
 import { access, readFile } from 'node:fs/promises'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
-const REGISTRY_REL = 'shared/platform-common.registry.json'
+const REGISTRY_REL = 'registries/common.registry.json'
 
 async function pathExists(relativePath) {
   try {
@@ -78,6 +78,6 @@ const cmd = process.argv[2] ?? 'validate'
 if (cmd === 'validate') await validate()
 else if (cmd === 'show') await show()
 else {
-  console.error(`Usage: node scripts/platform-common-registry.mjs [validate|show]`)
+  console.error(`Usage: node registries/validate-common.mjs [validate|show]`)
   process.exit(1)
 }

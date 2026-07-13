@@ -52,7 +52,7 @@ async function main() {
   pnpm portal:lifecycle sync
   pnpm portal:lifecycle set /hotels test [--spec docs/.../spec.yaml] [--force]
 
-Registry: shared/page-lifecycle.registry.json
+Registry: registries/page-lifecycle.registry.json
 Remove code: pnpm portal:remove --spec <spec.yaml>`)
 }
 

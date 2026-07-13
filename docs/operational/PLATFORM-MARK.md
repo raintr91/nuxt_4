@@ -1,7 +1,7 @@
 # Platform mark — member annotation (portal)
 
 > Skill: `/platform-mark` · Cross-repo hashtag schema aligned with fast-api-base  
-> Registries: `shared/platform-common.registry.json` (logic) · `shared/portal-design.registry.json` (UI)
+> Registries: `registries/common.registry.json` (logic) · `registries/design.registry.json` (UI)
 
 ## Mục đích
 
@@ -25,8 +25,8 @@ pnpm platform-common:registry show
 
 | Layer | File | Tags |
 |-------|------|------|
-| UI | `shared/portal-design.registry.json` | `#needs-component:`, `#needs-ui:`, `#shell:`, `#ui:` |
-| Logic | `shared/platform-common.registry.json` | `#common:*`, `#needs-common:*` |
+| UI | `registries/design.registry.json` | `#needs-component:`, `#needs-ui:`, `#shell:`, `#ui:` |
+| Logic | `registries/common.registry.json` | `#common:*`, `#needs-common:*` |
 
 Common UI bundles: `docs/common/yaml/` (list-page, status-chip, …).
 

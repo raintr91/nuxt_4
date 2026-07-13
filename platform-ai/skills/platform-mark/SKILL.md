@@ -16,8 +16,8 @@ Member-driven annotation — **not** `/spec` or `/dev-grill-docs`. Namespace chu
 
 | Layer | Registry | Tags |
 |-------|----------|------|
-| UI (Mo*, shell, widget) | `shared/portal-design.registry.json` | `#needs-component:`, `#needs-ui:`, `#shell:`, `#ui:` |
-| Logic (hook, service, helper) | `shared/platform-common.registry.json` | `#common:*`, `#needs-common:*` |
+| UI (Mo*, shell, widget) | `registries/design.registry.json` | `#needs-component:`, `#needs-ui:`, `#shell:`, `#ui:` |
+| Logic (hook, service, helper) | `registries/common.registry.json` | `#common:*`, `#needs-common:*` |
 
 Validate:
 

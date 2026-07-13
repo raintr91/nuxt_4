@@ -1,6 +1,7 @@
 # Feature artifact — lệnh script
 
 > Bảng tra cứu · Diagram: [FEATURE-ARTIFACT-FLOWS](./FEATURE-ARTIFACT-FLOWS.md)  
+> **Layout folder gen/registry (global):** [CODEGEN-LAYOUT](./CODEGEN-LAYOUT.md)  
 > Codegen chi tiết tag/registry: [PORTAL-CODEGEN](./PORTAL-CODEGEN.md)
 
 ---
@@ -61,7 +62,7 @@ Lệnh tổng hợp chạy tuần tự các bước hạt nhân của mỗi phas
 | Lệnh | Mục đích |
 |------|----------|
 | `pnpm portal:registry` | Validate design registry |
-| `pnpm platform-common:registry` | Validate logic common registry (`shared/platform-common.registry.json`) |
+| `pnpm platform-common:registry` | Validate logic common registry (`registries/common.registry.json`) |
 | `pnpm portal:gen:dry --spec .../ir/spec.yaml` | Gate sau dev-grill (không ghi file) |
 | `pnpm portal:gen:dry` | Glob mọi `yaml/**/ir/spec.yaml` |
 | `pnpm portal:gen --spec .../ir/spec.yaml` | Scaffold app + `generated/HANDOFF.md` |
@@ -104,7 +105,7 @@ Member marks common UI + logic — grill hỏi trước khi gắn tag. Hub: [PLA
 |--------------|----------|
 | `/platform-mark` | Gắn `#needs-component`, `#common:*`, … vào `ir/spec.yaml` + registry |
 | `/dev-grill-docs` | In bảng **Common candidates** — member A/B/C |
-| `pnpm platform-common:registry` | Validate `shared/platform-common.registry.json` |
+| `pnpm platform-common:registry` | Validate `registries/common.registry.json` |
 
 ---
 

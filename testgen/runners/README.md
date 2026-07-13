@@ -34,7 +34,7 @@ pnpm testcase:gen --feature chain/hotel --force
 
 ## Semantic UI + axe (PR13a)
 
-Registry: `shared/portal-e2e-test.registry.json` · `pnpm portal:e2e-registry`
+Registry: `registries/e2e-test.registry.json` · `pnpm portal:e2e-registry`
 
 | Tag | Effect |
 |-----|--------|

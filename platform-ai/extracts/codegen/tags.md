@@ -1,6 +1,6 @@
 # Portal Codegen Tags
 
-Hub: `docs/operational/PORTAL-CODEGEN.md` · registry: `shared/portal-design.registry.json`
+Hub: `docs/operational/PORTAL-CODEGEN.md` · registry: `registries/design.registry.json`
 
 ## Who adds what
 

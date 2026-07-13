@@ -18,7 +18,7 @@ Nuxt 4 auth-first. Detail: `docs/operational/ARCHITECTURE.md`, `E2E-TESTIDS.md`,
 ## UI · size · E2E · imports
 
 - Tiers: `ui/` → `molecules/Mo*` → `organisms/Data*|OrGlobal*` · dashboard = `layouts/dashboard.vue` shadcn only
-- Registry: `shared/portal-design.registry.json` · `#shell: DataListPage` · `platform-design-vocabulary.mdc` (glob)
+- Registry: `registries/design.registry.json` · `#shell: DataListPage` · `platform-design-vocabulary.mdc` (glob)
 - ~200 lines/file · ~20 lines/fn → `platform-code-size.mdc` (glob)
 - Playwright + `data-testid` before spec → `platform-base-ui-testid.mdc`, `platform-base-e2e.mdc` (glob)
 - Imports: `@/` `~/` `#` — no `../` → `platform-import-alias.mdc` (glob)

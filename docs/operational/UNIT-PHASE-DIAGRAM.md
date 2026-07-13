@@ -45,7 +45,7 @@ E2E (`/test`) — pipeline khác, không thay unit lane.
 
 ## `#needs-unit-test` — tag lifecycle
 
-Theo `scripts/portal-unit-gen/` + `shared/portal-unit-test.registry.json` (diagram riêng).
+Theo `unitgen/runners/` + `registries/unit-test.registry.json` (diagram riêng).
 
 ```mermaid
 flowchart TD

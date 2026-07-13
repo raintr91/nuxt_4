@@ -1,4 +1,4 @@
-import registry from '~/shared/page-lifecycle.registry.json'
+import registry from '~/registries/page-lifecycle.registry.json'
 
 /** Bước chính của page — không ghi sub-step (update spec, re-grill, …). */
 export type PageLifecycleStage = 'design-spec' | 'prototype' | 'test' | 'wire'
