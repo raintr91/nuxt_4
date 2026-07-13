@@ -1,7 +1,7 @@
 # Playwright Semantic UI Assertions
 
 > **Lane E2E:** [TEST-PHASE-DIAGRAM](./TEST-PHASE-DIAGRAM.md) — bundle `#e2e:*` + codegen PR13a.  
-> **Registry:** `shared/portal-e2e-test.registry.json` · `pnpm portal:e2e-registry`
+> **Registry:** `registries/e2e-test.registry.json` · `pnpm portal:e2e-registry`
 
 Tài liệu thiết kế bộ assertion common cho E2E web Portal Base. Mục tiêu là có một lớp kiểm tra UI dùng lại được giữa các module, bắt sớm lỗi console, asset, overflow, layout vỡ, table/grid lệch, accessibility và design token drift.
 

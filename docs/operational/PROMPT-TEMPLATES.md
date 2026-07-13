@@ -560,6 +560,6 @@ Session mới: *"Đọc .harness/progress.md, tiếp tục /wire create cho admi
 | Model Cursor | Auto cho `/model`, `/wire`, `/prototype`; Premium cho grill/debug |
 | Session | Chat mới khi đổi phase; harness thay vì kể lại chat cũ |
 | Scaffold | `pnpm portal:gen --spec ...` trước `/prototype`; agent chỉ HANDOFF + diff |
-| Registry | Sau prototype: promote reusable UI → `shared/portal-design.registry.json` — [DESIGN-REGISTRY-PROMOTION.md](./DESIGN-REGISTRY-PROMOTION.md) |
+| Registry | Sau prototype: promote reusable UI → `registries/design.registry.json` — [DESIGN-REGISTRY-PROMOTION.md](./DESIGN-REGISTRY-PROMOTION.md) |
 
 Chi tiết codegen: [`PORTAL-CODEGEN.md`](./PORTAL-CODEGEN.md) · `.cursor/extracts/codegen/tags.md` · token budget: `.cursor/extracts/artifact-graph.md`.

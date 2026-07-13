@@ -49,11 +49,11 @@ flowchart TD
 
 | Lệnh | Mục đích |
 |------|----------|
-| `pnpm contract:registry` | Validate `shared/contract-field.registry.json` |
+| `pnpm contract:registry` | Validate `registries/contract-field.registry.json` |
 | `pnpm contract:gen:dry --spec .../ir/spec.yaml` | Plan Zod + relationships.meta |
 | `pnpm contract:gen --spec .../ir/spec.yaml` | Write `@portal/models` |
 | `pnpm openapi:gen --spec .../backend/01-backend-spec.yaml` | Write `02-openapi.yaml` |
-| `pnpm nest:registry` | Validate `shared/nest-codegen.registry.json` |
+| `pnpm nest:registry` | Validate `registries/nest-codegen.registry.json` |
 | `pnpm nest:gen:dry --spec ...` | Plan Nest CQRS scaffold |
 | `pnpm nest:gen --spec ...` | Write `apps/api` + manifest |
 | `pnpm nest:unit-gen --spec ...` | Jest handler specs |

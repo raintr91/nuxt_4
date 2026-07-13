@@ -1,6 +1,6 @@
 # CRUD inherit (3 tiers)
 
-1. **Global** — `shared/portal-design.registry.json` `#pattern: CRUD`
+1. **Global** — `registries/design.registry.json` `#pattern: CRUD`
 2. **Archetype** — `docs/features/yaml/_patterns/admin-crud.pattern.yaml`
 3. **Entity delta** — `bundle.design.inherits: admin-crud` + fields/api/ui delta only
 

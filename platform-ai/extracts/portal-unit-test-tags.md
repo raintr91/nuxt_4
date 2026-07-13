@@ -4,7 +4,7 @@
 > **Diagram:** [`docs/operational/UNIT-PHASE-DIAGRAM.md`](../../docs/operational/UNIT-PHASE-DIAGRAM.md) — unit lane + `#needs-unit-test` lifecycle (2 diagram).
 
 Source: `pnpm portal:unit-gen --spec docs/features/.../*.spec.yaml`  
-Registry: `shared/portal-unit-test.registry.json` — validate `pnpm portal:unit-registry`  
+Registry: `registries/unit-test.registry.json` — validate `pnpm portal:unit-registry`  
 Manifest: `docs/features/{slug}/generated/unit.manifest.json`
 
 **Separate** from UI `portal-design.registry.json` and from `codegen.manifest.json`.

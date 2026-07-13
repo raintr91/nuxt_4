@@ -1,6 +1,6 @@
 # Portal unit test — common baselines
 
-Hub: `PORTAL-CODEGEN.md` · registry: `shared/portal-unit-test.registry.json`
+Hub: `PORTAL-CODEGEN.md` · registry: `registries/unit-test.registry.json`
 
 ## Do not duplicate (portal base already covers)
 

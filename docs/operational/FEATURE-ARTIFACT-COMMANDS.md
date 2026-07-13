@@ -78,7 +78,7 @@ Lệnh tổng hợp chạy tuần tự các bước hạt nhân của mỗi phas
 
 | Lệnh | Mục đích |
 |------|----------|
-| `pnpm contract:registry` | Validate `shared/contract-field.registry.json` |
+| `pnpm contract:registry` | Validate `registries/contract-field.registry.json` |
 | `pnpm contract:gen:dry --spec .../ir/spec.yaml` | Plan Zod + relationships.meta |
 | `pnpm contract:gen --spec .../ir/spec.yaml` | Write `packages/models/src/...` |
 | `pnpm contract:gen --spec ... --force` | Overwrite |
@@ -91,10 +91,10 @@ Lệnh tổng hợp chạy tuần tự các bước hạt nhân của mỗi phas
 
 | Lệnh | Mục đích |
 |------|----------|
-| `pnpm nest:registry` | Validate `shared/nest-codegen.registry.json` |
+| `pnpm nest:registry` | Validate `registries/nest-codegen.registry.json` |
 | `pnpm nest:gen:dry --spec .../backend/01-backend-spec.yaml` | Plan CQRS scaffold |
 | `pnpm nest:gen --spec ...` | Write `apps/api/src/modules/...` |
-| `pnpm nest:unit-registry` | Validate `shared/nest-unit-test.registry.json` |
+| `pnpm nest:unit-registry` | Validate `registries/nest-unit-test.registry.json` |
 | `pnpm nest:unit-gen --spec .../backend/01-backend-spec.yaml` | Handler/resource Jest specs |
 | `pnpm openapi:gen --spec .../backend/01-backend-spec.yaml` | Write `02-openapi.yaml` |
 | `pnpm --filter @portal/api test` | Run API unit tests |

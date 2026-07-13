@@ -1,6 +1,6 @@
 # Page lifecycle registry
 
-Nguồn máy đọc: `shared/page-lifecycle.registry.json`.
+Nguồn máy đọc: `registries/page-lifecycle.registry.json`.
 
 **Tự cập nhật:** `portal:gen` → `prototype`; `portal:remove` → `design-spec`; `pnpm portal:lifecycle sync` quét manifest + page trên disk.
 

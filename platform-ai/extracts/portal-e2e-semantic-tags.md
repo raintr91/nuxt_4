@@ -1,6 +1,6 @@
 # Portal E2E semantic + axe tags
 
-> Registry: `shared/portal-e2e-test.registry.json` · Validate: `pnpm portal:e2e-registry`  
+> Registry: `registries/e2e-test.registry.json` · Validate: `pnpm portal:e2e-registry`  
 > Hub: `docs/operational/E2E-SEMANTIC-UI-ASSERTIONS.md` · Gen: `testcase:gen`
 
 ## Hashtags on testcase `tags:`

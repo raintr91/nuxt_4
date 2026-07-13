@@ -7,7 +7,7 @@ import {
   demotePageLifecycle,
   syncPageLifecycleFromManifests,
   upsertPageLifecycle
-} from './portal-gen/lib/page-lifecycle.mjs'
+} from '../codegen/runners/lib/page-lifecycle.mjs'
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const STAGES = new Set(['design-spec', 'prototype', 'test', 'wire'])
@@ -52,7 +52,7 @@ async function main() {
   pnpm portal:lifecycle sync
   pnpm portal:lifecycle set /hotels test [--spec docs/.../spec.yaml] [--force]
 
-Registry: shared/page-lifecycle.registry.json
+Registry: registries/page-lifecycle.registry.json
 Remove code: pnpm portal:remove --spec <spec.yaml>`)
 }
 

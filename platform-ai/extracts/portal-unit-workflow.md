@@ -9,7 +9,7 @@
 2. `UNIT-HANDOFF.md` — lệnh vitest scoped
 3. Nếu chưa smoke → `pnpm portal:unit-gen --spec …` (`--phase wire` nếu cần)
 4. `needsUnit[]` / `#needs-unit-test:*`:
-   - pattern `implemented` → `--force` hoặc sửa theo `shared/portal-unit-test.registry.json`
+   - pattern `implemented` → `--force` hoặc sửa theo `registries/unit-test.registry.json`
    - `#manual-composable` / `#wire-only` → test tay hoặc `#skip-unit-test` + lý do
 5. Tách file nếu thiếu pattern (`*.service.create.test.ts`, …)
 6. `pnpm exec vitest run <manifest.written paths>` — green

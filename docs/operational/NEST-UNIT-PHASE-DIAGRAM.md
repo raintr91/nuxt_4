@@ -58,7 +58,7 @@ flowchart TD
 
 ## Registry & `codegen.wire`
 
-Theo `scripts/nest-unit-gen/` + `shared/nest-unit-test.registry.json`.
+Theo `nest-unitgen/runners/` + `registries/nest-unit-test.registry.json`.
 
 ```mermaid
 flowchart TD

@@ -298,8 +298,8 @@ Chưa implement — hiện delete/confirm chỉ có spec design + `.test.yaml` d
 | [PORTAL-CODEGEN](./PORTAL-CODEGEN.md) | `testcase:gen` · `ui.testIds` · registry E2E |
 | [PORTAL-UNIT-GEN-ROADMAP](./PORTAL-UNIT-GEN-ROADMAP.md) PR12–13 | Roadmap codegen E2E |
 | [E2E-TESTIDS](./E2E-TESTIDS.md) | Contract `data-testid` |
-| `scripts/testcase-gen/README.md` | CLI + steps supported |
-| `shared/portal-e2e-test.registry.json` | Bundle + matcher registry |
+| `testgen/runners/README.md` | CLI + steps supported |
+| `registries/e2e-test.registry.json` | Bundle + matcher registry |
 | [E2E-SEMANTIC-UI-ASSERTIONS](./E2E-SEMANTIC-UI-ASSERTIONS.md) | Matcher design + levels |
 | `.cursor/extracts/portal-e2e-semantic-tags.md` | Hashtag cheat sheet |
 | `.cursor/extracts/test/readiness.md` | Gate trước `/test` |

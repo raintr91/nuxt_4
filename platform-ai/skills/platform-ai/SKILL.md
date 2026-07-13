@@ -14,7 +14,7 @@ disable-model-invocation: true
 - `.cursor/rules/`, `.cursor/skills/`, `.cursor/extracts/`
 - `docs/operational/` — `FEATURE-ARTIFACT-FLOWS.md`, `FEATURE-ARTIFACT-COMMANDS.md`, `PROMPT-TEMPLATES.md`, pipeline diagrams
 - Scripts serving AI: `scripts/spec/`, `scripts/docs/render-docs.mjs`, extract-registry validate
-- `shared/portal-design.registry.json` when tied to grill/codegen **workflow** (not app UI work)
+- `registries/design.registry.json` when tied to grill/codegen **workflow** (not app UI work)
 
 **Reference / guinea pig (rewrite freely):**
 
