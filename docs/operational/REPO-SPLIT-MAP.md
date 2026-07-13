@@ -11,9 +11,9 @@
 | Repo | Path | Tech | Port | Vai trò |
 |------|------|------|------|---------|
 | **portal** | `~/workspace/portal` | Next.js · pnpm · VitePress | `:3000` | FE `src/` · `contract:gen` · `portal:gen` · E2E |
-| **fast-api-base** | `~/workspace/fast-api-base` | FastAPI · Python + shell · MkDocs | `:4000` | API · `./scripts/fast-gen` · pytest (không E2E) |
-| **line** | `~/workspace/line` | .NET 8 · DocFX | — | Line client · `./scripts/line-gen` · xUnit |
-| **integration** | `~/workspace/integration` | .NET 8 · DocFX | `:4100` | OT gateway · `./scripts/integration-gen` · xUnit |
+| **fast-api-base** | `~/workspace/fast-api-base` | FastAPI · Python + shell · MkDocs | `:4000` | API · `./codegen/runners/generate` · pytest (không E2E) |
+| **line** | `~/workspace/line` | .NET 8 · DocFX | — | Line client · `./codegen/runners/generate` · xUnit |
+| **integration** | `~/workspace/integration` | .NET 8 · DocFX | `:4100` | OT gateway · `./codegen/runners/generate` · xUnit |
 
 Config: root [`team-projects.json`](../../team-projects.json) → group `factory-ai-stack`. Templates: `team-projects.example.json`. Hub: [PROJECT-MAPS](./PROJECT-MAPS.md).
 
@@ -28,7 +28,7 @@ Config: root [`team-projects.json`](../../team-projects.json) → group `factory
 | Next app + E2E | **portal** | `src/` · `tests/e2e/` |
 | Backend bundle + `ir/spec.yaml` | **fast-api-base** | `fast/docs/features/yaml/.../` |
 | `backend/01-backend-spec.yaml` | **fast-api-base** | mirror từ `spec:split` |
-| `backend/02-openapi.yaml` | **fast-api-base** | `./scripts/fast-gen openapi` |
+| `backend/02-openapi.yaml` | **fast-api-base** | `./codegen/runners/generate openapi` |
 | Fast modules + pytest | **fast-api-base** | `src/app/modules/` |
 | Line bundle + `clients.line` | **line** | `line/docs/features/yaml/.../ir/spec.yaml` |
 | Line generated C# | **line** | `src/Line.App/Generated/` |
@@ -72,18 +72,18 @@ pnpm test:e2e
 
 ```bash
 ./scripts/spec-split docs/features/yaml/factory/workforce/workforce.bundle.yaml
-./scripts/fast-gen write --spec docs/features/yaml/factory/workforce/backend/01-backend-spec.yaml
-./scripts/fast-gen openapi --spec docs/features/yaml/factory/workforce/backend/01-backend-spec.yaml
+./codegen/runners/generate write --spec docs/features/yaml/factory/workforce/backend/01-backend-spec.yaml
+./codegen/runners/generate openapi --spec docs/features/yaml/factory/workforce/backend/01-backend-spec.yaml
 make test
 ```
 
-> **Không pnpm** — codegen Python (`tools/fast_gen`); spec split Python (`tools/fast_spec`).
+> **Không pnpm** — codegen Python (`codegen/runners/fast_gen`); spec split Python (`tools/fast_spec`).
 
 ### line
 
 ```bash
 ./scripts/spec-split docs/features/yaml/factory/workforce/workforce.bundle.yaml
-./scripts/line-gen write --spec docs/features/yaml/factory/workforce/ir/spec.yaml
+./codegen/runners/generate write --spec docs/features/yaml/factory/workforce/ir/spec.yaml
 ./scripts/docs-dev          # DocFX :8081
 dotnet test
 ```
@@ -94,7 +94,7 @@ dotnet test
 
 ```bash
 ./scripts/spec-split docs/features/yaml/factory/mes/downtime/downtime.bundle.yaml
-./scripts/integration-gen write --spec docs/features/yaml/factory/mes/downtime/integration/01-integration-spec.yaml
+./codegen/runners/generate write --spec docs/features/yaml/factory/mes/downtime/integration/01-integration-spec.yaml
 ./scripts/docs-dev          # DocFX :8082
 dotnet test
 ```

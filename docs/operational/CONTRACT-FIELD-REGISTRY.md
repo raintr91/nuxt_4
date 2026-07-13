@@ -2,7 +2,7 @@
 
 SSOT for `pnpm contract:gen` — Zod contracts in `@portal/models` + ORM-agnostic `*.relationships.meta.ts`.
 
-Hub: [TEAM-AI-BACKEND-WORKFLOW](./TEAM-AI-BACKEND-WORKFLOW.md) · Registry: `shared/contract-field.registry.json`
+Hub: [TEAM-AI-BACKEND-WORKFLOW](./TEAM-AI-BACKEND-WORKFLOW.md) · Registry: `registries/contract-field.registry.json`
 
 ---
 

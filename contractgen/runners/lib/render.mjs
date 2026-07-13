@@ -6,7 +6,7 @@ import Handlebars from 'handlebars'
 
 import { fieldInScope, zodForArray, zodForRelation, zodForScalar } from './field-zod.mjs'
 
-const templatesDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../templates')
+const templatesDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../../templates')
 
 Handlebars.registerHelper('zodField', (field, mode) => {
   if (!field) return 'z.unknown()'

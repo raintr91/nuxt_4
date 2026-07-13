@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest'
 import {
   resolveLifecycleStage,
   routePathFromPageFile
-} from '../../../scripts/portal-gen/lib/page-lifecycle.mjs'
+} from '../../../codegen/runners/lib/page-lifecycle.mjs'
 
 describe('page-lifecycle.mjs helpers', () => {
   it('maps Next page file to route path', () => {

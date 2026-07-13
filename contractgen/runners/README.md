@@ -26,7 +26,7 @@ pnpm contract:gen --spec ... --force
 | `packages/models/src/{entity}/*.relationships.meta.ts` | ORM-agnostic relation meta (TypeORM/Prisma via nest:gen) |
 | `{function}/generated/contract.manifest.json` | Plan + written paths |
 
-Registry: `shared/contract-field.registry.json`  
+Registry: `registries/contract-field.registry.json`  
 Field guide: `docs/operational/CONTRACT-FIELD-REGISTRY.md`
 
 `portal:gen` does **not** emit models — run `contract:gen` first.

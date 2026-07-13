@@ -78,7 +78,7 @@ Lệnh tổng hợp chạy tuần tự các bước hạt nhân của mỗi phas
 
 | Lệnh | Mục đích |
 |------|----------|
-| `pnpm contract:registry` | Validate `shared/contract-field.registry.json` |
+| `pnpm contract:registry` | Validate `registries/contract-field.registry.json` |
 | `pnpm contract:gen:dry --spec .../ir/spec.yaml` | Plan Zod + relationships.meta |
 | `pnpm contract:gen --spec .../ir/spec.yaml` | Write `packages/models/src/...` |
 | `pnpm contract:gen --spec ... --force` | Overwrite |
@@ -98,11 +98,11 @@ Lệnh tổng hợp chạy tuần tự các bước hạt nhân của mỗi phas
 | `./scripts/spec-split-all` | Quét `docs/features/yaml/**/*.bundle.yaml` |
 | `./scripts/spec-merge …/{function}.bundle.yaml` | `ir/*` → bundle SSOT |
 | `./scripts/docs-render` | bundle → `docs/features/md/` |
-| `./scripts/fast-gen registry` | Validate `shared/fast-codegen.registry.json` |
-| `./scripts/fast-gen dry --spec …/backend/01-backend-spec.yaml` | Plan module scaffold |
-| `./scripts/fast-gen write --spec …/backend/01-backend-spec.yaml` | Write `src/app/modules/...` |
-| `./scripts/fast-gen openapi --spec …/backend/02-openapi.yaml` | Write `backend/02-openapi.yaml` |
-| `./scripts/fast-unit-gen write --spec …` | pytest scaffold |
+| `./codegen/runners/generate registry` | Validate `registries/codegen.registry.json` |
+| `./codegen/runners/generate dry --spec …/backend/01-backend-spec.yaml` | Plan module scaffold |
+| `./codegen/runners/generate write --spec …/backend/01-backend-spec.yaml` | Write `src/app/modules/...` |
+| `./codegen/runners/generate openapi --spec …/backend/02-openapi.yaml` | Write `backend/02-openapi.yaml` |
+| `./unitgen/runners/generate write --spec …` | pytest scaffold |
 | `make test` | pytest API + `*.api-test.yaml` contract (thay vitest) |
 | `./scripts/docs-dev` | MkDocs Material preview `:8001` (thay VitePress) |
 
@@ -129,8 +129,8 @@ PYTHONPATH=src .venv/bin/uvicorn app.main:app --port 4000 --app-dir src
 | `./scripts/spec-split …/workforce.bundle.yaml` | `portal-feature-bundle/v1` → `ir/{spec,legacy,design}.yaml` |
 | `./scripts/spec-split-all` · `./scripts/spec-merge` · `./scripts/docs-render` | Parity portal tooling |
 | `./scripts/docs-dev` | DocFX preview `:8081` (thay VitePress) |
-| `./scripts/line-gen dry --spec …/ir/spec.yaml` | Scriban dry (`tools/LineGen`) |
-| `./scripts/line-gen write --spec …/ir/spec.yaml` | Write `src/Line.App/Generated/` |
+| `./codegen/runners/generate dry --spec …/ir/spec.yaml` | Scriban dry (`codegen/runners/LineGen`) |
+| `./codegen/runners/generate write --spec …/ir/spec.yaml` | Write `src/Line.App/Generated/` |
 | `./scripts/contract-sync --openapi …/backend/02-openapi.yaml` | Keys ↔ `Line.Contracts` |
 | `./scripts/smoke-wire.sh` | Curl fast check-in |
 | `dotnet test` | xUnit only (thay vitest) |
@@ -150,8 +150,8 @@ Docs: `~/workspace/line/docs/operational/LINE-ARTIFACT-COMMANDS.md`
 |------|----------|
 | `./scripts/spec-split …/downtime.bundle.yaml` | bundle → ir + `integration/01-integration-spec.yaml` |
 | `./scripts/docs-render` · `./scripts/docs-dev` | md + DocFX `:8082` |
-| `./scripts/integration-gen dry --spec …/01-integration-spec.yaml` | Scriban dry |
-| `./scripts/integration-gen write --spec …/01-integration-spec.yaml` | Write `src/Integration.*/Generated/` |
+| `./codegen/runners/generate dry --spec …/01-integration-spec.yaml` | Scriban dry |
+| `./codegen/runners/generate write --spec …/01-integration-spec.yaml` | Write `src/Integration.*/Generated/` |
 | `dotnet test` | xUnit only (thay vitest) |
 
 **Skills (integration):** `/integration-spec` → `/grill-integration-spec` → `/integration-code` → `/grill-integration`
@@ -205,7 +205,7 @@ pnpm testcase:gen --feature admin/hotel
 
 # Backend (fast-api-base) — Factory AI
 pnpm contract:gen --spec docs/features/yaml/factory/knowledge-hub/ir/spec.yaml
-cd ~/workspace/fast-api-base && ./scripts/spec-split-all && ./scripts/fast-gen write --spec docs/features/yaml/factory/knowledge-hub/backend/01-backend-spec.yaml
+cd ~/workspace/fast-api-base && ./scripts/spec-split-all && ./codegen/runners/generate write --spec docs/features/yaml/factory/knowledge-hub/backend/01-backend-spec.yaml
 ```
 
 Thứ tự team command: [DESIGN-PHASE-DIAGRAM](./DESIGN-PHASE-DIAGRAM.md) · [FEATURE-ARTIFACT-FLOWS](./FEATURE-ARTIFACT-FLOWS.md)

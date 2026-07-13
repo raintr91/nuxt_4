@@ -72,8 +72,8 @@ Operational: `line/docs/operational/LINE-SPEC-WORKFLOW.md` · `integration/docs/
 | Command | Repo |
 |---------|------|
 | `pnpm contract:gen` | portal |
-| `./scripts/fast-gen write` | fast-api-base |
-| `./scripts/line-gen write` | line |
-| `./scripts/integration-gen write` | integration |
+| `./codegen/runners/generate write` | fast-api-base |
+| `./codegen/runners/generate write` | line |
+| `./codegen/runners/generate write` | integration |
 
 Hub: [REPO-SPLIT-MAP](./REPO-SPLIT-MAP.md) · [factory-ai-stack](./factory-ai-stack.md)

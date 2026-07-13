@@ -3,7 +3,7 @@
 **Chỉ phase `/prototype`** — sau khi agent/dev **đã implement** component từ hashtag trong spec.  
 **Không** là việc của `portal:gen` (gen chỉ scaffold từ registry + ghi slot thiếu trong HANDOFF).
 
-**Registry:** `shared/portal-design.registry.json`  
+**Registry:** `registries/design.registry.json`  
 **Validate:** `pnpm portal:registry`  
 **Agent extract:** `.cursor/extracts/portal-design-registry.md`
 
@@ -51,7 +51,7 @@ Base không implement hết `planned` (DataFormPage, Repeater, …). Page đầu
 ## Checklist promote (cuối /prototype)
 
 1. [ ] Đủ điều kiện promote ở bảng trên?
-2. [ ] Sửa `shared/portal-design.registry.json`:
+2. [ ] Sửa `registries/design.registry.json`:
    - `status: planned` → `implemented`
    - `portal.path` / `molecule` đúng file thật
    - `aliasIndex` + `componentAliases` (từ ngữ BA/spec page đầu)

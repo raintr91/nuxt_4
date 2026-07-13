@@ -1,7 +1,7 @@
 import { readFile, readdir } from 'node:fs/promises'
 import path from 'node:path'
 
-export const REGISTRY_REL = 'shared/portal-design.registry.json'
+export const REGISTRY_REL = 'registries/design.registry.json'
 
 const TAG_PREFIX = {
   shell: '#shell:',
@@ -282,7 +282,7 @@ export function validateSpecDesign(ctx, registry, options = {}) {
   for (const shell of designTags.shell) {
     if (shell === 'custom') continue
     if (!registry.shells?.[shell]) {
-      errors.push(`Unknown #shell: ${shell} — see shared/portal-design.registry.json shells`)
+      errors.push(`Unknown #shell: ${shell} — see registries/design.registry.json shells`)
     }
   }
 

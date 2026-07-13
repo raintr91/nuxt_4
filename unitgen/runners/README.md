@@ -3,7 +3,7 @@
 > **Doc chính:** [Portal codegen (gen + unit)](../../docs/operational/PORTAL-CODEGEN.md) — đọc trước khi quên thứ tự lệnh.
 
 Generate Vitest unit tests from feature `*.spec.yaml` **after** `pnpm portal:gen`.
-Separate from `portal-gen` and from `shared/portal-design.registry.json`.
+Separate from `portal-gen` and from `registries/design.registry.json`.
 
 ## Usage
 
@@ -24,7 +24,7 @@ pnpm portal:unit-gen --spec ... --write-spec-tags   # opt-in: merge #needs-unit-
 
 ## Registry
 
-**Source:** `shared/portal-unit-test.registry.json`  
+**Source:** `registries/unit-test.registry.json`  
 **Validate:** `pnpm portal:unit-registry`
 
 Patterns with `status: implemented` are auto-generated when listed in `defaults.phasePrototype` (schema + service list).

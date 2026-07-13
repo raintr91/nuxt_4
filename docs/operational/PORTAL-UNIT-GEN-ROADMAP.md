@@ -1,6 +1,6 @@
 # Portal unit-gen — Roadmap PR0 → PR12
 
-> Hub: [PORTAL-CODEGEN](./PORTAL-CODEGEN.md) · Script: `scripts/portal-unit-gen/README.md`
+> Hub: [PORTAL-CODEGEN](./PORTAL-CODEGEN.md) · Script: `unitgen/runners/README.md`
 
 **Phạm vi:** chỉ **Portal FE** (`portal:unit-gen`). **`api:unit-gen` / BE PHPUnit** — **để sau**, repo `~/workspace/api` track riêng khi portal PR3–11 ổn.
 
@@ -20,7 +20,7 @@ Trạng thái tại **2026-06-27** (cập nhật khi xong từng PR).
 | **9** | Common rules + grill | ✅ Done | `portal-unit-test-common.md`; grill default `#gen:test-schema` + `#gen:test-service` (list) |
 | **10** | Manifest → spec tags (opt-in) | ✅ Done | `--write-spec-tags` merge `#needs-unit-test:*` vào `tags:` (idempotent) |
 | **11** | Skill / grill-unit shrink | ✅ Done | `UNIT-PHASE-DIAGRAM.md`, `portal-unit-workflow.md`, skills `/unit` + `/grill-unit` |
-| **12** | E2E `testcase:gen` (tách pipeline) | ✅ Done | `scripts/testcase-gen/` — PO + spec từ testcase YAML; pilot `chain/hotel` 3 specs green |
+| **12** | E2E `testcase:gen` (tách pipeline) | ✅ Done | `testgen/runners/` — PO + spec từ testcase YAML; pilot `chain/hotel` 3 specs green |
 | **13a** | E2E semantic registry + gen | ✅ Done | `portal-e2e-test.registry.json`, `#e2e:*` bundles, axe/layout codegen |
 
 ---
@@ -29,7 +29,7 @@ Trạng thái tại **2026-06-27** (cập nhật khi xong từng PR).
 
 ### PR0 — Registry + helpers ✅
 
-- `shared/portal-unit-test.registry.json` (patterns, `commonBaselines`, tag prefixes)
+- `registries/unit-test.registry.json` (patterns, `commonBaselines`, tag prefixes)
 - `tests/unit/_helpers/mockApiFetch.ts`
 - `pnpm portal:unit-registry`
 - Doc hub: `PORTAL-CODEGEN.md`
@@ -114,7 +114,7 @@ pnpm portal:unit-gen --spec … --phase wire
 
 ### PR13a — E2E semantic + axe registry ✅
 
-- `shared/portal-e2e-test.registry.json` · `pnpm portal:e2e-registry`
+- `registries/e2e-test.registry.json` · `pnpm portal:e2e-registry`
 - Hashtag `#e2e:semantic-*`, `#e2e:a11y-*` · `semantic-plan.mjs` codegen
 - Extract: `.cursor/extracts/portal-e2e-semantic-tags.md`
 

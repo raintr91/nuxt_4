@@ -4,7 +4,7 @@ import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..')
-const registryPath = path.join(root, 'shared/contract-field.registry.json')
+const registryPath = path.join(root, 'registries/contract-field.registry.json')
 
 async function main() {
   const raw = await fs.readFile(registryPath, 'utf8')

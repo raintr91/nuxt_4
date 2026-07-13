@@ -1,12 +1,12 @@
 ---
-description: shadcn canonical, registry hashtags — shared/portal-design.registry.json
-globs: docs/features/**/*.yaml, docs/templates/*.yaml, scripts/portal-gen/**/*
+description: shadcn canonical, registry hashtags — registries/design.registry.json
+globs: docs/features/**/*.yaml, docs/templates/*.yaml, codegen/runners/**/*
 alwaysApply: false
 ---
 
 # Design vocabulary
 
-SSOT: `shared/portal-design.registry.json` · `pnpm portal:registry` · hub: `PORTAL-CODEGEN.md`
+SSOT: `registries/design.registry.json` · `pnpm portal:registry` · hub: `PORTAL-CODEGEN.md`
 
 ## Hashtags (grill → `tags:`)
 

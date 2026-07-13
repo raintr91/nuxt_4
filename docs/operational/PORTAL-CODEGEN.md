@@ -8,9 +8,9 @@ Hai pipeline app + unit **tách script**, **tách registry** — E2E `testcase:g
 
 | Pipeline | Lệnh | Registry | Output app / test |
 |----------|------|----------|-------------------|
-| **App scaffold** | `pnpm portal:gen` | `shared/portal-design.registry.json` | `src/` (`app/`, `hooks/`, `services/`, `mocks/`, …) |
-| **Unit tests** | `pnpm portal:unit-gen` | `shared/portal-unit-test.registry.json` | `tests/unit/…` (một file / layer) |
-| **E2E tests** | `pnpm testcase:gen` | `shared/portal-e2e-test.registry.json` | `tests/e2e/…` + Page Objects |
+| **App scaffold** | `pnpm portal:gen` | `registries/design.registry.json` | `src/` (`app/`, `hooks/`, `services/`, `mocks/`, …) |
+| **Unit tests** | `pnpm portal:unit-gen` | `registries/unit-test.registry.json` | `tests/unit/…` (một file / layer) |
+| **E2E tests** | `pnpm testcase:gen` | `registries/e2e-test.registry.json` | `tests/e2e/…` + Page Objects |
 
 ---
 
@@ -82,7 +82,7 @@ pnpm test:e2e tests/e2e/chain-hotels/
 
 **Input:** `docs/features/yaml/.../{function}/ir/spec.yaml` với `codegen.profile`, `ui.*`, `api.endpoints`, `tags`.
 
-**Template:** `scripts/portal-gen/templates/` (Handlebars).
+**Template:** `codegen/templates/` (Handlebars).
 
 **Output mỗi feature:**
 
@@ -108,7 +108,7 @@ pnpm test:e2e tests/e2e/chain-hotels/
 
 **Prerequisite:** đã `portal:gen` + `codegen.manifest.json` + file model trên disk.
 
-**Template:** `scripts/portal-unit-gen/templates/` — **một pattern = một file test**.
+**Template:** `unitgen/templates/` — **một pattern = một file test**.
 
 **Output mỗi feature:**
 
@@ -139,7 +139,7 @@ Patterns **planned** (chưa gen): validation, composable, export — xem registr
 
 **Prerequisite:** prototype + `ui.testIds` trên page; session/mock registry trong `tests/e2e/helpers/`.
 
-**Registry semantic/axe (PR13a):** `shared/portal-e2e-test.registry.json` — hashtag `#e2e:semantic-smoke`, `#e2e:a11y-wcag`, …
+**Registry semantic/axe (PR13a):** `registries/e2e-test.registry.json` — hashtag `#e2e:semantic-smoke`, `#e2e:a11y-wcag`, …
 
 **Output mỗi testcase:**
 
@@ -156,12 +156,12 @@ Patterns **planned** (chưa gen): validation, composable, export — xem registr
 
 | | UI / code | Unit test |
 |--|-----------|-----------|
-| File | `shared/portal-design.registry.json` | `shared/portal-unit-test.registry.json` |
+| File | `registries/design.registry.json` | `registries/unit-test.registry.json` |
 | Validate | `pnpm portal:registry` | `pnpm portal:unit-registry` |
 | Promote doc | [DESIGN-REGISTRY-PROMOTION](./DESIGN-REGISTRY-PROMOTION.md) | [UNIT-REGISTRY-PROMOTION](./UNIT-REGISTRY-PROMOTION.md) |
 | Tag ví dụ | `#shell: DataListPage`, `#needs-component:` | `#gen:test-schema`, `#needs-unit-test:` |
 
-**E2E** (pipeline riêng): `shared/portal-e2e-test.registry.json` · `#e2e:semantic-*`, `#e2e:a11y-*` · [TEST-PHASE-DIAGRAM](./TEST-PHASE-DIAGRAM.md)
+**E2E** (pipeline riêng): `registries/e2e-test.registry.json` · `#e2e:semantic-*`, `#e2e:a11y-*` · [TEST-PHASE-DIAGRAM](./TEST-PHASE-DIAGRAM.md)
 
 ---
 

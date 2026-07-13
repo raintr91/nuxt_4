@@ -7,9 +7,9 @@
 
 | Pipeline | Lệnh | Registry | Output |
 |----------|------|----------|--------|
-| **Contract Zod** | `pnpm contract:gen` | `shared/contract-field.registry.json` | `packages/models/src/…` |
-| **FastAPI scaffold** | `fast-gen write` | `fast-api-base/shared/fast-codegen.registry.json` | `fast-api-base/src/app/modules/…` |
-| **FastAPI unit tests** | `fast-unit-gen write` | `fast-api-base/shared/fast-unit-test.registry.json` | `fast-api-base/tests/` |
+| **Contract Zod** | `pnpm contract:gen` | `registries/contract-field.registry.json` | `packages/models/src/…` |
+| **FastAPI scaffold** | `fast-gen write` | `fast-api-base/registries/codegen.registry.json` | `fast-api-base/src/app/modules/…` |
+| **FastAPI unit tests** | `fast-unit-gen write` | `fast-api-base/registries/unit-test.registry.json` | `fast-api-base/tests/` |
 | **OpenAPI artifact** | `fast-gen openapi` | — | `backend/02-openapi.yaml` |
 
 ---

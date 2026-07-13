@@ -11,7 +11,7 @@ Generate 4-layer scaffold from feature `spec.yaml` (Handlebars templates) into *
 ```bash
 pnpm contract:gen:dry --spec docs/features/yaml/.../ir/spec.yaml
 pnpm contract:gen --spec docs/features/yaml/.../ir/spec.yaml
-pnpm portal:registry   # validate shared/portal-design.registry.json
+pnpm portal:registry   # validate registries/design.registry.json
 pnpm portal:gen --spec docs/features/yaml/admin/hotel/list/ir/spec.yaml
 pnpm portal:gen:dry --spec docs/features/.../ir/spec.yaml
 pnpm portal:gen --spec ... --force
@@ -19,7 +19,7 @@ pnpm portal:gen --spec ... --force
 
 ## Design registry
 
-**Source:** `shared/portal-design.registry.json`  
+**Source:** `registries/design.registry.json`  
 **Docs:** `.cursor/extracts/portal-design-registry.md` · Rule: `.cursor/rules/portal-design-vocabulary.mdc`
 
 - shadcn/ui = canonical (`#ui: AlertDialog`)
@@ -52,10 +52,10 @@ Copy `docs/templates/spec.yaml`. Required:
 ## Templates
 
 ```
-scripts/portal-gen/templates/
+codegen/templates/
   list/       — DataListPage; wires cell slots when Mo* exists under src
   create/     — form scaffold (planned)
-scripts/portal-gen/lib/
+codegen/runners/lib/
   web-paths.mjs       — src path helpers
   design-registry.mjs — load registry, resolve shell, validate tags
 ```

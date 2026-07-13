@@ -223,7 +223,7 @@ flowchart TB
     COMMON["common/ — api_response, presenters, pagination, auth"]
     MOD["modules/ — knowledge, maintenance, workforce, agent"]
     CLIENTS["clients/ — mes, cmms, llm"]
-    FGEN["tools/fast_gen — Jinja2 + Typer"]
+    FGEN["codegen/runners/fast_gen — Jinja2 + Typer"]
     PYTEST["tests/ pytest"]
   end
 

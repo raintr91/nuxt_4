@@ -1,7 +1,7 @@
 import { mkdir, readFile, readdir, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 
-export const REGISTRY_REL = 'shared/page-lifecycle.registry.json'
+export const REGISTRY_REL = 'registries/page-lifecycle.registry.json'
 const DOC_REL = 'docs/operational/PAGE-LIFECYCLE.md'
 const STAGE_ORDER = ['design-spec', 'prototype', 'test', 'wire']
 
@@ -216,7 +216,7 @@ export async function renderPageLifecycleDoc(root, data) {
 
   const markdown = `# Page lifecycle registry
 
-Nguồn máy đọc: \`shared/page-lifecycle.registry.json\`.
+Nguồn máy đọc: \`registries/page-lifecycle.registry.json\`.
 
 **Tự cập nhật:** \`portal:gen\` → \`prototype\`; \`portal:remove\` → \`design-spec\`; \`pnpm portal:lifecycle sync\` quét manifest + page trên disk.
 
