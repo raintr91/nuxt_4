@@ -52,3 +52,19 @@ legacy-projects.local.json
 .cursor/skills/vendor/
 .cursor/rules-vendor/
 .cursor/skills-vendor/
+
+# platform-ai-link mirror (SSOT: platform-ai/ — edit there, then run ./scripts/platform-ai-link)
+.cursor/skills/
+.cursor/rules/
+.cursor/extracts/
+.kilo/skills/
+.kilo/instructions/
+.kilo/extracts/
+.kilo/command/
+
+# CodeGraph local index
+.codegraph/
+.codegraph-*/
+
+platform-repos.local.json
+legacy-repos.local.json

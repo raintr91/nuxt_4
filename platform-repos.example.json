@@ -1,0 +1,78 @@
+{
+  "defaultGroup": "platform-bases",
+  "groups": {
+    "platform-bases": {
+      "description": "Workspace base templates (this checkout = Next.js FE)",
+      "primary": "nextjs",
+      "projects": [
+        "portal",
+        "nextjs",
+        "nuxt-nest",
+        "next-nest",
+        "fast-api-base",
+        "api",
+        "integration",
+        "line"
+      ]
+    }
+  },
+  "projects": {
+    "nextjs": {
+      "root": ".",
+      "role": "frontend",
+      "repo": "nextjs",
+      "skill": "platform-base",
+      "description": "Base Next.js (FE)",
+      "write": true
+    },
+    "portal": {
+      "root": "../portal",
+      "role": "frontend",
+      "repo": "portal",
+      "skill": "platform-base",
+      "write": true
+    },
+    "nuxt-nest": {
+      "root": "../nuxt_nest",
+      "role": "fullstack",
+      "repo": "nuxt_nest",
+      "skill": "platform-base",
+      "write": true
+    },
+    "next-nest": {
+      "root": "../next_nest",
+      "role": "fullstack",
+      "repo": "next_nest",
+      "skill": "platform-base",
+      "write": true
+    },
+    "fast-api-base": {
+      "root": "../fast-api-base",
+      "role": "backend",
+      "repo": "fast-api-base",
+      "skill": "platform-base",
+      "write": true
+    },
+    "api": {
+      "root": "../api",
+      "role": "backend",
+      "repo": "api",
+      "skill": "api-base",
+      "write": true
+    },
+    "integration": {
+      "root": "../integration",
+      "role": "backend",
+      "repo": "integration",
+      "skill": "platform-base",
+      "write": true
+    },
+    "line": {
+      "root": "../line",
+      "role": "client",
+      "repo": "line",
+      "skill": "platform-base",
+      "write": true
+    }
+  }
+}

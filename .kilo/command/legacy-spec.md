@@ -1,5 +1,6 @@
 ---
-description: legacy-spec skill
+description: /legacy-spec — mirrored from platform-ai SSOT
+agent: code
 ---
-
-Load @.kilo/skills/legacy-spec/SKILL.md and follow it.
+Run the $name skill. Read and follow .kilo/skills/legacy-spec/SKILL.md (synced from platform-ai/skills/legacy-spec/SKILL.md).
+Context files referenced inside that skill must be respected.

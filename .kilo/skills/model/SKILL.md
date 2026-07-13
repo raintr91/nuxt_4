@@ -1,26 +1,27 @@
 ---
 name: model
 extractBundle: model
-description: /model — Zod models and TS types in models/.
+description: /model — prefer /contract for Zod gen; manual edge cases only.
 disable-model-invocation: true
 ---
 
-# /model — Portal Models Only
+# /model — Portal Models
 
-**Extracts:** `extractBundle: model` → `.cursor/extracts/legacy/project-config.md`
+Prefer **`/contract`** + `pnpm contract:gen` for Zod SSOT in `@portal/models`.
 
-## Load policy
+## When to use /model
 
-| Load | Do not load |
-|------|-------------|
-| `{function}/ir/spec.yaml` — entities, api | Full legacy archaeology |
-| `models/`, `validations/` target files | Trace, bundle.legacy (unless gap) |
-| `legacy/project-config.md` — cross-repo paths only | `legacy-api-migration` full |
+- Edge-case refinements after `contract:gen`
+- `models/common/fields.ts` shared primitives
+- Migrating root `models/` imports → `@portal/models`
 
-## Scope
+## Scripts
 
-Portal `models/` + `validations/` only — contract keys unchanged.
+```bash
+pnpm contract:gen:dry --spec .../ir/spec.yaml
+pnpm contract:gen --spec .../ir/spec.yaml
+```
 
 ## Handoff
 
-→ `/api` or `/wire` as needed
+→ `/api` or `/wire`

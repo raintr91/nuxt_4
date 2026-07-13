@@ -1,6 +1,6 @@
 ---
-description: /grill-unit — invoke the grill-unit skill
+description: /grill-unit â€” mirrored from platform-ai SSOT
 agent: code
 ---
-Run the $name skill. Read and follow .kilo/skills/grill-unit/SKILL.md.
+Run the $name skill. Read and follow .kilo/skills/grill-unit/SKILL.md (synced from platform-ai/skills/grill-unit/SKILL.md).
 Context files referenced inside that skill must be respected.

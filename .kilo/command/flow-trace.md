@@ -1,6 +1,6 @@
 ---
-description: /flow-trace — invoke the flow-trace skill
+description: /flow-trace â€” mirrored from platform-ai SSOT
 agent: code
 ---
-Run the $name skill. Read and follow .kilo/skills/flow-trace/SKILL.md.
+Run the $name skill. Read and follow .kilo/skills/flow-trace/SKILL.md (synced from platform-ai/skills/flow-trace/SKILL.md).
 Context files referenced inside that skill must be respected.
