@@ -59,16 +59,17 @@ Reference common UI bundles: `docs/common/yaml/` (list-page, status-chip, …).
 ## Workflow
 
 1. Resolve feature + `ir/spec.yaml` (or code path)
-2. Read `tags:`, `marks[]`, `technicalMarks[]`, both registries
+2. Read `tags:`, `marks[]`, `technicalMarks[]`, both registries — optional `artifactgraph_analyze`
 3. Apply **one** mark per session concern
-4. UI mark → upsert `portal-design.registry.json` · logic → `platform-common.registry.json`
+4. UI mark → upsert `registries/design.registry.json` · logic → `registries/common.registry.json`
 5. If `implemented` → refactor to common path · add/update unit test when applicable
 6. If `planned` → `generated/HANDOFF.md` or `openQuestions`
-7. `pnpm portal:registry` · `pnpm platform-common:registry`
+7. Validate: `artifactgraph_gen` `registryValidate` / `commonRegistry` **hoặc** `pnpm portal:registry` · `pnpm platform-common:registry`
+8. `artifactgraph_remember` subject (vd. `column:status`) sau confirm B — lần sau local hit
 
 ## Grill integration
 
-Grill **detects** (`platform-mark-detect.md`) and **asks member** — không auto-tag.  
+Grill **detects** (`platform-mark-detect.md` + `artifactgraph_grill_check`) and **asks member locally** — không auto-tag, **không cloud**.  
 Member chọn B → chạy `/platform-mark` trong cùng session.
 
 Lanes: `/dev-grill-docs` (common candidates table) · `/grill-prototype` (HANDOFF vs Mo* on disk) · `/grill-with-docs`.

@@ -8,8 +8,8 @@ import {
   demotePageLifecycle,
   routePathFromPageFile,
   syncPageLifecycleFromManifests
-} from './portal-gen/lib/page-lifecycle.mjs'
-import { readSpecFile } from './portal-gen/lib/read-spec.mjs'
+} from '../codegen/runners/lib/page-lifecycle.mjs'
+import { readSpecFile } from '../codegen/runners/lib/read-spec.mjs'
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 

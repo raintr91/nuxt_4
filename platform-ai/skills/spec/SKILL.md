@@ -21,6 +21,7 @@ Template: `docs/templates/feature.bundle.yaml` · rules: `docs/templates/bundle-
 
 1. If bundle exists, verify gaps: actors, fields, validations, routes, actions, API contracts, edge cases, acceptance.
 2. If new, draft from user bullets — output `*.bundle.yaml` with `specOrigin: requirement`.
+   - **Artifactgraph:** `analyze --bullets` local; apply known common/UI aliases; **confirm generated blocks với member (local)** — không cloud.
 3. **Incremental blocks** — optional `block:{id}` hints per `spec-incremental-blocks.md`; accumulate blocks → normalize into `design.zones[]` when đủ block.
 4. Apply common UI and spec-split rules from extracts.
 5. Draft `{id}.test.yaml` round 1 aligned with acceptance criteria.

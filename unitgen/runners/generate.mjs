@@ -2,7 +2,7 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-import { readSpecFile } from '../portal-gen/lib/read-spec.mjs'
+import { readSpecFile } from '../../codegen/runners/lib/read-spec.mjs'
 import { buildUnitContext, buildUnitFilePlan, collectPlannedPatternTags } from './lib/plan.mjs'
 import { readCodegenManifest } from './lib/read-codegen.mjs'
 import { renderTemplate } from './lib/render.mjs'

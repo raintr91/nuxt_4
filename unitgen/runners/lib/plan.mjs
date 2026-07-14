@@ -1,7 +1,7 @@
 import path from 'node:path'
 import { access } from 'node:fs/promises'
 
-import { buildCodegenContext } from '../../portal-gen/lib/plan.mjs'
+import { buildCodegenContext } from '../../../codegen/runners/lib/plan.mjs'
 import { findManifestLayerPath } from './read-codegen.mjs'
 import { hasExplicitGenTag, isLayerSkipped, parseUnitTags } from './parse-tags.mjs'
 import {

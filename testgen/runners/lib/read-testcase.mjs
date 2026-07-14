@@ -1,7 +1,7 @@
 import { readFile, readdir } from 'node:fs/promises'
 import path from 'node:path'
 import { parse } from 'yaml'
-import { resolveFeatureDir } from '../../portal-gen/lib/read-spec.mjs'
+import { resolveFeatureDir } from '../../../codegen/runners/lib/read-spec.mjs'
 
 /**
  * @param {string} testcasePath

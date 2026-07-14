@@ -7,7 +7,7 @@ import {
   demotePageLifecycle,
   syncPageLifecycleFromManifests,
   upsertPageLifecycle
-} from './portal-gen/lib/page-lifecycle.mjs'
+} from '../codegen/runners/lib/page-lifecycle.mjs'
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const STAGES = new Set(['design-spec', 'prototype', 'test', 'wire'])

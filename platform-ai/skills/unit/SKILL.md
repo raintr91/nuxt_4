@@ -23,11 +23,14 @@ Hub: `docs/operational/PORTAL-CODEGEN.md`
 
 ## Workflow
 
-1. `pnpm portal:unit-gen --spec docs/features/yaml/.../ir/spec.yaml`
+0. **Artifactgraph:** `analyze` / `gaps` on `ir/spec.yaml`; `artifactgraph_gen` `unitGen` hoặc `unitGenDry` khi MCP wired (else step 1).
+1. `pnpm portal:unit-gen --spec docs/features/yaml/.../ir/spec.yaml` (fallback).
 2. Clear `needsUnit[]` per manifest.
 3. `pnpm exec vitest run <paths from manifest.written>`
+4. Pattern mới ổn → promote `registries/unit-test.registry.json` + `remember`.
 
 **Do not read:** legacy-api-migration, design registry full scan.
+**Cloud:** chỉ khi pattern không có trong unit registry — dùng `cloudPromptSlice`, không dump registry.
 
 ## Handoff
 

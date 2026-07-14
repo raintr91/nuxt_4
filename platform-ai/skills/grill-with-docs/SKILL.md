@@ -32,8 +32,12 @@ Doc hub: `docs/operational/PORTAL-CODEGEN.md`
 0. Tech debt step 0 (`grill-tech-debt.md`).
 1. Resolve spec ↔ legacyEvidence ↔ design conflicts in **bundle**.
 2. Write/fix `bundle.gen` → `pnpm spec:split`.
-3. **Gate:** `pnpm portal:gen:dry --spec .../ir/spec.yaml` exit 0.
+3. **Gate:** `artifactgraph_gen` `genDry` khi MCP wired — else `pnpm portal:gen:dry --spec .../ir/spec.yaml` exit 0.
 4. `pnpm docs:render`.
+
+## Artifactgraph
+
+Local reconcile + dry gen; **không** cloud cho confirm block. Conflicts dài hiếm → `cloudPromptSlice`.
 
 ## Do not
 

@@ -15,6 +15,7 @@ Hub: `docs/operational/FEATURE-ARTIFACT-FLOWS.md` · extracts: `.cursor/extracts
 |---------|-------|
 | `/platform-ai` | `platform-ai/SKILL.md` |
 | `/platform-mark` | `platform-mark/SKILL.md` |
+| `/artifactgraph` | `artifactgraph/SKILL.md` |
 | `/spec` | `spec/SKILL.md` |
 | `/legacy-spec` | `legacy-spec/SKILL.md` |
 | `/flow-trace` | `flow-trace/SKILL.md` |

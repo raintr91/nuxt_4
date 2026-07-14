@@ -27,15 +27,21 @@ Doc hub: `docs/operational/PORTAL-CODEGEN.md`
    - `api.endpoints[].action`
 3. Giữ `#needs-component`, `#manual-composable`, `#skip-codegen`, `#wire-only`, `#phase-api`.
 4. List: `#gen:test-schema`, `#gen:test-service` · Create: `#gen:test-validation`
-5. **Common candidates** — scan columns, toolbar, filters, composables:
+5. **Common candidates** — scan columns, toolbar, filters, composables (**local MCP, not cloud**):
+   - Prefer `artifactgraph_grill_check` / `analyze` on `ir/spec.yaml` when MCP wired
    - Mỗi `render: custom` → `#needs-component: cell-{key}:MoXxx` **hoặc** Mo* trong design registry
    - Widget lạ → `lookupAlias()` → `#ui:` / `#needs-ui:`
    - Logic lặp (export, auth) → hỏi member `#common:` / `#needs-common:` (`platform-mark-detect.md`)
-   - In bảng **Common candidates** (Vietnamese) — member chọn A/B/C trước khi gate
+   - In bảng **Common candidates** (Vietnamese) — member chọn A/B/C **trong chat local**; `artifactgraph_remember` khi chọn B
+   - **Không** gửi câu hỏi A/B/C lên cloud model
 6. Optional `marks[]` on spec for confirmed B choices
 7. Set `grillStatus.dev: done`.
-8. **Gate:** `pnpm portal:gen:dry --spec docs/features/yaml/.../ir/spec.yaml` exit 0.
+8. **Gate:** `artifactgraph_gen` `genDry` khi có MCP — else `pnpm portal:gen:dry --spec docs/features/yaml/.../ir/spec.yaml` exit 0.
 9. `pnpm spec:split` if edited bundle; user runs `pnpm docs:render`.
+
+## Artifactgraph
+
+See `platform-ai/extracts/artifactgraph-phase-hooks.md` · `/artifactgraph`.
 
 ## Out of scope
 

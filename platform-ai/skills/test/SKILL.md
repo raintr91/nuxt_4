@@ -21,6 +21,12 @@ disable-model-invocation: true
 
 `/prototype` complete · readiness gate in extract bundle `test`.
 
+## Artifactgraph
+
+- `gaps` / e2e registry check local trước khi viết assertion mới.
+- `testcase:gen` qua allowlist khi có trong `artifactgraph.json`.
+- Matcher/bundle **mới** → `cloudPromptSlice` only; xong → promote `registries/e2e-test.registry.json`.
+
 ## Rules
 
 1. Testcase YAML = E2E source of truth (one file per child function).

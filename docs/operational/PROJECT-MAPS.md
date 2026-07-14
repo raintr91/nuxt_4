@@ -13,16 +13,21 @@
 
 ## Base cluster (workspace)
 
-| Key | Path (từ portal) | Role |
-|-----|------------------|------|
-| `portal` | `.` | Nuxt 4 FE |
-| `nextjs` | `../nextjs` | Next.js FE |
-| `nuxt-nest` | `../nuxt_nest` | Nuxt 4 + NestJS |
-| `next-nest` | `../next_nest` | Next.js + NestJS |
-| `fast-api-base` | `../fast-api-base` | FastAPI BE |
-| `api` | `../api` | Laravel 12 BE |
-| `integration` | `../integration` | .NET BE |
-| `line` | `../line` | WinForms (override `D:` trong `.local.json`) |
+Mỗi product base + MCP giữ **cùng catalog** `platform-bases` (9 keys). Root relative tới repo đang mở (từ portal: siblings `../…`). Field `stack` dùng cho artifactgraph MCP (`nuxt4`, `nextjs`, `fastapi`, …).
+
+| Key | Path (từ portal) | Role | stack |
+|-----|------------------|------|-------|
+| `portal` | `.` | Nuxt 4 FE | `nuxt4` |
+| `nextjs` | `../nextjs` | Next.js FE | `nextjs` |
+| `nuxt-nest` | `../nuxt_nest` | Nuxt 4 + NestJS | `nuxt4-nest` |
+| `next-nest` | `../next_nest` | Next.js + NestJS | `nextjs-nest` |
+| `fast-api-base` | `../fast-api-base` | FastAPI BE | `fastapi` |
+| `api` | `../api` | Laravel 12 BE | `laravel` |
+| `integration` | `../integration` | .NET BE | `dotnet-integration` |
+| `line` | `../line` | WinForms (override `D:` trong `.local.json`) | `dotnet-line` |
+| `artifactgraph` | `../artifactgraph` | MCP tooling (gaps/tags/gen) | `mcp` |
+
+**Đồng bộ map:** `python3 scripts/sync-platform-repos-bases.py` (portal) — ghi `platform-repos.json` lên mọi sibling base + MCP (`workspaceRoot: ".."` trong artifactgraph).
 
 Mỗi base tự giữ `platform-ai/` + `./scripts/platform-ai-link` — không sync đè skill giữa stack. Migrate một lần: `./scripts/platform-ai-migrate-to-ssot` (copy `.cursor` → `platform-ai/` của **chính repo đó**).
 

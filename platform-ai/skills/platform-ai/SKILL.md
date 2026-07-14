@@ -74,11 +74,13 @@ Do not load all extracts every phase. See `.cursor/extracts/artifact-graph.md` +
 |---------|-------|
 | `/platform-ai` | this skill |
 | `/platform-mark` | `platform-mark/SKILL.md` |
+| `/artifactgraph` | `artifactgraph/SKILL.md` |
 
 Mirror Cursor/Kilo: `./scripts/platform-ai-link` (trong repo này). Không sync đè skill sang base/stack khác.
 
 **Project maps (root):** `platform-repos.json` / `legacy-repos.json` — [PROJECT-MAPS](docs/operational/PROJECT-MAPS.md)  
-**CodeGraph:** `platform-ai/rules/codegraph.mdc` · [CODEGRAPH](docs/operational/CODEGRAPH.md)
+**CodeGraph:** `platform-ai/rules/codegraph.mdc` · [CODEGRAPH](docs/operational/CODEGRAPH.md)  
+**artifactgraph MCP:** [raintr91/artifactgraph](https://github.com/raintr91/artifactgraph) · `/artifactgraph` · [ARTIFACTGRAPH](docs/operational/ARTIFACTGRAPH.md) · [INTERNALS](docs/operational/ARTIFACTGRAPH-INTERNALS.md)
 
 ## Rule layer
 

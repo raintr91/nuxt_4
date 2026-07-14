@@ -30,8 +30,9 @@ Detail checklist in `.cursor/skills/prototype/SKILL.md`.
 
 ## Common / component audit
 
-After `/prototype` + `pnpm portal:gen`:
+After `/prototype` + gen:
 
+0. Prefer `artifactgraph_gaps` / `grill_check` (local) — table for member; **no cloud** for “còn thiếu gì”.
 1. Read `generated/HANDOFF.md` — every `#needs-component` / `#needs-ui` resolved or in `openQuestions`
 2. Mo* on disk matches spec `tags:` slot bindings
 3. Mo* reused ≥2 features → nhắc `/platform-mark` promote design registry

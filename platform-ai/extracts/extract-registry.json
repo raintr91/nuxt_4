@@ -12,6 +12,8 @@
       "platform-ai/extracts/legacy/project-config.md",
       "platform-ai/extracts/legacy/legacy-api-migration.md",
       "platform-ai/extracts/legacy/evidence.md",
+      "platform-ai/extracts/legacy/parity.md",
+      "platform-ai/extracts/artifactgraph-phase-hooks.md",
       "platform-ai/extracts/spec/split.md",
       "platform-ai/extracts/legacy-trace.md"
     ],
@@ -36,6 +38,7 @@
       "platform-ai/extracts/codegen/readiness.md",
       "platform-ai/extracts/codegen/tags.md",
       "platform-ai/extracts/platform-mark-detect.md",
+      "platform-ai/extracts/artifactgraph-phase-hooks.md",
       "platform-ai/extracts/legacy/legacy-api-migration.md",
       "platform-ai/extracts/grill-tech-debt.md",
       "platform-ai/extracts/spec-update-tags.md",
@@ -135,6 +138,12 @@
       "platform-ai/extracts/platform-mark-detect.md",
       "platform-ai/extracts/platform-design-registry.md",
       "platform-ai/extracts/codegen/tags.md"
+    ],
+    "artifactgraph": [
+      "platform-ai/extracts/core/agent-discipline.md",
+      "platform-ai/extracts/artifactgraph-phase-hooks.md",
+      "platform-ai/extracts/legacy/parity.md",
+      "platform-ai/extracts/artifact-graph.md"
     ]
   }
 }
