@@ -1,0 +1,24 @@
+---
+description: Nuxt 4 layers, UI tiers, E2E testid, import alias — pointers to glob rules
+alwaysApply: true
+---
+
+# Platform Invariants
+
+Nuxt 4 auth-first. Detail: `docs/operational/ARCHITECTURE.md`, `E2E-TESTIDS.md`, `platform-base` skill.
+
+## Layers (bắt buộc)
+
+`pages/components` → `composables` → `services` + `stores` → `models` + `validations` → `$apiFetch`
+
+- No `$apiFetch` in page/component · no reverse import from `models/`
+- Form: `useApiForm` + `validations/` + `models/` · contract: `platform-contract-naming.mdc`
+- Add feature: `models` → `services` → `stores?` → `composables` → `validations` → `pages` + `testId`
+
+## UI · size · E2E · imports
+
+- Tiers: `ui/` → `molecules/Mo*` → `organisms/Data*|OrGlobal*` · dashboard = `layouts/dashboard.vue` shadcn only
+- Registry: `registries/design.registry.json` · `#shell: DataListPage` · `platform-design-vocabulary.mdc` (glob)
+- ~200 lines/file · ~20 lines/fn → `platform-code-size.mdc` (glob)
+- Playwright + `data-testid` before spec → `platform-base-ui-testid.mdc`, `platform-base-e2e.mdc` (glob)
+- Imports: `@/` `~/` `#` — no `../` → `platform-import-alias.mdc` (glob)

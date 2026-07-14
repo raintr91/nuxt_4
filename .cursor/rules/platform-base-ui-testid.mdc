@@ -1,0 +1,49 @@
+---
+description: Platform Base — UI components và data-testid cho Playwright
+globs: pages/**/*,components/**/*
+alwaysApply: false
+---
+
+# UI & data-testid
+
+## Page layout
+
+```vue
+<DataPageHeader test-id="{module}-page" :title="..." />
+<MoBreadcrumbNav test-id="{module}-breadcrumb" :items="..." />
+```
+
+## Naming (kebab-case, English)
+
+`{scope}-{entity}-{action|field}` — ví dụ `customers-create-btn`, `auth-login-email-input`
+
+| Loại | Pattern |
+|------|---------|
+| Page | `{module}-page` |
+| Input | `{module}-{field}-input` |
+| Button | `{module}-{action}-btn` |
+| Dialog | `{module}-{action}-dialog` |
+| Alert | `{module}-{context}-alert` |
+| Nav | `nav-{id}` |
+| App shell | `app-toast-message`, `app-dialog-confirm-btn` |
+
+Auth: `auth-login-*`, `auth-reset-*`
+
+## Prop `testId` trên shared UI
+
+Gắn **một lần** ở `Button`, `Input`, `FormField`, `DataPageHeader`, `ConfirmDialog`, `BreadcrumbNav`… Page chỉ truyền `test-id="..."`.
+
+**Không** dùng `id` HTML / class CSS làm selector E2E.
+
+## Primitive mới
+
+```vue
+defineProps<{ testId?: string }>()
+<input :data-testid="testId" />
+```
+
+Helper: `utils/testId.ts`
+
+## Checklist page mới
+
+Root `{module}-page` · title · inputs/buttons · alert/dialog · `nav-*` · Playwright spec

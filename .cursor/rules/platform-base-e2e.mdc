@@ -1,0 +1,44 @@
+---
+description: Platform Base — Playwright E2E và layout integrity
+globs: tests/e2e/**/*,playwright.config.ts
+alwaysApply: false
+---
+
+# Playwright E2E
+
+**E2E testcase:** `docs/templates/testcase.yaml` · **testId contract:** `spec.ui.testIds` → `docs/operational/E2E-TESTIDS.md`
+
+```bash
+pnpm test:e2e          # .nuxt-e2e, port NUXT_E2E_PORT (3005)
+pnpm test:e2e:ui
+```
+
+Specs: `tests/e2e/**/*.spec.ts`
+
+## Selector
+
+```ts
+await page.getByTestId('auth-login-email-input').fill('...')
+await expect(page.getByTestId('customers-page')).toBeVisible()
+```
+
+Fallback semantic: `getByRole('alert')`, `getByRole('heading')` — **không** `input#email`.
+
+## Layout integrity (sau `goto`)
+
+```ts
+import { assertLayoutIntegrity } from './helpers/assertLayoutIntegrity'
+await assertLayoutIntegrity(page, { skipOverlap: true })
+```
+
+Fail khi: `overflow` (tràn), `collapsed` (shell rỗng/co), `overlap` (chồng element).
+
+## Mock session
+
+`tests/e2e/helpers/session.ts` — `mockAuthenticatedSession(page)`, `mockAuthenticatedApi(page)`
+
+## Thêm spec mới
+
+1. Page đã có `data-testid` (xem `docs/operational/E2E-TESTIDS.md`)
+2. `assertLayoutIntegrity` trong smoke test
+3. `getByTestId` cho mọi interaction
