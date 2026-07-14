@@ -14,16 +14,25 @@ Package / GitHub: **[raintr91/artifactgraph](https://github.com/raintr91/artifac
 
 ```bash
 artifactgraph version
-artifactgraph init                              # agents: ↑↓ · Space · Enter
-# artifactgraph init --target=cursor,claude,kilo --yes
-cd ~/workspace/portal && artifactgraph init-project && artifactgraph rebuild
+# Prefer project MCP (token): only loads when this workspace is open
+cd ~/workspace/portal
+artifactgraph init --location=local --target=cursor --yes
+artifactgraph init-project && artifactgraph rebuild
 ```
 
 | Lệnh | Việc |
 |------|------|
-| `init` | Wire MCP vào Cursor / Claude / Kilo (**máy**, mặc định global) |
+| `init --location=local` | Wire MCP vào **`.cursor/mcp.json` của repo** (khuyến nghị) |
+| `init` (global) | Mọi project — **tránh**: MCP tool schema vào mọi chat |
 | `init-project` | `artifactgraph.json` trong **từng** product base |
 | `install` | Alias deprecated → `init` |
+
+### Token / MCP
+
+- **Project:** `portal/.cursor/mcp.json` — ArtifactGraph chỉ khi mở portal.
+- **Global Win:** `%USERPROFILE%\.cursor\mcp.json` — giữ CodeGraph (nếu cần); **không** để `artifactgraph` / `qa-git` ở đây.
+- Skill/grill mới cần tools; ad-hoc dùng CLI: `artifactgraph parity|gaps|status|gen …`.
+- Rule `artifactgraph.mdc` = **opt-in** (`alwaysApply: false`), không inject mọi chat.
 
 ## Local-first (important)
 
@@ -38,7 +47,8 @@ Detail: [ARTIFACTGRAPH-INTERNALS](./ARTIFACTGRAPH-INTERNALS.md) · extract `lega
 
 ## In this repo
 
-- Rule: `platform-ai/rules/artifactgraph.mdc` (alwaysApply)
+- Rule: `platform-ai/rules/artifactgraph.mdc` (opt-in, not alwaysApply)
 - Skill: `/artifactgraph`
+- MCP: `.cursor/mcp.json` (project) · Win host → `wsl.exe` + `artifactgraph-mcp`
 - Map: `platform-repos.json` → project **`artifactgraph`**
 - Product wire: `artifactgraph.json` + `.artifactgraph/`

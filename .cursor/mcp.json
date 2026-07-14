@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "artifactgraph": {
+      "type": "stdio",
+      "command": "wsl.exe",
+      "args": [
+        "-e",
+        "bash",
+        "-lc",
+        "exec artifactgraph-mcp"
+      ]
+    }
+  }
+}

@@ -19,9 +19,9 @@ Package: [raintr91/artifactgraph](https://github.com/raintr91/artifactgraph)
 curl -fsSL https://raw.githubusercontent.com/raintr91/artifactgraph/main/install.sh | bash
 
 # Wire agents — interactive ↑↓ · Space · Enter (global by default)
-artifactgraph init
-# artifactgraph init --yes
-# artifactgraph init --target=cursor,claude,kilo --yes
+# Prefer project MCP (token) — not global
+artifactgraph init --location=local --target=cursor --yes
+# Interactive: artifactgraph init  (default location = local)
 
 # Wire THIS product repo
 cd ~/workspace/portal   # or nextjs, …

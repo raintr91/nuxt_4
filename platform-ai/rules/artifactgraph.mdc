@@ -1,10 +1,12 @@
 ---
-description: artifactgraph MCP — local-first gaps/tags/gen; grill confirm WITHOUT cloud
-alwaysApply: true
+description: ArtifactGraph MCP — only with /legacy-spec, grill, prototype, /artifactgraph; prefer CLI for ad-hoc parity/gaps; project .cursor/mcp.json (not global)
+alwaysApply: false
 ---
 # artifactgraph
 
 MCP: [raintr91/artifactgraph](https://github.com/raintr91/artifactgraph) · `/artifactgraph` · [ARTIFACTGRAPH](docs/operational/ARTIFACTGRAPH.md) · [INTERNALS](docs/operational/ARTIFACTGRAPH-INTERNALS.md)
+
+**Token:** keep ArtifactGraph MCP in **project** `.cursor/mcp.json` (this repo). Do **not** put it in Windows global `%USERPROFILE%\.cursor\mcp.json` — that loads tools into every chat. Toggle/off MCP when not on feature skills; CLI (`artifactgraph parity|gaps|gen|status`) is enough for ad-hoc.
 
 ## Prefer local MCP (like CodeGraph prefers explore)
 
@@ -18,6 +20,6 @@ On artifact skills (`/spec`, `/legacy-spec`, `/dev-grill-docs`, `/grill-with-doc
 5. After implement → registry promote + `artifactgraph_remember` (`kind=grill|parity`).
 ### If MCP / index missing
 
-Ask: *"Chưa wire artifactgraph. Chạy `artifactgraph init` (agents) rồi trong repo `init-project` + `rebuild` / `curl …/install.sh`?"*
+Ask: *"Chưa wire artifactgraph. Trong repo: `artifactgraph init --location=local --target=cursor --yes` rồi `init-project` + `rebuild`?"* · Ad-hoc: CLI đủ, không bắt bật MCP global.
 
 Hooks: `platform-ai/extracts/artifactgraph-phase-hooks.md`
