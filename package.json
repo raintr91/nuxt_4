@@ -32,6 +32,8 @@
     "phase:common": "node scripts/run-phase.mjs common",
     "legacy-trace:validate": "node scripts/spec/legacy-trace-validate.mjs",
     "extracts:validate": "node scripts/extracts/validate.mjs",
+    "platform:workspace": "node scripts/platform-workspace-from-repos.mjs",
+    "platform:workspace:sync": "node scripts/platform-workspace-from-repos.mjs --sync-bases",
     "portal:gen": "node codegen/runners/generate.mjs",
     "portal:gen:dry": "node codegen/runners/generate.mjs --dry-run",
     "portal:gen:common": "node codegen/runners/generate.mjs --yaml-root docs/common/yaml",
