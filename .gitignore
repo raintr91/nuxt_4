@@ -77,10 +77,3 @@ legacy-repos.local.json
 .codegraph/
 .codegraph-*/
 
-# artifactgraph local index (do not commit; project config = artifactgraph.json)
-.artifactgraph/
-
-# qa-git local member config / MCP (do not commit)
-.qa-git.yml
-.qa-git/
-
