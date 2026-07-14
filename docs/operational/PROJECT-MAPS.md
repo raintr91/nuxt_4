@@ -55,7 +55,7 @@ Mỗi product base + MCP giữ **cùng catalog** `platform-bases` (9 keys). Root
 
 **Đồng bộ map:** `python3 scripts/sync-platform-repos-bases.py` (portal) — ghi `platform-repos.json` lên mọi sibling base + MCP (`workspaceRoot: ".."` trong artifactgraph).
 
-Mỗi base tự giữ `platform-ai/` + `./scripts/platform-ai-link` — không sync đè skill giữa stack. Migrate một lần: `./scripts/platform-ai-migrate-to-ssot` (copy `.cursor` → `platform-ai/` của **chính repo đó**).
+Mỗi base tự giữ `.cursor/{skills,rules,extracts}` — không sync đè skill giữa stack. Optional Kilo: `./scripts/cursor-export-kilo`.
 
 ## Resolve order (agents)
 
@@ -64,7 +64,7 @@ Mỗi base tự giữ `platform-ai/` + `./scripts/platform-ai-link` — không s
 3. `{workspace}/platform-repos.example.json` / `legacy-repos.example.json` (template only)
 4. Optional user home: `~/.cursor/platform-repos.json`
 
-Never guess absolute paths. Extract: `platform-ai/extracts/legacy/project-config.md`.
+Never guess absolute paths. Extract: `.cursor/extracts/legacy/project-config.md` (**progressive read** — defaultGroup / one project / contract pair only; never paste full JSON into chat).
 
 ## Rename note (from older layout)
 

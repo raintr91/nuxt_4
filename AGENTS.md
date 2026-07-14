@@ -27,6 +27,6 @@ When editing or reviewing code in this repository, follow the rules in this orde
 
 ## Skills
 
-Kilo skills live in .kilo/skills/. Commands live in .kilo/command/.
+SSOT: `.cursor/skills/` (+ `.cursor/rules/`, `.cursor/extracts/`). Optional Kilo mirror: `./scripts/cursor-export-kilo`.
 
 Invoke a skill with its slash command, e.g. /legacy-spec, /bqa-grill-docs, /dev-grill-docs, /grill-with-docs, /prototype, etc.

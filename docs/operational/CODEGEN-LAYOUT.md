@@ -28,7 +28,7 @@
     …
 ```
 
-`scripts/` giữ CLI phụ (`platform-ai-link`, `spec/*`, lifecycle) — **không** chứa gen packages.
+`scripts/` giữ CLI phụ (`cursor-export-kilo`, `spec/*`, lifecycle) — **không** chứa gen packages.
 
 ## Commands (tên pnpm/Make giữ nguyên)
 

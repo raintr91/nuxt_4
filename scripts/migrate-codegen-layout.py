@@ -113,7 +113,7 @@ SKIP_DIR_NAMES = {
     "vendor",
     ".next",
     "logs",
-    ".cursor",  # mirrored; platform-ai is SSOT
+    ".cursor",  # AI SSOT (skills/rules/extracts)
     ".kilo",
 }
 

@@ -1,15 +1,15 @@
 # Artifactgraph — internals & local-first DSL
 
 > Package: [raintr91/artifactgraph](https://github.com/raintr91/artifactgraph) · Install: [ARTIFACTGRAPH.md](./ARTIFACTGRAPH.md)  
-> SSOT skills/rules: `platform-ai/skills/artifactgraph/`, `platform-ai/rules/artifactgraph.mdc`  
-> Phase checklist: [`artifactgraph-phase-hooks.md`](../../platform-ai/extracts/artifactgraph-phase-hooks.md)
+> SSOT skills/rules: `.cursor/skills/artifactgraph/`, `.cursor/rules/artifactgraph.mdc`  
+> Phase checklist: [`artifactgraph-phase-hooks.md`](../../.cursor/extracts/artifactgraph-phase-hooks.md)
 
 ## Ownership (quan trọng)
 
 | Layer | Where | Role |
 |-------|-------|------|
 | **Registries + templates (.hbs)** | Product repo (`registries/`, `codegen/templates`, …) | **SSOT** — promote sau member review |
-| **Skills / extracts / promotion docs** | Product `platform-ai/` (or stack equivalent) | Quy trình team |
+| **Skills / extracts / promotion docs** | Product `.cursor/` (or stack equivalent) | Quy trình team |
 | **MCP artifactgraph** | Package + `.artifactgraph/index.db` | **Index** DSL ids/aliases + allowlisted gen + grill/parity memory |
 | **`artifactgraph.json`** | Product root | `commands` + `registries[]` paths + optional `dsl.lanes` map |
 

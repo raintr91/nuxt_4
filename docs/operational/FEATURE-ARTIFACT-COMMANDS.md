@@ -113,7 +113,7 @@ Member marks common UI + logic — grill hỏi trước khi gắn tag. Hub: [PLA
 
 | Lệnh | Mục đích |
 |------|----------|
-| `./scripts/platform-ai-link` | Mirror `platform-ai/` SSOT → `.cursor/` + `.kilo/` (sau clone / sửa skill) |
+| `./scripts/cursor-export-kilo` | Optional: mirror `.cursor/` SSOT → `.kilo/` (sau sửa skill nếu dùng Kilo) |
 | Root `platform-repos.json` | Cross-repo map — [PROJECT-MAPS](./PROJECT-MAPS.md) |
 | `pnpm extracts:validate` | Skill `extractBundle` ⊆ registry |
 

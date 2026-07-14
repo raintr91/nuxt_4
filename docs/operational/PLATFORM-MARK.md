@@ -61,7 +61,7 @@ marks:
 ## Grill hỏi member
 
 `/dev-grill-docs` in bảng **Common candidates** — custom column, widget, composable lặp.  
-Template: `platform-ai/extracts/platform-mark-detect.md`
+Template: `.cursor/extracts/platform-mark-detect.md`
 
 ```text
 [GRILL-MARK] Phát hiện: ...
@@ -84,5 +84,5 @@ Chọn B → agent chạy `/platform-mark` trong cùng session.
 `portal:gen` **không** emit Mo* — chỉ placeholder + `generated/HANDOFF.md` cho `#needs-component` / `#needs-ui`.  
 Sau `/prototype` implement file → `portal:gen --force`.
 
-Extracts: `platform-ai/extracts/platform-mark.md`, `platform-mark-detect.md`  
-Skill: `platform-ai/skills/platform-mark/SKILL.md`
+Extracts: `.cursor/extracts/platform-mark.md`, `platform-mark-detect.md`  
+Skill: `.cursor/skills/platform-mark/SKILL.md`

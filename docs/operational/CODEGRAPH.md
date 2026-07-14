@@ -1,6 +1,6 @@
 # CodeGraph (agent code intelligence)
 
-Local MCP tool: **`codegraph_explore`**. Upstream: [colbymchenry/codegraph](https://github.com/colbymchenry/codegraph) · rule SSOT: `platform-ai/rules/codegraph.mdc`.
+Local MCP tool: **`codegraph_explore`**. Upstream: [colbymchenry/codegraph](https://github.com/colbymchenry/codegraph) · rule SSOT: `.cursor/rules/codegraph.mdc`.
 
 ## Install (this machine)
 
@@ -46,4 +46,4 @@ Do **not** share one `.codegraph/` across Win + WSL for the same tree (`CODEGRAP
 
 ## Sync
 
-Rule lives in `platform-ai/rules/codegraph.mdc` → `./scripts/platform-ai-link` (per-repo; no cross-factory sync).
+Rule lives in `.cursor/rules/codegraph.mdc` · optional `./scripts/cursor-export-kilo` (per-repo; no cross-factory sync).

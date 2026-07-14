@@ -12,7 +12,7 @@ pnpm docs:dev
 
 ## Operational
 
-- [platform-ai/README.md](../platform-ai/README.md) — SSOT skills/rules · `./scripts/platform-ai-link`
+- `.cursor/{skills,rules,extracts}` — SSOT skills/rules · optional `./scripts/cursor-export-kilo`
 - [Project maps](./operational/PROJECT-MAPS.md) — root `platform-repos` / `legacy-repos` (Cursor + Kilo)
 - [CodeGraph](./operational/CODEGRAPH.md) — `codegraph_explore` for structural source
 - [Architecture](./operational/ARCHITECTURE.md)

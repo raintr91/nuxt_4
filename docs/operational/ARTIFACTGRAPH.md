@@ -43,11 +43,11 @@ artifactgraph init-project && artifactgraph rebuild
 | **Parity-drift** create≠edit / empty / FE≠BE | Cùng turn: trả `parityFindings[]` (schema) |
 | gen allowlist + wire Mo* đã có registry | Chỉ `cloudPromptSlice` đã nén |
 
-Detail: [ARTIFACTGRAPH-INTERNALS](./ARTIFACTGRAPH-INTERNALS.md) · extract `legacy/parity.md` · package `docs/PARITY.md` · hooks: `platform-ai/extracts/artifactgraph-phase-hooks.md`
+Detail: [ARTIFACTGRAPH-INTERNALS](./ARTIFACTGRAPH-INTERNALS.md) · extract `legacy/parity.md` · package `docs/PARITY.md` · hooks: `.cursor/extracts/artifactgraph-phase-hooks.md`
 
 ## In this repo
 
-- Rule: `platform-ai/rules/artifactgraph.mdc` (opt-in)
+- Rule: `.cursor/rules/artifactgraph.mdc` (opt-in)
 - Skill: `/artifactgraph`
 - MCP: `.cursor/mcp.json` (project) · Win host → `wsl.exe` + `artifactgraph-mcp`
 - **DSL config:** `artifactgraph.json` (`commands` + `dsl.lanes`) — registries path list only; payloads in `registries/`
