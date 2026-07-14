@@ -114,6 +114,7 @@ Member marks common UI + logic — grill hỏi trước khi gắn tag. Hub: [PLA
 | Lệnh | Mục đích |
 |------|----------|
 | `./scripts/cursor-export-kilo` | Optional: mirror `.cursor/` SSOT → `.kilo/` (sau sửa skill nếu dùng Kilo) |
+| `python3 scripts/sync-cursor-ssot-bases.py` | Sync portal `.cursor` (full FE / shared platform+legacy) → siblings `platform-bases` |
 | Root `platform-repos.json` | Cross-repo map — [PROJECT-MAPS](./PROJECT-MAPS.md) |
 | `pnpm extracts:validate` | Skill `extractBundle` ⊆ registry |
 

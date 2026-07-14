@@ -55,7 +55,13 @@ Mỗi product base + MCP giữ **cùng catalog** `platform-bases` (9 keys). Root
 
 **Đồng bộ map:** `python3 scripts/sync-platform-repos-bases.py` (portal) — ghi `platform-repos.json` lên mọi sibling base + MCP (`workspaceRoot: ".."` trong artifactgraph).
 
-Mỗi base tự giữ `.cursor/{skills,rules,extracts}` — không sync đè skill giữa stack. Optional Kilo: `./scripts/cursor-export-kilo`.
+Mỗi base giữ `.cursor/{skills,rules,extracts}` (SSOT). Đồng bộ shared **platform + legacy** (và full FE harness khi profile=`full`) từ portal:
+
+```bash
+python3 scripts/sync-cursor-ssot-bases.py
+```
+
+Optional Kilo trên từng repo: `./scripts/cursor-export-kilo`.
 
 ## Resolve order (agents)
 

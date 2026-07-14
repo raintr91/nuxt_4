@@ -76,7 +76,7 @@ Do not load all extracts every phase. See `.cursor/extracts/artifact-graph.md` +
 | `/platform-mark` | `platform-mark/SKILL.md` |
 | `/artifactgraph` | `artifactgraph/SKILL.md` |
 
-Kilo (optional): `./scripts/cursor-export-kilo`. Không sync đè skill sang base/stack khác.
+Kilo (optional): `./scripts/cursor-export-kilo`. Shared platform+legacy → bases: `python3 scripts/sync-cursor-ssot-bases.py`.
 
 **Project maps:** only when cross-repo — follow `legacy/project-config.md` (progressive; no full-JSON dump). Hub: [PROJECT-MAPS](docs/operational/PROJECT-MAPS.md).  
 IDE folders: open `platform-bases.code-workspace` (R1), not “Open Folder” alone.
