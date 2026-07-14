@@ -26,7 +26,7 @@ Prerequisite: `grillStatus.dev: done`; gen dry passed (`artifactgraph_gen` `genD
 3. HANDOFF `#needs-component` / `#needs-ui`:
    - Mo* **đã có** registry → wire local only
    - **Chưa có** → cloud chỉ `cloudPromptSlice` (slot + props + 1–2 Mo* tham chiếu) — không gửi cả page/registry
-4. Sau Mo* mới ổn → promote registry + `artifactgraph_remember`
+4. Sau Mo* mới ổn → **promote registry trong product repo** + `rebuild` + `artifactgraph_remember`
 
 ## Workflow
 

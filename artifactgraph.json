@@ -3,52 +3,22 @@
   "stack": "nuxt4",
   "mode": "brownfield",
   "commands": {
-    "genDry": [
-      "pnpm",
-      "portal:gen:dry",
-      "--spec",
-      "{spec}"
-    ],
-    "gen": [
-      "pnpm",
-      "portal:gen",
-      "--spec",
-      "{spec}"
-    ],
-    "unitGenDry": [
-      "pnpm",
-      "portal:unit-gen:dry",
-      "--spec",
-      "{spec}"
-    ],
-    "unitGen": [
-      "pnpm",
-      "portal:unit-gen",
-      "--spec",
-      "{spec}"
-    ],
-    "testcaseGenDry": [
-      "pnpm",
-      "testcase:gen:dry",
-      "--",
-      "{spec}"
-    ],
-    "registryValidate": [
-      "pnpm",
-      "portal:registry"
-    ],
-    "unitRegistry": [
-      "pnpm",
-      "portal:unit-registry"
-    ],
-    "e2eRegistry": [
-      "pnpm",
-      "portal:e2e-registry"
-    ],
-    "commonRegistry": [
-      "pnpm",
-      "platform-common:registry"
-    ]
+    "docsRender": ["pnpm", "docs:render"],
+    "docsRenderCommon": ["pnpm", "docs:render:common"],
+    "specSplit": ["pnpm", "spec:split", "--", "{spec}"],
+    "specSplitAll": ["pnpm", "spec:split:all"],
+    "specSplitCheck": ["pnpm", "spec:split:check", "--", "{spec}"],
+    "genDry": ["pnpm", "portal:gen:dry", "--spec", "{spec}"],
+    "gen": ["pnpm", "portal:gen", "--spec", "{spec}"],
+    "unitGenDry": ["pnpm", "portal:unit-gen:dry", "--spec", "{spec}"],
+    "unitGen": ["pnpm", "portal:unit-gen", "--spec", "{spec}"],
+    "testcaseGenDry": ["pnpm", "testcase:gen:dry", "--testcase", "{spec}"],
+    "testcaseGen": ["pnpm", "testcase:gen", "--testcase", "{spec}"],
+    "lifecycleSync": ["pnpm", "portal:lifecycle", "sync"],
+    "registryValidate": ["pnpm", "portal:registry"],
+    "unitRegistry": ["pnpm", "portal:unit-registry"],
+    "e2eRegistry": ["pnpm", "portal:e2e-registry"],
+    "commonRegistry": ["pnpm", "platform-common:registry"]
   },
   "registries": [
     "registries/design.registry.json",
@@ -69,6 +39,40 @@
   "templates": {
     "root": "codegen/templates",
     "engine": "hbs"
+  },
+  "dsl": {
+    "ssot": "product-repo",
+    "lanes": {
+      "docs": {
+        "genKeys": ["specSplit", "specSplitAll", "docsRender", "docsRenderCommon"],
+        "needsTags": [],
+        "note": "Reuse FE/unit/e2e tags; split IR + render BA md — no app codegen"
+      },
+      "fe": {
+        "registries": ["registries/design.registry.json", "registries/common.registry.json"],
+        "templates": "codegen/templates",
+        "genKeys": ["genDry", "gen"],
+        "needsTags": ["#needs-component", "#needs-ui", "#shell:", "#widget:"],
+        "note": "Review OK → promote design/common registry in product repo; rebuild index"
+      },
+      "unit": {
+        "registries": ["registries/unit-test.registry.json"],
+        "genKeys": ["unitGenDry", "unitGen"],
+        "needsTags": ["#needs-unit-test"],
+        "note": "Promote unit-test.registry.json after pattern OK"
+      },
+      "e2e": {
+        "registries": ["registries/e2e-test.registry.json"],
+        "genKeys": ["testcaseGenDry", "testcaseGen"],
+        "needsTags": ["#needs-testcase", "#needs-e2e"],
+        "note": "{spec} = testcase yaml path for --testcase"
+      },
+      "lifecycle": {
+        "registries": ["registries/page-lifecycle.registry.json"],
+        "genKeys": ["lifecycleSync"],
+        "needsTags": []
+      }
+    }
   },
   "projectId": "portal"
 }

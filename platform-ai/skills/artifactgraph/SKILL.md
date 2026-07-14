@@ -42,17 +42,21 @@ irm https://raw.githubusercontent.com/raintr91/artifactgraph/main/install.ps1 | 
 ## Local-first protocol
 
 ```text
-analyze / grill_check / parity_check  →  member A/B/C (LOCAL)  →  gen allowlist
-        →  cloudPromptSlice ONLY if still missing  →  register + remember
+index (rebuild from product registries)
+  → analyze / grill / parity → member A/B/C (LOCAL)
+  → artifactgraph_gen allowlist (docs/fe/unit/e2e)
+  → cloudPromptSlice ONLY if #needs-* still missing
+  → promote registry+hbs IN PRODUCT REPO → rebuild + remember
 ```
+
+**SSOT:** `registries/` + templates stay in product repo (skills/docs promote). MCP **indexes** only.
 
 | Do locally | Do NOT use cloud for |
 |------------|----------------------|
-| Detect blocks / `#needs-component` candidates | Asking “common hay chỉ feature?” |
-| Confirm blocks when not from legacy-spec | Asking “block sinh ra đúng không?” |
-| **Parity-drift** (create≠edit, empty, FE≠BE) askUser | Dumping full design registry |
-| Apply known `#shell` / `#common` / gen dry|write | Regenerating whole page when one slot missing |
-| Wire Mo* already in registry | |
+| Match shells/common/unit/e2e from index | Asking “common hay chỉ feature?” |
+| `specSplit` / `docsRender` / `gen` / `unitGen` / `testcaseGen` | Dumping full design registry |
+| Confirm blocks / parity-drift A/B/C | Regenerating whole page when one slot missing |
+| Wire Mo* / pattern already in product registry | Writing registry JSON from cloud |
 
 ## Tools
 

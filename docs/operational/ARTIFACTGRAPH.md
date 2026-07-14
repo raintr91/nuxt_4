@@ -47,8 +47,9 @@ Detail: [ARTIFACTGRAPH-INTERNALS](./ARTIFACTGRAPH-INTERNALS.md) · extract `lega
 
 ## In this repo
 
-- Rule: `platform-ai/rules/artifactgraph.mdc` (opt-in, not alwaysApply)
+- Rule: `platform-ai/rules/artifactgraph.mdc` (opt-in)
 - Skill: `/artifactgraph`
 - MCP: `.cursor/mcp.json` (project) · Win host → `wsl.exe` + `artifactgraph-mcp`
+- **DSL config:** `artifactgraph.json` (`commands` + `dsl.lanes`) — registries path list only; payloads in `registries/`
 - Map: `platform-repos.json` → project **`artifactgraph`**
-- Product wire: `artifactgraph.json` + `.artifactgraph/`
+- Detail: [ARTIFACTGRAPH-INTERNALS](./ARTIFACTGRAPH-INTERNALS.md) · hooks extract
