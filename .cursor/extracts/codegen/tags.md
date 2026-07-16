@@ -1,44 +1,27 @@
 # Portal Codegen Tags
 
-Hub: `docs/operational/PORTAL-CODEGEN.md` · registry: `registries/design.registry.json`
-
-## Who adds what
+Hub: `base-docs/platform/toolchain/PORTAL-CODEGEN.md` · `registries/design.registry.json`
 
 | Phase | Spec |
 |-------|------|
-| `/legacy-spec`, `/spec` | Design v1 — no `codegen`, gen `tags` |
-| `/grill-with-docs` | `codegen`, `ui.*`, `tags` — see `codegen/readiness.md` |
-| `/prototype` | `portal:gen` + HANDOFF; implement `#needs-ui` / `#needs-component` |
+| `/spec` `/legacy-spec` | Design v1 — no codegen tags |
+| Docs grill | `codegen`, `ui.*`, `tags` |
+| `/prototype` | `portal:gen` + HANDOFF cho `#needs-*` |
 
-## Key blocks
-
-`codegen.profile|entity|module|skip` · `ui.filters|columns|composition` · `api.endpoints[].action`
-
-## Hashtags (summary)
+Blocks: `codegen.*` · `ui.filters|columns|composition` · `api.endpoints[].action`
 
 | Tag | Use |
 |-----|-----|
 | `#shell: DataListPage` | List default |
-| `#pattern: CRUD` | CRUD flow |
-| `#ui:` / `#widget:` | shadcn / form field |
-| `#needs-component: {slot}:MoXxx[:prop]` | Prototype implements — portal-gen HANDOFF |
-| `#needs-ui:` | Registry planned widget |
-| `#common:{id}` | Shared hook/service — `platform-common.registry.json` |
-| `#needs-common:{id}` | Planned logic — HANDOFF |
-| `#wire-only:` | Defer to `/wire` |
-| `#gen:test-*` | Unit gen — see `portal-unit-test-tags.md` |
-| `#tech-debt:` | See `grill-tech-debt.md` |
-| `#update:*` | `/update-spec` delta — cleared at `/wire` |
-
-List grill default tags if missing: `#shell: DataListPage`, `#pattern: CRUD`, `#style: shadcn/ui`, `compact`, `flat`.
-
-## Commands
+| `#pattern: CRUD` | CRUD |
+| `#needs-component: {slot}:MoXxx[:prop]` | Gap → AI/Mo* |
+| `#needs-ui:` / `#common:*` / `#needs-common:*` | Registry |
+| `#wire-only:` | Defer `/wire` |
+| `#gen:test-*` | Unit gen |
+| `#update:*` | Delta — clear at `/wire` |
 
 ```bash
 pnpm portal:registry
-pnpm portal:gen:dry --spec docs/features/yaml/.../ir/spec.yaml
-pnpm portal:gen --spec ...
-pnpm portal:unit-gen --spec ...
+pnpm portal:gen:dry --id W-AD-AUTH-001
+pnpm portal:gen --id W-AD-AUTH-001
 ```
-
-Detail tables: `platform-design-registry.md` · `platform-mark.md` · `portal-unit-test-tags.md` · rule `platform-design-vocabulary.mdc`

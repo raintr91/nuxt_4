@@ -1,24 +1,26 @@
 ---
-description: Nuxt 4 layers, UI tiers, E2E testid, import alias — pointers to glob rules
-alwaysApply: true
+description: Nuxt 4 layers, UI tiers, testId — FE code lane only
+globs: pages/**/*,components/**/*,composables/**/*,services/**/*,stores/**/*,models/**/*,validations/**/*,layouts/**/*
+alwaysApply: false
 ---
 
-# Platform Invariants
+# Platform Invariants (FE)
 
-Nuxt 4 auth-first. Detail: `docs/operational/ARCHITECTURE.md`, `E2E-TESTIDS.md`, `platform-base` skill.
+Nuxt 4 auth-first. Hub: `base-docs/platform/toolchain/ARCHITECTURE.md` · skill `/platform-base`.
 
-## Layers (bắt buộc)
+## Layers
 
 `pages/components` → `composables` → `services` + `stores` → `models` + `validations` → `$apiFetch`
 
 - No `$apiFetch` in page/component · no reverse import from `models/`
-- Form: `useApiForm` + `validations/` + `models/` · contract: `platform-contract-naming.mdc`
-- Add feature: `models` → `services` → `stores?` → `composables` → `validations` → `pages` + `testId`
+- Form: `useApiForm` + `validations/` + `models/` · `platform-contract-naming.mdc`
+- Feature order: models → service → store? → composable → validations? → page + testId
+- **Gen first** (`portal:gen`); AI chỉ gap chưa có template/registry.
 
 ## UI · size · E2E · imports
 
-- Tiers: `ui/` → `molecules/Mo*` → `organisms/Data*|OrGlobal*` · dashboard = `layouts/dashboard.vue` shadcn only
-- Registry: `registries/design.registry.json` · `#shell: DataListPage` · `platform-design-vocabulary.mdc` (glob)
-- ~200 lines/file · ~20 lines/fn → `platform-code-size.mdc` (glob)
-- Playwright + `data-testid` before spec → `platform-base-ui-testid.mdc`, `platform-base-e2e.mdc` (glob)
-- Imports: `@/` `~/` `#` — no `../` → `platform-import-alias.mdc` (glob)
+- Tiers: `ui/` → `molecules/Mo*` → `organisms/Data*|OrGlobal*` · `layouts/dashboard.vue`
+- Registry: `registries/design.registry.json` · `platform-design-vocabulary.mdc`
+- ~200 lines/file · `platform-code-size.mdc`
+- testId / E2E: `platform-base-ui-testid.mdc`, `platform-base-e2e.mdc` (glob test)
+- Imports: `@/` `~/` `#` — `platform-import-alias.mdc`

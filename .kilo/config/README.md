@@ -1,9 +1,9 @@
-# Deprecated — use repo root
+# Kilo config
 
-Project maps moved to **workspace root** (shared Cursor + Kilo):
+Project maps live at **repo root** (shared with Cursor):
 
-- `team-projects.json` · `team-projects.example.json`
-- `legacy-projects.json` · `legacy-projects.example.json`
-- Local: `team-projects.local.json` · `legacy-projects.local.json` (gitignored)
+- `platform-repos.json` · `platform-repos.example.json`
+- Optional brownfield: `legacy-repos.json` · `legacy-repos.local.json` (gitignored)
+- Local override: `platform-repos.local.json` (gitignored)
 
-Docs: `docs/operational/PROJECT-MAPS.md` · extract: `.cursor/extracts/legacy/project-config.md`
+Harness SSOT: `.cursor/`. Optional `.kilo/` mirror is local/export tooling — không script sync trên code bases.

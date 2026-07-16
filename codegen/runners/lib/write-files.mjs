@@ -92,7 +92,15 @@ export function renderHandoffMarkdown(ctx, written, skipped) {
     lines.push('## Prototype next (/prototype)', '', '- _No missing components — review generated code and run lint/typecheck._', '')
   }
 
-  lines.push('## Commands', '', '```bash', 'pnpm docs:render', '# after spec edits', 'pnpm portal:gen --spec ... --force  # re-generate after /prototype components', '```', '')
+  lines.push(
+    '## Commands',
+    '',
+    '```bash',
+    'cd ../base-docs && pnpm docs:render   # after spec edits (docs hub)',
+    'pnpm portal:gen --spec ... --force  # re-generate after /prototype components',
+    '```',
+    '',
+  )
 
   return lines.join('\n')
 }

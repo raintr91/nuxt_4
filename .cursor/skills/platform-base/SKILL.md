@@ -1,53 +1,27 @@
 ---
 name: platform-base
-description: Nuxt 4 app conventions — layers, testId, E2E; see invariants + ARCHITECTURE.md
+description: Next.js FE conventions — layers, testId, gen-first; see invariants (glob)
 disable-model-invocation: true
 ---
 
-# Platform Base (Nuxt 4)
+# Platform Base (Next.js FE)
 
-Auth-first Nuxt 4 · Vue 3 · Pinia · vee-validate+Zod · shadcn-vue · Playwright.
+Auth-first Next.js · App Router · shadcn · Playwright. Code under `src/`.
 
-**Rules:** `platform-invariants.mdc`, `platform-contract-naming.mdc`, glob `platform-base-*`, `platform-code-size`, `platform-component-split`.
+**Rules (FE globs):** `platform-invariants.mdc` · contract-naming · `platform-base-*` · size/split/import · design-vocab.
 
-**Docs:** `docs/operational/ARCHITECTURE.md`, `E2E-TESTIDS.md` · **E2E skill:** `test/SKILL.md`
+## Gen trước (code)
 
-**Maps (only when cross-repo):** `legacy/project-config.md` — progressive resolve; never dump full `platform-repos.json`. Hub: `docs/operational/PROJECT-MAPS.md`.
+1. Artifactgraph MCP `gen` / `pnpm portal:gen --id …` từ IR đã grill
+2. AI chỉ gap: Mo* / `#needs-*` chưa registry
+3. Không boilerplate nếu gen đã cover
 
 ## Layers
 
-`pages/components` → `composables` → `services` + `stores` → `models` + `validations` → `$apiFetch`
+`app|pages/components` → hooks/composables → services → models/validations → `apiFetch`  
+Form + contract theo stack repo. testId + Playwright: `/test`.
 
-| Tầng | Không làm |
-|------|-----------|
-| page/component | `$apiFetch` |
-| composable | HTTP chi tiết |
-| service | Pinia state |
-| models | import stores/services/composables |
+## Checklist
 
-**New feature order:** models → service → store? → composable → validations? → page + testId
-
-**Form:** `useApiForm` + `validations/` (chặt) + `models/` (API contract lỏng).
-
-## UI tiers
-
-`ui/` → `molecules/Mo*` → `organisms/Data*|OrGlobal*` · list shell: `DataListPage` · dashboard: `layouts/dashboard.vue`
-
-## testId (summary)
-
-`{module}-{field|action}-input|btn|dialog|alert` · auth: `auth-login-*` · `page.getByTestId()` · no `#id`/class selectors.
-
-**Detail:** [reference.md](reference.md) · `E2E-TESTIDS.md`
-
-## E2E
-
-```bash
-pnpm test:e2e    # NUXT_PUBLIC_E2E=1, port 3005
-```
-
-After `goto`: `assertLayoutIntegrity(page)` · specs `tests/e2e/**/*.spec.ts`
-
-## Agent checklist
-
-- [ ] 4 layers respected · file ~≤200 lines · testId on interactives
-- [ ] `/test` for full E2E — `/prototype` only smoke skeleton if needed
+- [ ] Layer sạch · testId interactive
+- [ ] E2E scripts → `/test`; plans YAML trên tests hub

@@ -7,7 +7,7 @@ disable-model-invocation: true
 
 # /wire — Portal API Integration
 
-Doc hub: `docs/operational/WIRE-PHASE-DIAGRAM.md` · `docs/operational/FEATURE-ARTIFACT-FLOWS.md`
+Doc hub: `base-docs/platform/toolchain/WIRE-PHASE-DIAGRAM.md` · `base-docs/platform/toolchain/FEATURE-ARTIFACT-FLOWS.md`
 
 **Extracts:** `extractBundle: wire` → `.cursor/extracts/wire/integration.md`
 
@@ -15,7 +15,7 @@ Doc hub: `docs/operational/WIRE-PHASE-DIAGRAM.md` · `docs/operational/FEATURE-A
 
 - Viết docs, integration note và handoff bằng tiếng Việt.
 - Giữ nguyên contract key, route path, API field, model name và code identifier.
-- Nếu nhắc `legacy` / cross-repo: resolve **one** root per `legacy/project-config.md` (progressive). **Không** dump full map. Hub: `docs/operational/PROJECT-MAPS.md`.
+- Nếu nhắc `legacy` / cross-repo: resolve **one** root per `legacy/project-config.md` (progressive). **Không** dump full map. Hub: `base-docs/platform/toolchain/PROJECT-MAPS.md`.
 
 ## Load policy
 
@@ -28,9 +28,9 @@ Doc hub: `docs/operational/WIRE-PHASE-DIAGRAM.md` · `docs/operational/FEATURE-A
 
 ## Inputs
 
-- `docs/features/yaml/.../{function}/ir/spec.yaml` — approved API contract
-- `docs/features/yaml/.../{function}/*.bundle.yaml` — `#update:*`, lifecycle fields
-- `docs/features/yaml/.../{function}/*.test.yaml`
+- `base-docs Code / `--id`` — approved API contract
+- `base-docs Code / `--id`` — `#update:*`, lifecycle fields
+- `base-docs Code / `--id``
 - Prototype code (mock boundary to remove)
 
 ## Order
@@ -42,7 +42,7 @@ Doc hub: `docs/operational/WIRE-PHASE-DIAGRAM.md` · `docs/operational/FEATURE-A
 5. Bind pages/components to composables.
 6. Remove production mock imports.
 7. Clear **all** `#update:*` tags; set `lastSynced.wire = specRevision`; `featureStatus: wire`; `wireCount += 1`.
-8. If bundle edited → `pnpm spec:split` + `pnpm spec:split:check`.
+8. If bundle edited → run on **base-docs**: `pnpm spec:split` + `pnpm spec:split:check`.
 9. Run scoped E2E; `pnpm portal:lifecycle set {route.path} wire`.
 
 ## Rules

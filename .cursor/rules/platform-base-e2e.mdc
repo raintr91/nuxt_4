@@ -6,7 +6,7 @@ alwaysApply: false
 
 # Playwright E2E
 
-**E2E testcase:** `docs/templates/testcase.yaml` · **testId contract:** `spec.ui.testIds` → `docs/operational/E2E-TESTIDS.md`
+**E2E plan template:** `base-tests/templates/testcase.yaml` (author on tests hub) · **testId contract:** `spec.ui.testIds` → `base-docs/platform/toolchain/E2E-TESTIDS.md`
 
 ```bash
 pnpm test:e2e          # .nuxt-e2e, port NUXT_E2E_PORT (3005)
@@ -39,6 +39,6 @@ Fail khi: `overflow` (tràn), `collapsed` (shell rỗng/co), `overlap` (chồng 
 
 ## Thêm spec mới
 
-1. Page đã có `data-testid` (xem `docs/operational/E2E-TESTIDS.md`)
+1. Page đã có `data-testid` (xem `base-docs/platform/toolchain/E2E-TESTIDS.md`)
 2. `assertLayoutIntegrity` trong smoke test
 3. `getByTestId` cho mọi interaction

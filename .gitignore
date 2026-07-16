@@ -44,16 +44,16 @@ dist
 !docker/.env.example
 docker/.env
 
-# Local AI mappings (machine-specific overrides)
-team-projects.local.json
-legacy-projects.local.json
-.cursor/legacy-projects.local.json
-.cursor/team-projects.local.json
+# Local project maps (repo root SSOT)
+platform-repos.local.json
+legacy-repos.local.json
+.cursor/platform-repos.local.json
+.cursor/legacy-repos.local.json
 .cursor/skills/vendor/
 .cursor/rules-vendor/
 .cursor/skills-vendor/
 
-# Optional Kilo export (SSOT: .cursor/skills|rules|extracts — ./scripts/cursor-export-kilo)
+# Optional Kilo mirror (SSOT: .cursor/skills|rules|extracts)
 .kilo/skills/
 .kilo/instructions/
 .kilo/extracts/
@@ -62,6 +62,3 @@ legacy-projects.local.json
 # CodeGraph local index
 .codegraph/
 .codegraph-*/
-
-platform-repos.local.json
-legacy-repos.local.json

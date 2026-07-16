@@ -1,8 +1,0 @@
-{
-  "spec": "/home/vutv/workspace/portal/docs/features/yaml/_example/contract-pilot/ir/spec.yaml",
-  "written": [
-    "apps/api/src/modules/sample-items/sample-item/queries/search-sample-item.handler.spec.ts",
-    "apps/api/src/modules/sample-items/sample-item/sample-item.resource.spec.ts"
-  ],
-  "generatedAt": "2026-07-09T13:08:05.749Z"
-}

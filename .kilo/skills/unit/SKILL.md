@@ -7,8 +7,8 @@ disable-model-invocation: true
 
 # /unit — Portal Vitest (dev lane)
 
-Diagram: `docs/operational/UNIT-PHASE-DIAGRAM.md`  
-Hub: `docs/operational/PORTAL-CODEGEN.md`
+Diagram: `base-docs/platform/toolchain/UNIT-PHASE-DIAGRAM.md`  
+Hub: `base-docs/platform/toolchain/PORTAL-CODEGEN.md`
 
 **Extracts:** `extractBundle: unit` → `.cursor/extracts/portal-unit-workflow.md`
 
@@ -24,7 +24,7 @@ Hub: `docs/operational/PORTAL-CODEGEN.md`
 ## Workflow
 
 0. **Artifactgraph:** `analyze` / `gaps` on `ir/spec.yaml`; `artifactgraph_gen` `unitGen` hoặc `unitGenDry` khi MCP wired (else step 1).
-1. `pnpm portal:unit-gen --spec docs/features/yaml/.../ir/spec.yaml` (fallback).
+1. `pnpm portal:unit-gen --spec base-docs Code / `--id`` (fallback).
 2. Clear `needsUnit[]` per manifest.
 3. `pnpm exec vitest run <paths from manifest.written>`
 4. Pattern mới ổn → promote `registries/unit-test.registry.json` + `remember`.

@@ -1,6 +1,6 @@
 ---
 description: shadcn canonical, registry hashtags — registries/design.registry.json
-globs: docs/features/**/*.yaml, docs/templates/*.yaml, codegen/runners/**/*
+globs: base-docs/templates/*.yaml, codegen/runners/**/*, registries/*.json
 alwaysApply: false
 ---
 

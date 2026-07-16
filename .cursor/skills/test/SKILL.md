@@ -1,41 +1,34 @@
 ---
 name: test
 extractBundle: test
-description: /test — Playwright E2E from testcase YAML.
+description: /test — Playwright E2E from base-tests plan YAML (FE only).
 disable-model-invocation: true
 ---
 
-# /test — Portal E2E
+# /test — Playwright (FE)
 
-**Extracts:** `extractBundle: test` → `.cursor/extracts/test/readiness.md`
+**Plans SSOT:** `base-tests` (read-only). **Scripts output:** `tests/e2e/` on this repo.
 
-## Load policy
+Author/grill plans → **base-tests** `/testcase` · `/grill-testcase`.  
+Hub: `base-docs/platform/toolchain/TESTS-HUB.md` · template: `base-tests/templates/testcase.yaml`
 
-| Load | Do not load |
-|------|-------------|
-| `{function}/*.test.yaml`, `yaml/.../**/*.test.yaml` | Legacy source, trace |
-| `{function}/ir/spec.yaml` — `ui.testIds`, routes | `legacy/*`, full bundle |
-| Prototype pages + `data-testid` | `legacy-api-migration` |
+## Gen
 
-## Prerequisites
+```bash
+pnpm testcase:gen:dry --id TC-LOGIN-VALID
+pnpm testcase:gen --id W-AD-AUTH-001
+pnpm testcase:gen --id smoke
+```
 
-`/prototype` complete · readiness gate in extract bundle `test`.
+`--id` resolves via `base-tests/registries/tests-index.json`. Design `ui.testIds` enrich from **base-docs** `refs.screen` → `ir/spec.yaml`.
 
-## Artifactgraph
-
-- `gaps` / e2e registry check local trước khi viết assertion mới.
-- `testcase:gen` qua allowlist khi có trong `artifactgraph.json`.
-- Matcher/bundle **mới** → `cloudPromptSlice` only; xong → promote `registries/e2e-test.registry.json`.
+Do **not** edit SC/TC YAML here — handoff bugs to tests hub.
 
 ## Rules
 
-1. Testcase YAML = E2E source of truth (one file per child function).
-2. Playwright + Page Object + `getByTestId()` only.
-3. Vertical slice: one testcase → green → next.
-4. Mock per testcase until `/wire`.
-
-Verify: `pnpm test:e2e tests/e2e/{module}/{function}.spec.ts`
+1. `getByTestId()` via Page Object · vertical slice · mock until `/wire`
+2. Verify: `pnpm test:e2e tests/e2e/...`
 
 ## Handoff
 
-→ `/grill-test` · `pnpm portal:lifecycle set {route} test`
+`/grill-test` when suite green.

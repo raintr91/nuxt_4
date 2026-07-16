@@ -6,19 +6,27 @@ import { fileURLToPath } from 'node:url'
 import { buildCodegenContext, buildFilePlan, enrichCodegenContext, applyRegistryToContext } from './lib/plan.mjs'
 import { loadDesignRegistry } from './lib/design-registry.mjs'
 import { upsertPageLifecycle, syncPageLifecycleFromManifests } from './lib/page-lifecycle.mjs'
-import { isNextPagePath } from './lib/web-paths.mjs'
 import { readSpecFile } from './lib/read-spec.mjs'
+import { resolveHubId } from './lib/resolve-hub-id.mjs'
 import { renderTemplate } from './lib/render.mjs'
 import { renderHandoffMarkdown, writeGeneratedMeta, writeOutputs } from './lib/write-files.mjs'
+import { resolveProjectRoot } from './lib/resolve-hub-id.mjs'
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..')
 const yamlRootFlag = process.argv.includes('--yaml-root')
   ? process.argv[process.argv.indexOf('--yaml-root') + 1]
   : null
-const IR_SPEC_GLOB_ROOT = path.resolve(yamlRootFlag ?? path.join(root, 'docs/features/yaml'))
+function defaultIrRoot() {
+  try {
+    return path.join(resolveProjectRoot(root, 'base-docs'), 'product')
+  } catch {
+    return path.join(root, '../base-docs/product')
+  }
+}
+const IR_SPEC_GLOB_ROOT = path.resolve(yamlRootFlag ?? defaultIrRoot())
 
 function parseArgs(argv) {
-  const options = { dryRun: false, force: false, spec: null, all: false }
+  const options = { dryRun: false, force: false, spec: null, all: false, id: null }
 
   for (let i = 0; i < argv.length; i++) {
     const arg = argv[i]
@@ -26,8 +34,9 @@ function parseArgs(argv) {
     else if (arg === '--force') options.force = true
     else if (arg === '--all') options.all = true
     else if (arg === '--spec') options.spec = argv[++i]
+    else if (arg === '--id') options.id = argv[++i]
     else if (arg === '--yaml-root') i++
-    else if (!arg.startsWith('-') && !options.spec) options.spec = arg
+    else if (!arg.startsWith('-') && !options.spec && !options.id) options.spec = arg
   }
 
   return options
@@ -57,11 +66,21 @@ async function listIrSpecFiles(dir) {
 }
 
 async function resolveSpecPaths(options) {
+  if (options.id) {
+    const resolved = resolveHubId(root, options.id, 'codegen')
+    for (const n of resolved.notes) console.warn(`  note: ${n}`)
+    if (!resolved.paths.length) {
+      throw new Error(`--id ${options.id}: no codegen specs (need ir/spec.yaml under Code on base-docs)`)
+    }
+    console.log(`portal-gen: --id ${options.id} → ${resolved.paths.length} spec(s) (${resolved.kind})`)
+    return resolved.paths
+  }
   if (options.spec) return [path.resolve(options.spec)]
   const discovered = await listIrSpecFiles(IR_SPEC_GLOB_ROOT)
   if (!discovered.length) {
     throw new Error(
-      'No ir/spec.yaml under docs/features/yaml/. Pass --spec <path> or add bundles + pnpm spec:split.'
+      'No ir/spec.yaml. Prefer: pnpm portal:gen --id W-AD-AUTH-001|CMP-01\n' +
+        'Or pass --spec <path> / add Code under base-docs + split.',
     )
   }
   return discovered
@@ -131,7 +150,7 @@ async function generateOne(options, registry, specPath) {
   }
 
   if (!options.dryRun) {
-    const pageWritten = written.find((w) => w.relativePath && isNextPagePath(w.relativePath))
+    const pageWritten = written.find((w) => w.relativePath?.startsWith('pages/') && w.relativePath.endsWith('.vue'))
     if (pageWritten) {
       const lifecycle = await upsertPageLifecycle(root, {
         routePath: ctx.route.path,
@@ -146,7 +165,7 @@ async function generateOne(options, registry, specPath) {
     console.log(`  handoff: ${path.relative(root, meta.handoffPath)}`)
   }
 
-  return { specFile, wrotePage: !options.dryRun && written.some((w) => w.relativePath && isNextPagePath(w.relativePath)) }
+  return { specFile, wrotePage: !options.dryRun && written.some((w) => w.relativePath?.startsWith('pages/')) }
 }
 
 async function main() {
@@ -176,17 +195,21 @@ async function main() {
   process.exit(failed > 0 ? 1 : 0)
 }
 
-/** Cập nhật spec.md (hashtags, Screen link). Script local — không tốn AI token. */
+/** Cập nhật markdown trên docs hub (R2). Không giữ proxy `pnpm docs:render` trên code repo. */
 function runDocsRender() {
-  const script = path.join(root, 'scripts/docs/render-docs.mjs')
-  const result = spawnSync(process.execPath, [script], { cwd: root, stdio: 'pipe', encoding: 'utf8' })
+  const hub = path.resolve(root, '../base-docs')
+  const result = spawnSync('pnpm', ['--dir', hub, 'docs:render'], {
+    cwd: hub,
+    stdio: 'pipe',
+    encoding: 'utf8',
+  })
 
   if (result.status === 0) {
-    console.log('  docs:render: đã cập nhật markdown (hashtags, Screen link)')
+    console.log('  docs:render (base-docs): đã cập nhật markdown')
     return
   }
 
-  console.warn('  ⚠ docs:render thất bại — member chạy: pnpm docs:render')
+  console.warn('  ⚠ docs:render thất bại — chạy trên hub: cd ../base-docs && pnpm docs:render')
   if (result.stderr?.trim()) console.warn(result.stderr.trim())
 }
 

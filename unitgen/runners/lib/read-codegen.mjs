@@ -14,7 +14,7 @@ export async function readCodegenManifest(featureDir) {
     raw = await readFile(manifestPath, 'utf8')
   } catch {
     throw new Error(
-      `Missing ${path.join(featureDir, 'generated', MANIFEST_NAME)} — run pnpm portal:gen --spec ... first`
+      `Missing ${path.join(featureDir, 'generated', MANIFEST_NAME)} — run pnpm portal:gen --id … first (manifest under base-docs …/code/{W-…}/generated/)`
     )
   }
 
@@ -31,10 +31,6 @@ export async function readCodegenManifest(featureDir) {
  * @param {string} layer
  */
 export function findManifestLayerPath(manifest, layer) {
-  const layers = layer === 'composable' ? ['hook', 'composable'] : [layer]
-  for (const key of layers) {
-    const entry = manifest.files?.find((f) => f.layer === key)
-    if (entry?.path) return entry.path
-  }
-  return null
+  const entry = manifest.files?.find((f) => f.layer === layer)
+  return entry?.path ?? null
 }

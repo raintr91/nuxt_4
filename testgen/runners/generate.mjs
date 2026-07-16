@@ -8,6 +8,7 @@ import { buildTestcaseContext } from './lib/plan.mjs'
 import { renderTemplate } from './lib/render.mjs'
 import { resolveSemanticPlan } from './lib/semantic-plan.mjs'
 import { writeOutputs } from './lib/write-files.mjs'
+import { resolveHubId } from '../../codegen/runners/lib/resolve-hub-id.mjs'
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..')
 
@@ -20,7 +21,7 @@ Handlebars.registerHelper('includes', (value, fragment) => String(value).include
 Handlebars.registerHelper('json', (value) => JSON.stringify(value, null, 2))
 
 function parseArgs(argv) {
-  const options = { dryRun: false, force: false, testcase: null, feature: null }
+  const options = { dryRun: false, force: false, testcase: null, feature: null, id: null }
 
   for (let i = 0; i < argv.length; i++) {
     const arg = argv[i]
@@ -28,13 +29,16 @@ function parseArgs(argv) {
     else if (arg === '--force') options.force = true
     else if (arg === '--testcase') options.testcase = argv[++i]
     else if (arg === '--feature') options.feature = argv[++i]
-    else if (!arg.startsWith('-') && !options.testcase && !options.feature) options.testcase = arg
+    else if (arg === '--id') options.id = argv[++i]
+    else if (!arg.startsWith('-') && !options.testcase && !options.feature && !options.id) {
+      options.testcase = arg
+    }
   }
 
-  if (!options.testcase && !options.feature) {
+  if (!options.testcase && !options.feature && !options.id) {
     throw new Error(
-      'Usage: pnpm testcase:gen --testcase docs/features/.../testcases/foo.yaml\n' +
-        '       pnpm testcase:gen --feature chain/hotel [--dry-run] [--force]'
+      'Usage: pnpm testcase:gen --id W-AD-AUTH-001|TC-LOGIN-VALID|smoke|CMP-01|SC-LOGIN\n' +
+        '       pnpm testcase:gen --testcase <path> | --feature W-AD-AUTH-001  (screen under base-tests/cases)',
     )
   }
 
@@ -42,7 +46,7 @@ function parseArgs(argv) {
 }
 
 async function generateOne(testcasePath, options) {
-  const { testcase, spec, testcaseFile, specFile } = await readTestcaseFile(testcasePath)
+  const { testcase, spec, testcaseFile, specFile } = await readTestcaseFile(testcasePath, { repoRoot: root })
   const ctx = buildTestcaseContext(testcase, spec, testcaseFile)
   ctx.specFile = specFile
 
@@ -86,10 +90,23 @@ async function generateOne(testcasePath, options) {
 async function main() {
   const options = parseArgs(process.argv.slice(2))
 
+  if (options.id) {
+    const resolved = resolveHubId(root, options.id, 'testcase')
+    for (const n of resolved.notes) console.warn(`  note: ${n}`)
+    if (!resolved.paths.length) throw new Error(`--id ${options.id}: no testcase paths`)
+    console.log(`testcase-gen: --id ${options.id} → ${resolved.paths.length} file(s) (${resolved.kind})`)
+    for (const testcasePath of resolved.paths) {
+      await generateOne(testcasePath, options)
+    }
+    return
+  }
+
   if (options.feature) {
     const paths = await listFeatureTestcases(root, options.feature)
     if (!paths.length) {
-      throw new Error(`No testcases in docs/features/${options.feature}/testcases/`)
+      throw new Error(
+        `No TC-*.yaml under base-tests/cases/${options.feature}. Prefer: pnpm testcase:gen --id <W-|TC-|suite>`,
+      )
     }
     for (const testcasePath of paths) {
       await generateOne(testcasePath, options)

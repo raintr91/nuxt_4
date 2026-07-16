@@ -1,11 +1,11 @@
 # Portal unit workflow — dev lane (token-thin)
 
-> Diagram: [`docs/operational/UNIT-PHASE-DIAGRAM.md`](../../docs/operational/UNIT-PHASE-DIAGRAM.md) (flow chính + tag lifecycle tách riêng)  
+> Diagram: [`base-docs/platform/toolchain/UNIT-PHASE-DIAGRAM.md`](../../base-docs/platform/toolchain/UNIT-PHASE-DIAGRAM.md) (flow chính + tag lifecycle tách riêng)  
 > **Không** nằm FULL-CYCLE / TEST-PHASE diagram.
 
 ## `/unit` — gap + gen + file thiếu
 
-1. `docs/features/yaml/.../{function}/generated/unit.manifest.json`
+1. `pnpm portal:unit-gen --id W-…` (IR + codegen.manifest trên base-docs Code)
 2. `UNIT-HANDOFF.md` — lệnh vitest scoped
 3. Nếu chưa smoke → `pnpm portal:unit-gen --spec …` (`--phase wire` nếu cần)
 4. `needsUnit[]` / `#needs-unit-test:*`:

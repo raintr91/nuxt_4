@@ -6,9 +6,9 @@
 
 | Source | Purpose |
 |--------|---------|
-| `docs/features/yaml/.../{function}/ir/spec.yaml` | `api.endpoints`, contract keys, routes |
-| `docs/features/yaml/.../{function}/*.bundle.yaml` | `#update:*`, `specRevision`, `featureStatus` |
-| `docs/features/yaml/.../{function}/*.test.yaml` | E2E expectations post-wire |
+| `base-docs/…/code/{W-…}/ir/spec.yaml` (`--id`) | `api.endpoints`, contract, routes |
+| Cùng Code folder / bundle tags | `#update:*`, lifecycle |
+| `base-tests/cases/**/TC-*.yaml` | E2E expectations post-wire |
 | Backend handoff (`/api`) | Real payloads, validation errors, permissions |
 
 **Do not** re-mine legacy during wire unless tagged `#legacy-recheck`.
@@ -45,6 +45,6 @@ Report exit codes — no “should pass” without a fresh run.
 
 ## References
 
-- `docs/operational/WIRE-PHASE-DIAGRAM.md`
-- `docs/operational/FEATURE-ARTIFACT-FLOWS.md`
+- `base-docs/platform/toolchain/WIRE-PHASE-DIAGRAM.md`
+- `base-docs/platform/toolchain/FEATURE-ARTIFACT-FLOWS.md`
 - `.cursor/skills/wire/SKILL.md`

@@ -1,21 +1,9 @@
 #!/usr/bin/env node
 import { spawnSync } from 'node:child_process'
 
+/** Code-lane phases only. Spec / docs:render / legacy → run on `base-docs`. */
 const PHASES = {
-  spec: [
-    { run: 'spec:split' },
-    { run: 'spec:split:check' },
-    { run: 'docs:render', forward: false },
-  ],
-  gen: [
-    { run: 'portal:gen:dry' },
-    { run: 'portal:gen' },
-    { run: 'docs:render', forward: false },
-  ],
-  common: [
-    { run: 'spec:split:common' },
-    { run: 'docs:render:common', forward: false },
-  ],
+  gen: [{ run: 'portal:gen:dry' }, { run: 'portal:gen' }],
   unit: [{ run: 'portal:unit-gen:dry' }, { run: 'portal:unit-gen' }],
   e2e: [
     { run: 'testcase:gen:dry' },
@@ -26,15 +14,16 @@ const PHASES = {
 
 function main() {
   const [phase, ...rest] = process.argv.slice(2)
-  let steps = PHASES[phase]
+  if (phase === 'spec' || phase === 'common') {
+    console.error(`phase:${phase} moved to base-docs (R2).`)
+    console.error('  cd ../base-docs && pnpm spec:split … / pnpm docs:render …')
+    process.exit(1)
+  }
+  const steps = PHASES[phase]
   if (!steps) {
     console.error(`Unknown phase: ${phase ?? '(none)'}`)
     console.error(`Available phases: ${Object.keys(PHASES).join(', ')}`)
     process.exit(1)
-  }
-
-  if (phase === 'spec' && rest.length === 0) {
-    steps = [{ run: 'spec:split:all' }, { run: 'docs:render', forward: false }]
   }
 
   for (const step of steps) {

@@ -9,6 +9,6 @@ alwaysApply: false
 Skill: `.cursor/skills/wire/SKILL.md`
 
 - 4 tầng: models → services → composables → pages (`platform-base`)
-- Source requirement: `docs/features/yaml/.../{function}/ir/spec.yaml`
+- Source requirement: `base-docs Code / `--id``
 - Xóa import mock khỏi production path
 - Verify: typecheck + `npx playwright test` (scope feature)

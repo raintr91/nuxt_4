@@ -1,6 +1,6 @@
 # Portal Base (Next.js 15)
 
-Auth-first Next.js — shadcn dashboard, kiến trúc 4 tầng trong `src/`, harness AI cho feature mới.  
+Auth-first Next.js — shadcn dashboard, kiến trúc 4 tầng trong `src/`, harness AI (code lane).  
 Workspace còn `packages/models` (`@portal/models`).
 
 ## Quick start
@@ -10,32 +10,27 @@ pnpm install
 pnpm dev
 ```
 
-FE tại root (mặc định port 3000). API: `~/workspace/fast-api-base` `:4000`.
+FE tại root (mặc định port 3000).
 
 ## Commands
 
 | Command | Mô tả |
 |---------|--------|
 | `pnpm dev` | Next dev |
-| `pnpm build` | Next production build |
+| `pnpm build` | Production build |
 | `pnpm test:unit` | Vitest |
-| `pnpm test:e2e` | Playwright — đọc [E2E-TESTIDS](docs/operational/E2E-TESTIDS.md) trước |
-| `pnpm docs:dev` | VitePress (`pnpm docs:render` trước) |
-
-## Documentation
-
-- [Docs hub](docs/index.md)
-- [Architecture](docs/operational/ARCHITECTURE.md)
-- [Feature artifact flows](docs/operational/FEATURE-ARTIFACT-FLOWS.md)
-- [Common UI](docs/common-ui/index.md)
-- [Docker / WSL](docs/dev-environment/DOCKER-DEV-LIGHT.md) · [Cursor perf](docs/dev-environment/WSL-CURSOR-PERF.md)
+| `pnpm test:e2e` | Playwright |
+| `pnpm portal:gen --id <W-…\|CMP-…>` | FE codegen |
+| `pnpm testcase:gen --id <W-…\|TC-…>` | Gen Playwright từ tests hub |
 
 ## Repo này
 
-Auth-first skeleton: `/login`, `/` (protected dashboard), middleware cookie `auth_token`.
+Skeleton: `/login`, `/` (protected dashboard), middleware cookie `auth_token`.  
+API client: `src/lib/api-client.ts` → `NEXT_PUBLIC_API_URL/api/*`.
 
-API client (`apiFetch` trong `src/lib/api-client.ts`) gọi `NEXT_PUBLIC_API_URL/api/*`.
+Codegen / registries: `codegen/`, `registries/`, `unitgen/`, `testgen/`.
 
-## Team AI harness
+## AI harness (code lane)
 
-Commands và skills: [docs/operational/FEATURE-ARTIFACT-FLOWS.md](docs/operational/FEATURE-ARTIFACT-FLOWS.md) · [docs/operational/PROMPT-TEMPLATES.md](docs/operational/PROMPT-TEMPLATES.md). AI harness nằm trong `.cursor/` và `.kilo/`.
+Skills: `.cursor/skills/` · rules/extracts: `.cursor/`.  
+SSOT harness = `.cursor/` tại repo này.
