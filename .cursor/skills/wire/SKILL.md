@@ -1,59 +1,23 @@
 ---
 name: wire
-extractBundle: wire
-description: /wire — replace mocks with real API services.
+description: /wire — replace prototype mocks with real API wiring (FE Codegenkit lane).
 disable-model-invocation: true
 ---
 
-# /wire — Portal API Integration
+# /wire
 
-Doc hub: `base-docs/platform/toolchain/WIRE-PHASE-DIAGRAM.md` · `base-docs/platform/toolchain/FEATURE-ARTIFACT-FLOWS.md`
+**Owner:** Codegenkit (`--type=fe`)
 
-**Extracts:** `extractBundle: wire` → `.cursor/extracts/wire/integration.md`
+Use after `/prototype` when tags/handoff mark `#wire-only` or real API integration is required.
+Keep generation through Codegenkit adapters; do not invent sibling docs-hub layout.
 
-## Ngôn ngữ & Legacy Config
+## Accelerators (optional)
 
-- Viết docs, integration note và handoff bằng tiếng Việt.
-- Giữ nguyên contract key, route path, API field, model name và code identifier.
-- Nếu nhắc `legacy` / cross-repo: resolve **one** root per `legacy/project-config.md` (progressive). **Không** dump full map. Hub: `base-docs/platform/toolchain/PROJECT-MAPS.md`.
+```text
+if ArtifactGraph available: tags/parity slice for wire readiness
+else: model review from scoped HANDOFF + registry evidence
+```
 
-## Load policy
-
-| Load | Do not load |
-|------|-------------|
-| Hub `…/code/{W-…}/ir/spec.yaml` (`--id`) — `api.endpoints`, contract | Legacy archaeology |
-| Cùng folder `*.bundle.yaml` — tags, lifecycle | `ir/legacy.yaml` unless `#legacy-recheck` |
-| `base-tests/cases/**/TC-*.yaml` — E2E expectations (read) | Full module trace |
-| Backend contract / staging (`/api` handoff) | |
-
-## Inputs
-
-- `pnpm` / MCP resolve `--id W-…` trên **base-docs** Code — contract + lifecycle tags
-- `base-tests` plans cho scoped E2E sau wire
-- Prototype code (mock boundary to remove)
-
-## Order
-
-1. Align `models/` schemas/types with real API.
-2. Add/update `services/*` using `$apiFetch`.
-3. Update composables to call services.
-4. Update validations when form API errors require it.
-5. Bind pages/components to composables.
-6. Remove production mock imports.
-7. Clear **all** `#update:*` tags; set `lastSynced.wire = specRevision`; `featureStatus: wire`; `wireCount += 1`.
-8. If bundle edited → run on **base-docs**: `pnpm spec:split` + `pnpm spec:split:check`.
-9. Run scoped E2E; `pnpm portal:lifecycle set {route.path} wire`.
-
-## Rules
-
-- Preserve Portal 4-layer architecture.
-- Do not rename contract fields just for FE convenience.
-- Keep mocks only for tests or local fallback when explicitly needed.
-- Do not edit backend unless the task explicitly includes the backend project.
-
-## Done
-
-- Real create/list/update/delete flow works for the scoped entity.
-- Mock production path is removed.
-- `#update:*` cleared; lifecycle fields updated.
-- Lint/typecheck/scoped E2E status is reported.
+Missing ArtifactGraph never blocks wiring. Complete the scoped model fallback
+first, then follow `.cursor/rules/codegenkit-optional-integrations.mdc` for
+once-per-run telemetry with observed metrics only.

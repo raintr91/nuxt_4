@@ -1,6 +1,6 @@
 ---
-description: Split pages/components — avoid all-in-one; use DataListPage
-globs: pages/**/*,components/**/*
+description: Split Next route and client components; avoid all-in-one pages
+globs: "{src/app,src/components}/**/*.{ts,tsx}"
 alwaysApply: false
 ---
 
@@ -10,20 +10,21 @@ No all-in-one page (header+filter+table+form+dialog in one file).
 
 | Signal | Action |
 |--------|--------|
-| Page > ~150 lines | Extract organism/molecule |
+| Route page > ~150 lines | Extract route section / client component |
 | Repeated block ≥2 | Shared component |
-| List+search+table | Prefer `DataListPage` — slots for custom cells |
-| Dialog flow | `Mo*Dialog` + composable |
+| List+search+table | Extract a product list shell with typed composition |
+| Dialog flow | Client dialog component + hook |
 
 ```
-pages/ → orchestration only
-organisms/ → large sections
-molecules/Mo* → field groups, filters
-ui/ → shadcn primitives, no business logic
+src/app/**/page.tsx → route composition and server boundary
+src/components/<feature>/ → client sections and field groups
+src/hooks/ → stateful client behavior
+src/components/ui/ → shadcn primitives, no business logic
 ```
 
-Dynamic routes: `pages/{m}/[id]/index.vue` (detail), `.../edit.vue` — not `[id].vue` alone.
+Dynamic routes use App Router segments: `src/app/{module}/[id]/page.tsx`;
+editing uses an explicit child route or mode defined by the product.
 
-No `$apiFetch` in child components · no duplicate list shell when `DataListPage` fits.
+No direct HTTP calls in child components and no duplicated product list shell.
 
 With size limits: `platform-code-size.mdc`

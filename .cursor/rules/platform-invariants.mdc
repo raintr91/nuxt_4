@@ -1,26 +1,27 @@
 ---
-description: Nuxt 4 layers, UI tiers, testId — FE code lane only
-globs: pages/**/*,components/**/*,composables/**/*,services/**/*,stores/**/*,models/**/*,validations/**/*,layouts/**/*
+description: Next.js App Router layers, UI tiers, testId — FE code lane only
+globs: src/app/**/*,src/components/**/*,src/hooks/**/*,src/services/**/*,src/stores/**/*,src/models/**/*,src/validations/**/*
 alwaysApply: false
 ---
 
 # Platform Invariants (FE)
 
-Nuxt 4 auth-first. Hub: `base-docs/platform/toolchain/ARCHITECTURE.md` · skill `/platform-base`.
+Next.js App Router, auth-first. External docs are read only through the
+configured docs hub; never assume a sibling checkout.
 
 ## Layers
 
-`pages/components` → `composables` → `services` + `stores` → `models` + `validations` → `$apiFetch`
+`src/app` / `src/components` → `src/hooks` → `src/services` + `src/stores` → `src/models` + `src/validations` → HTTP client
 
-- No `$apiFetch` in page/component · no reverse import from `models/`
-- Form: `useApiForm` + `validations/` + `models/` · `platform-contract-naming.mdc`
-- Feature order: models → service → store? → composable → validations? → page + testId
+- No direct HTTP calls in route/component · no reverse import from `models/`
+- Form: React Hook Form + schema in `validations/` + models · `platform-contract-naming.mdc`
+- Feature order: models → service → store? → hook → validation? → route/component + testId
 - **Gen first** (`portal:gen`); AI chỉ gap chưa có template/registry.
 
 ## UI · size · E2E · imports
 
-- Tiers: `ui/` → `molecules/Mo*` → `organisms/Data*|OrGlobal*` · `layouts/dashboard.vue`
+- Tiers: `src/components/ui` → product components → route sections → `src/app/**/page.tsx`
 - Registry: `registries/design.registry.json` · `platform-design-vocabulary.mdc`
 - ~200 lines/file · `platform-code-size.mdc`
-- testId / E2E: `platform-base-ui-testid.mdc`, `platform-base-e2e.mdc` (glob test)
-- Imports: `@/` `~/` `#` — `platform-import-alias.mdc`
+- Test IDs are stable product contracts consumed by Testkit E2E.
+- Imports: configured `@/*` aliases — `platform-import-alias.mdc`

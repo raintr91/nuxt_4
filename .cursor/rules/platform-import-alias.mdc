@@ -1,11 +1,11 @@
 ---
 description: Absolute import aliases for hand-written platform app code
-globs: "{pages,layouts,composables,services,stores,models,validations,components/molecules,components/organisms}/**/*.{vue,ts}"
+globs: "{src/app,src/components,src/hooks,src/services,src/stores,src/models,src/validations}/**/*.{ts,tsx}"
 alwaysApply: false
 ---
 
 # Import Alias
 
-- Local imports: `@/`, `~/`, `#...`, or package aliases such as `#scripts/*`.
-- Do not apply to `components/ui/`, `.nuxt/`, `stories/auto/`, or shadcn-generated files.
+- Local imports use aliases declared by `tsconfig.json` (normally `@/*`).
+- Do not apply to `.next/` or generated shadcn files.
 - No new relative imports `../foo` or `./foo` in hand-written app code.
