@@ -1,0 +1,30 @@
+{
+  "version": 2,
+  "stack": "nextjs",
+  "mode": "brownfield",
+  "projectId": "nextjs",
+  "commands": {
+    "genDry": ["pnpm", "portal:gen:dry", "--id", "{spec}"],
+    "gen": ["pnpm", "portal:gen", "--id", "{spec}"],
+    "unitGenDry": ["pnpm", "portal:unit-gen:dry", "--spec", "{spec}"],
+    "unitGen": ["pnpm", "portal:unit-gen", "--spec", "{spec}"],
+    "testcaseGenDry": ["pnpm", "testcase:gen:dry", "--id", "{spec}"],
+    "testcaseGen": ["pnpm", "testcase:gen", "--id", "{spec}"],
+    "registryValidate": ["pnpm", "portal:registry"],
+    "unitRegistry": ["pnpm", "portal:unit-registry"],
+    "e2eRegistry": ["pnpm", "portal:e2e-registry"],
+    "contractRegistry": ["pnpm", "contract:registry"]
+  },
+  "registries": [
+    "registries/design.registry.json",
+    "registries/unit-test.registry.json",
+    "registries/e2e-test.registry.json",
+    "registries/contract-field.registry.json"
+  ],
+  "gapSources": [
+    "**/generated/HANDOFF.md",
+    "**/generated/UNIT-HANDOFF.md",
+    "**/generated/codegen.manifest.json"
+  ],
+  "specRoots": []
+}
