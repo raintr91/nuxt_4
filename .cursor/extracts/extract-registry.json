@@ -13,7 +13,6 @@
       ".cursor/extracts/legacy/legacy-api-migration.md",
       ".cursor/extracts/legacy/evidence.md",
       ".cursor/extracts/legacy/parity.md",
-      ".cursor/extracts/artifactgraph-phase-hooks.md",
       ".cursor/extracts/spec/split.md",
       ".cursor/extracts/legacy-trace.md"
     ],
@@ -38,7 +37,6 @@
       ".cursor/extracts/codegen/readiness.md",
       ".cursor/extracts/codegen/tags.md",
       ".cursor/extracts/platform-mark-detect.md",
-      ".cursor/extracts/artifactgraph-phase-hooks.md",
       ".cursor/extracts/legacy/legacy-api-migration.md",
       ".cursor/extracts/grill-tech-debt.md",
       ".cursor/extracts/spec-update-tags.md",
@@ -141,7 +139,6 @@
     ],
     "artifactgraph": [
       ".cursor/extracts/core/agent-discipline.md",
-      ".cursor/extracts/artifactgraph-phase-hooks.md",
       ".cursor/extracts/legacy/parity.md",
       ".cursor/extracts/artifact-graph.md"
     ]

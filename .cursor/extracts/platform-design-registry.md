@@ -1,6 +1,6 @@
 # Portal Design Registry
 
-> **Hub:** [`docs/operational/PORTAL-CODEGEN.md`](../../docs/operational/PORTAL-CODEGEN.md) (`portal:gen` UI registry)
+> **Hub:** [`base-docs/platform/toolchain/PORTAL-CODEGEN.md`](../../base-docs/platform/toolchain/PORTAL-CODEGEN.md) (`portal:gen` UI registry)
 
 **File:** `registries/design.registry.json`  
 **Commands:** `pnpm portal:registry` · `pnpm portal:gen:dry`
@@ -85,6 +85,6 @@ Registry `fuzzyGroups`: ví dụ `drawer` vs `Sheet` vs `Drawer` — grill hiệ
 
 Sau khi implement `Mo*` từ **spec `tags:`** — không từ HANDOFF gen. Gen chỉ ghi slot thiếu (*Prototype next*).
 
-Chi tiết: [DESIGN-REGISTRY-PROMOTION.md](../../docs/operational/DESIGN-REGISTRY-PROMOTION.md)
+Chi tiết: [DESIGN-REGISTRY-PROMOTION.md](../../base-docs/platform/toolchain/DESIGN-REGISTRY-PROMOTION.md)
 
 Rule: `.cursor/rules/platform-design-vocabulary.mdc`

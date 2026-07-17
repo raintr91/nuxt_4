@@ -6,8 +6,8 @@ alwaysApply: false
 
 # /unit · /grill-unit — Dev lane
 
-Diagram: `docs/operational/UNIT-PHASE-DIAGRAM.md` — **không** nằm FULL-CYCLE / TEST-PHASE.  
-Hub: `docs/operational/PORTAL-CODEGEN.md`  
+Diagram: `base-docs/platform/toolchain/UNIT-PHASE-DIAGRAM.md` — **không** nằm FULL-CYCLE / TEST-PHASE.  
+Hub: `base-docs/platform/toolchain/PORTAL-CODEGEN.md`  
 Skills: `.cursor/skills/unit/SKILL.md` · `.cursor/skills/grill-unit/SKILL.md`  
 Extract: `.cursor/extracts/portal-unit-workflow.md`, `portal-unit-test-tags.md`, `verify-gate.md`
 

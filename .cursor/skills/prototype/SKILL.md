@@ -1,48 +1,68 @@
 ---
 name: prototype
 extractBundle: prototype
-description: /prototype — UI from ir/spec with mock API.
+description: /prototype — UI from hub ir/spec with mock API.
 disable-model-invocation: true
 ---
 
 # /prototype — UI Prototype (Mock API Boundary)
 
-Doc hub: `docs/operational/PORTAL-CODEGEN.md`
+Hub guide: `base-docs/platform/toolchain/PORTAL-CODEGEN.md` · layout: `FEATURE-ARTIFACT-LAYOUT.md` · [HUBS](base-docs/platform/toolchain/HUBS.md)
 
 **Extracts:** `extractBundle: prototype` → `.cursor/extracts/extract-registry.json`
 
 ## Artifact (only)
 
-**Load:** `docs/features/yaml/.../{function}/ir/spec.yaml` — portal-gen input.
+**Load:** hub Code `ir/spec.yaml` via **`--id`** (vd. `W-AD-AUTH-001`) — input `portal:gen`.
 
-**Do not load:** bundle, `ir/legacy.yaml`, `ir/design.yaml`, trace, legacy source.
+```text
+base-docs/product/components/{CMP-…}/code/{W-…}/ir/spec.yaml
+base-docs/product/common/…/code/…/ir/spec.yaml   # shared
+```
 
-Prerequisite: `grillStatus.dev: done`; gen dry passed (`artifactgraph_gen` `genDry` hoặc `pnpm portal:gen:dry`).
+**Do not load:** bundle, `ir/legacy.yaml`, `ir/design.yaml`, trace, legacy source, handbook MD.
 
-## Artifactgraph (local-first)
+Prerequisite: docs-lane grill xong (`grillStatus.dev: done` trên hub); dry-run OK:
 
-1. `artifactgraph_analyze` với `specPath` = `ir/spec.yaml` — xem gaps / draft.
-2. **`artifactgraph_gen` `gen`** (hoặc `pnpm portal:gen`) — allowlist; không bịa argv.
-3. HANDOFF `#needs-component` / `#needs-ui`:
-   - Mo* **đã có** registry → wire local only
-   - **Chưa có** → cloud chỉ `cloudPromptSlice` (slot + props + 1–2 Mo* tham chiếu) — không gửi cả page/registry
-4. Sau Mo* mới ổn → **promote registry trong product repo** + `rebuild` + `artifactgraph_remember`
+```bash
+pnpm portal:gen:dry --id W-AD-AUTH-001
+# or Artifactgraph MCP genDry
+```
+
+## Artifactgraph MCP (local-first)
+
+1. `analyze` với `specPath` = hub `ir/spec.yaml` (hoặc path resolve dưới `specRoots`) — gaps / draftTags.
+2. **`gen`** / `pnpm portal:gen --id …` — allowlist; **không** bịa argv; **không** `--spec docs/features/…`.
+3. HANDOFF `#needs-component` / `#needs-ui` tại:
+
+```text
+base-docs/product/…/code/{W-…}/generated/HANDOFF.md
+```
+
+   - Mo* **đã có** `registries/design.registry.json` → wire local only
+   - **Chưa có** → cloud chỉ `cloudPromptSlice` — không dump registry/page
+4. Mo* mới ổn → **promote** design/common registry trên **FE repo** + MCP `rebuild` + `remember`
 
 ## Workflow
 
-1. Scan `tags` + `ui.columns` (`render: custom`) → implement missing `Mo*` only (per slice above).
-2. Gen scaffold: MCP `gen` hoặc **`pnpm portal:gen --spec docs/features/yaml/.../ir/spec.yaml`** (`--force` if rerun).
-   - HANDOFF: `{function}/generated/HANDOFF.md` (cạnh bundle, không trong `ir/`)
-3. Auth bypass on prototype routes; fix gaps in HANDOFF.
+1. Scan `tags` + `ui.columns` (`render: custom`) → implement missing `Mo*` only.
+2. Scaffold:
+
+```bash
+pnpm portal:gen --id W-AD-AUTH-001
+pnpm portal:gen --id W-AD-AUTH-001 --force   # rerun
+```
+
+3. Auth bypass trên route prototype; vá gap trong HANDOFF.
 4. `#wire-only` → defer `/wire`; scoped lint/typecheck.
 
-Gen tự chạy `pnpm docs:render` (local script).
+Docs render / `spec:split` chạy trên **base-docs** — không từ code repo.
 
 ## Spec edits
 
-- **Không** sửa business contract trong bundle/ir during prototype.
-- Registry promote → `docs/operational/DESIGN-REGISTRY-PROMOTION.md` **after** prototype + reuse.
+- **Không** sửa business contract trong bundle/ir khi prototype.
+- Promote: `base-docs/platform/toolchain/DESIGN-REGISTRY-PROMOTION.md` **sau** prototype + reuse.
 
 ## Handoff
 
-`data-testid` per E2E-TESTIDS · `/grill-prototype` · `/test` · `/wire`
+`data-testid` per `base-docs/platform/toolchain/E2E-TESTIDS.md` · `/grill-prototype` · `/test` · `/wire`

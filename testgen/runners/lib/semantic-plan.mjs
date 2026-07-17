@@ -64,9 +64,18 @@ export async function resolveSemanticPlan(root, testcase) {
 
   const layoutOptions = semantic.layoutOptions ?? {}
   const skipOverlap = layoutOptions.skipOverlap === true
+  const a11y = testcase.a11y && typeof testcase.a11y === 'object' ? testcase.a11y : null
 
-  if (matchers.length && !rootTestId) {
-    warnings.push('semantic matchers require assertions.semantic.ready.rootTestId (or semantic.rootTestId)')
+  const matchersNeedingRoot = new Set([
+    'toHaveNoTextOverflow',
+    'toHaveNoElementOverlap',
+    'toHaveValidTableLayout',
+    'toMatchShadcnTableToken',
+  ])
+  if (matchers.some((name) => matchersNeedingRoot.has(name)) && !rootTestId) {
+    warnings.push(
+      'layout/table semantic matchers require assertions.semantic.ready.rootTestId (or semantic.rootTestId)',
+    )
   }
 
   if (matchers.includes('toHaveValidTableLayout') && !tableTestId) {
@@ -79,7 +88,7 @@ export async function resolveSemanticPlan(root, testcase) {
   const useSemanticFixture = matchers.length > 0
 
   const codegenLines = matchers
-    .map((name) => codegenMatcher(name, { rootTestId, tableTestId, skipOverlap }))
+    .map((name) => codegenMatcher(name, { rootTestId, tableTestId, skipOverlap, a11y }))
     .filter(Boolean)
 
   return {
@@ -89,6 +98,7 @@ export async function resolveSemanticPlan(root, testcase) {
     semanticCodegenLines: codegenLines,
     semanticMatchers: matchers,
     rootTestId,
+    a11y,
     warnings
   }
 }
@@ -98,13 +108,14 @@ export async function resolveSemanticPlan(root, testcase) {
  * @param {{
  *   rootTestId: string | null,
  *   tableTestId: string | null,
- *   skipOverlap: boolean
+ *   skipOverlap: boolean,
+ *   a11y?: Record<string, unknown> | null
  * }} ctx
  */
 function codegenMatcher(matcher, ctx) {
-  const { rootTestId, tableTestId, skipOverlap } = ctx
+  const { rootTestId, tableTestId, skipOverlap, a11y } = ctx
+  const a11yOptsLiteral = formatA11yOpts(a11y, rootTestId)
   const include = rootTestId ? `[data-testid="${rootTestId}"]` : undefined
-  const a11yOpts = include ? `{ include: '${include}' }` : '{}'
   const rootLoc = rootTestId ? `page.getByTestId('${rootTestId}')` : 'page.locator("body")'
   const scrollOpts = include ? `{ rootSelector: '${include}' }` : '{}'
   const overflowOpts = `{ allowTruncate: true }`
@@ -125,21 +136,43 @@ function codegenMatcher(matcher, ctx) {
       if (!tableTestId) return null
       return `await expect(page.getByTestId('${tableTestId}')).toHaveValidTableLayout()`
     case 'toHaveNoA11yViolations':
-      return `await expect(page).toHaveNoA11yViolations(${a11yOpts})`
+      return `await expect(page).toHaveNoA11yViolations(${a11yOptsLiteral})`
     case 'toHaveValidAccessibleNames':
-      return `await expect(page).toHaveValidAccessibleNames(${a11yOpts})`
+      return `await expect(page).toHaveValidAccessibleNames(${a11yOptsLiteral})`
     case 'toHaveValidAria':
-      return `await expect(page).toHaveValidAria(${a11yOpts})`
+      return `await expect(page).toHaveValidAria(${a11yOptsLiteral})`
     case 'toHaveAccessibleMedia':
-      return `await expect(page).toHaveAccessibleMedia(${a11yOpts})`
+      return `await expect(page).toHaveAccessibleMedia(${a11yOptsLiteral})`
     case 'toHaveReadableContrast':
-      return `await expect(page).toHaveReadableContrast(${a11yOpts})`
+      return `await expect(page).toHaveReadableContrast(${a11yOptsLiteral})`
     case 'toHaveValidDocumentSemantics':
-      return `await expect(page).toHaveValidDocumentSemantics(${a11yOpts})`
+      return `await expect(page).toHaveValidDocumentSemantics(${a11yOptsLiteral})`
     case 'toMatchShadcnTableToken':
       if (!tableTestId) return null
       return `await expect(page.getByTestId('${tableTestId}')).toMatchShadcnTableToken()`
     default:
       return null
   }
+}
+
+/**
+ * Build Playwright expect a11y options from hub `a11y:` block.
+ * @param {Record<string, unknown> | null | undefined} a11y
+ * @param {string | null} rootTestId
+ */
+function formatA11yOpts(a11y, rootTestId) {
+  /** @type {Record<string, unknown>} */
+  const opts = {}
+  if (a11y?.include?.length) {
+    opts.include = Array.isArray(a11y.include) ? a11y.include[0] : a11y.include
+  } else if (rootTestId) {
+    opts.include = `[data-testid="${rootTestId}"]`
+  }
+  if (Array.isArray(a11y?.exclude) && a11y.exclude.length) opts.exclude = a11y.exclude
+  if (Array.isArray(a11y?.tags) && a11y.tags.length) opts.tags = a11y.tags
+  if (Array.isArray(a11y?.disableRules) && a11y.disableRules.length) {
+    opts.disableRules = a11y.disableRules
+  }
+  if (!Object.keys(opts).length) return '{}'
+  return JSON.stringify(opts)
 }

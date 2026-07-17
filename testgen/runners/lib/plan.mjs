@@ -54,7 +54,7 @@ export function buildTestcaseContext(testcase, spec, testcaseFile) {
     })
   const networkAssertions = testcase.assertions?.network ?? []
   const semanticReady = testcase.assertions?.semantic?.ready ?? null
-  const data = testcase.data ?? {}
+  const data = testcase.data ?? testcase.testData ?? {}
   const hasNewTabAction = uiActions.some((item) => item.action === 'newTabOpened')
 
   const specRequired = spec?.ui?.testIds?.required ?? []
@@ -65,6 +65,8 @@ export function buildTestcaseContext(testcase, spec, testcaseFile) {
   return {
     testcaseId: testcase.id,
     testcaseTitle: testcase.title ?? testcase.id,
+    coverage: testcase.coverage ?? testcase._coverage ?? [],
+    a11y: testcase.a11y ?? null,
     module,
     pageClassName,
     routePath,

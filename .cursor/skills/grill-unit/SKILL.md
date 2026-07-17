@@ -7,7 +7,7 @@ disable-model-invocation: true
 
 # /grill-unit — Unit coverage audit (dev lane)
 
-Diagram: `docs/operational/UNIT-PHASE-DIAGRAM.md` (2 diagrams: unit lane + `#needs-unit-test` lifecycle)  
+Diagram: `base-docs/platform/toolchain/UNIT-PHASE-DIAGRAM.md` (2 diagrams: unit lane + `#needs-unit-test` lifecycle)  
 After: `.cursor/skills/unit/SKILL.md` done (vitest scoped green, `needsUnit` clear)
 
 **Extracts:** `extractBundle: grill-unit` → `.cursor/extracts/extract-registry.json`

@@ -1,12 +1,12 @@
 # CRUD inherit (3 tiers)
 
 1. **Global** — `registries/design.registry.json` `#pattern: CRUD`
-2. **Archetype** — `docs/features/yaml/_patterns/admin-crud.pattern.yaml`
+2. **Archetype** — `base-docs Code / `--id``
 3. **Entity delta** — `bundle.design.inherits: admin-crud` + fields/api/ui delta only
 
 ## Pattern refs (tier 2)
 
-Common specs path: `docs/features/yaml/common/{pattern}/common-*.bundle.yaml`
+Common specs path: `base-docs Code / `--id``
 
 Load pattern + registry — **do not** copy full hotel bundle for entity #2.
 
@@ -18,7 +18,7 @@ Load pattern + registry — **do not** copy full hotel bundle for entity #2.
 - [ ] Shell/pattern from pattern + registry (`#shell: DataListPage`, `#pattern: CRUD`)
 - [ ] Trace: slice delta or member input — no full legacy re-read
 
-Example stub: `docs/templates/entity-delta.example.yaml`
+Example stub: `base-docs/templates/entity-delta.example.yaml`
 
 ## Token budget (kỳ vọng)
 

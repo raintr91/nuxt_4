@@ -3,7 +3,7 @@
 Project maps live at **repo root** (shared with Cursor):
 
 - `platform-repos.json` · `platform-repos.example.json`
-- `legacy-repos.json` · `legacy-repos.example.json`
-- Local: `platform-repos.local.json` · `legacy-repos.local.json` (gitignored)
+- Optional brownfield: `legacy-repos.json` · `legacy-repos.local.json` (gitignored)
+- Local override: `platform-repos.local.json` (gitignored)
 
-See [docs/operational/PROJECT-MAPS.md](../../docs/operational/PROJECT-MAPS.md).
+Harness SSOT: `.cursor/`. Optional `.kilo/` mirror is local/export tooling — không script sync trên code bases.

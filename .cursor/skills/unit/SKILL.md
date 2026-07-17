@@ -7,30 +7,26 @@ disable-model-invocation: true
 
 # /unit — Portal Vitest (dev lane)
 
-Diagram: `docs/operational/UNIT-PHASE-DIAGRAM.md`  
-Hub: `docs/operational/PORTAL-CODEGEN.md`
+Diagram: `base-docs/platform/toolchain/UNIT-PHASE-DIAGRAM.md`  
+Hub: `base-docs/platform/toolchain/PORTAL-CODEGEN.md`
 
-**Extracts:** `extractBundle: unit` → `.cursor/extracts/portal-unit-workflow.md`
+**Extracts:** `extractBundle: unit`
 
 ## Load policy
 
 | Load | Do not load |
 |------|-------------|
-| `{function}/generated/unit.manifest.json` | `legacy/*`, E2E testcase YAML |
-| `{function}/generated/UNIT-HANDOFF.md` | Full `tests/unit/` inventory |
-| `{function}/ir/spec.yaml` — codegen, reqIds filter | `codegen/readiness` full doc |
-| Source files listed in manifest gap | `pages/`, `components/` |
+| `base-docs/…/code/{W-…}/generated/unit.manifest.json` | E2E plan YAML (`base-tests`) |
+| `…/generated/UNIT-HANDOFF.md` | Full `tests/unit/` inventory |
+| Hub `ir/spec.yaml` — codegen, reqIds | Full design registry dump |
 
 ## Workflow
 
-0. **Artifactgraph:** `analyze` / `gaps` on `ir/spec.yaml`; `artifactgraph_gen` `unitGen` hoặc `unitGenDry` khi MCP wired (else step 1).
-1. `pnpm portal:unit-gen --spec docs/features/yaml/.../ir/spec.yaml` (fallback).
+0. MCP `analyze` / `gaps` on hub `ir/spec.yaml`; `unitGen` / `unitGenDry` khi wired.
+1. `pnpm portal:unit-gen --id W-AD-AUTH-001` (cần `portal:gen --id` trước — manifest trên hub Code).
 2. Clear `needsUnit[]` per manifest.
 3. `pnpm exec vitest run <paths from manifest.written>`
-4. Pattern mới ổn → promote `registries/unit-test.registry.json` + `remember`.
-
-**Do not read:** legacy-api-migration, design registry full scan.
-**Cloud:** chỉ khi pattern không có trong unit registry — dùng `cloudPromptSlice`, không dump registry.
+4. Pattern mới → promote `registries/unit-test.registry.json` + MCP `remember`.
 
 ## Handoff
 

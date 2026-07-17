@@ -1,55 +1,35 @@
 # Portal unit test tags
 
-> **Doc chính:** [`docs/operational/PORTAL-CODEGEN.md`](../../docs/operational/PORTAL-CODEGEN.md) — tổng hợp `portal:gen` + `portal:unit-gen`.  
-> **Diagram:** [`docs/operational/UNIT-PHASE-DIAGRAM.md`](../../docs/operational/UNIT-PHASE-DIAGRAM.md) — unit lane + `#needs-unit-test` lifecycle (2 diagram).
+> **Doc chính:** `base-docs/platform/toolchain/PORTAL-CODEGEN.md` — `portal:gen` + `portal:unit-gen`.  
+> **Diagram:** `base-docs/platform/toolchain/UNIT-PHASE-DIAGRAM.md`
 
-Source: `pnpm portal:unit-gen --spec docs/features/.../*.spec.yaml`  
-Registry: `registries/unit-test.registry.json` — validate `pnpm portal:unit-registry`  
-Manifest: `docs/features/{slug}/generated/unit.manifest.json`
+Source: `pnpm portal:unit-gen --id W-…` (IR trên **base-docs** Code)  
+Registry: `registries/unit-test.registry.json` — `pnpm portal:unit-registry`  
+Manifest / HANDOFF: `base-docs/…/code/{W-…}/generated/`
 
-**Separate** from UI `portal-design.registry.json` and from `codegen.manifest.json`.
+**Separate** from design registry and from `codegen.manifest.json`.
 
 ## Who adds what
 
-| Phase | Adds to spec |
-|-------|----------------|
-| `/grill-with-docs` | List profile default: `#gen:test-schema`, `#gen:test-service` (khi chưa có tag unit). Create: `#gen:test-validation` |
-| `portal:unit-gen` | `unit.manifest.json`, `UNIT-HANDOFF.md`, `#needs-unit-test:*` for planned patterns |
-| `/unit` | Implement gaps; promote registry — `UNIT-REGISTRY-PROMOTION.md` |
-
-## Dev lane (`/unit` → `/grill-unit`)
-
-Chi tiết diagram: [UNIT-PHASE-DIAGRAM](../../docs/operational/UNIT-PHASE-DIAGRAM.md) · extract: `portal-unit-workflow.md`
-
-| Lệnh | Việc |
-|------|------|
-| `/unit` | `needsUnit`, `portal:unit-gen`, tách file thiếu, vitest green |
-| `/grill-unit` | Coverage scoped + `reqIds` — sau `/unit` |
-
-## Hashtags (`tags:`)
-
-| Tag | Generator behavior |
-|-----|-------------------|
-| `#gen:test-schema` | Force `tests/unit/models/{entity}/{entity}.schema.test.ts` |
-| `#gen:test-service` | Force `tests/unit/services/{entity}.service.test.ts` (list) |
-| `#skip-unit-test: models` | Skip schema unit test |
-| `#skip-unit-test: schema` | Same as models layer |
-| `#needs-unit-test: {layer}:{target}` | Not auto-gen yet — see UNIT-HANDOFF |
-| `#test-mock:api-fetch` | Service tests use `tests/unit/_helpers/mockApiFetch.ts` (PR2+) |
+| Phase | Adds |
+|-------|------|
+| Docs grill | Optional `#gen:test-*` on hub IR |
+| `portal:unit-gen` | `unit.manifest.json`, `UNIT-HANDOFF.md`, `#needs-unit-test:*` |
+| `/unit` | Implement gaps; promote registry |
 
 ## Commands
 
 ```bash
 pnpm portal:unit-registry
-pnpm portal:unit-gen:dry --spec docs/features/chain/hotel/chain-hotel-list.spec.yaml
-pnpm portal:unit-gen --spec docs/features/chain/hotel/chain-hotel-list.spec.yaml
-pnpm portal:unit-gen --spec ... --write-spec-tags   # opt-in: merge #needs-unit-test:* into spec tags
-pnpm exec vitest run tests/unit/models/chain-hotel/chain-hotel.schema.test.ts
+pnpm portal:unit-gen:dry --id W-AD-AUTH-001
+pnpm portal:unit-gen --id W-AD-AUTH-001
+pnpm portal:unit-gen --id W-AD-AUTH-001 --write-spec-tags
+pnpm exec vitest run tests/unit/...
 ```
 
 ## After generate
 
-1. Read `{feature-dir}/generated/UNIT-HANDOFF.md`
+1. Read `…/generated/UNIT-HANDOFF.md` on hub Code
 2. Run scoped vitest
-3. `/unit` only for `needsUnit[]` in manifest
-4. Promote pattern in registry — `docs/operational/UNIT-REGISTRY-PROMOTION.md`
+3. `/unit` only for `needsUnit[]`
+4. Promote — `base-docs/platform/toolchain/UNIT-REGISTRY-PROMOTION.md`

@@ -40,4 +40,4 @@ Before gate, for each feature:
 
 Handoff → `/prototype` only after dry passes.
 
-Templates: `docs/templates/design-spec.yaml` (v1) · `spec.yaml` (post-grill)
+Templates: `base-docs/templates/design-spec.yaml` (v1) · `spec.yaml` (post-grill)

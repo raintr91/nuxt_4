@@ -13,11 +13,12 @@ import {
   writeUnitMeta
 } from './lib/write-files.mjs'
 import { writeSpecTags } from './lib/write-spec-tags.mjs'
+import { resolveHubId } from '../../codegen/runners/lib/resolve-hub-id.mjs'
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..')
 
 function parseArgs(argv) {
-  const options = { dryRun: false, force: false, spec: null, phase: 'prototype', writeSpecTags: false }
+  const options = { dryRun: false, force: false, spec: null, id: null, phase: 'prototype', writeSpecTags: false }
 
   for (let i = 0; i < argv.length; i++) {
     const arg = argv[i]
@@ -26,12 +27,14 @@ function parseArgs(argv) {
     else if (arg === '--write-spec-tags') options.writeSpecTags = true
     else if (arg === '--phase') options.phase = argv[++i] ?? 'prototype'
     else if (arg === '--spec') options.spec = argv[++i]
-    else if (!arg.startsWith('-') && !options.spec) options.spec = arg
+    else if (arg === '--id') options.id = argv[++i]
+    else if (!arg.startsWith('-') && !options.spec && !options.id) options.spec = arg
   }
 
-  if (!options.spec) {
+  if (!options.spec && !options.id) {
     throw new Error(
-      'Usage: pnpm portal:unit-gen --spec docs/features/.../ir/spec.yaml [--dry-run] [--force] [--phase prototype|wire] [--write-spec-tags]'
+      'Usage: pnpm portal:unit-gen --id W-AD-AUTH-001 [--dry-run] [--force] [--phase prototype|wire]\n' +
+        '       pnpm portal:unit-gen --spec <path-to-ir/spec.yaml> …',
     )
   }
 
@@ -50,6 +53,15 @@ function dedupeNeedsUnit(items) {
 
 async function main() {
   const options = parseArgs(process.argv.slice(2))
+  if (options.id) {
+    const resolved = resolveHubId(root, options.id, 'codegen')
+    for (const n of resolved.notes) console.warn(`  note: ${n}`)
+    if (!resolved.paths.length) {
+      throw new Error(`--id ${options.id}: no ir/spec.yaml under base-docs Code`)
+    }
+    options.spec = resolved.paths[0]
+    console.log(`portal-unit-gen: --id ${options.id} → ${options.spec}`)
+  }
   const { registry } = await loadUnitTestRegistry(root)
   const { spec, specFile, featureDir } = await readSpecFile(options.spec)
   const { manifest: codegenManifest } = await readCodegenManifest(featureDir)
