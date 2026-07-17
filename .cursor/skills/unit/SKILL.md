@@ -1,33 +1,28 @@
 ---
 name: unit
-extractBundle: unit
-description: /unit — Vitest unit tests via portal:unit-gen.
+description: /unit — unit test generation from codegen manifests via Codegenkit.
 disable-model-invocation: true
 ---
 
-# /unit — Portal Vitest (dev lane)
+# /unit
 
-Diagram: `base-docs/platform/toolchain/UNIT-PHASE-DIAGRAM.md`  
-Hub: `base-docs/platform/toolchain/PORTAL-CODEGEN.md`
+**Owner:** Codegenkit (`--type=fe`)
 
-**Extracts:** `extractBundle: unit`
+```bash
+codegenkit unit-gen:dry --adapter=nuxt4 --docs-root=/path/to/docs-hub -- --id W-AD-AUTH-001
+codegenkit unit-gen --adapter=nuxt4 --docs-root=/path/to/docs-hub -- --id W-AD-AUTH-001
+codegenkit unit-registry --adapter=nuxt4
+```
 
-## Load policy
+Requires a prior codegen manifest under the docs-hub Code `generated/` folder.
 
-| Load | Do not load |
-|------|-------------|
-| `base-docs/…/code/{W-…}/generated/unit.manifest.json` | E2E plan YAML (`base-tests`) |
-| `…/generated/UNIT-HANDOFF.md` | Full `tests/unit/` inventory |
-| Hub `ir/spec.yaml` — codegen, reqIds | Full design registry dump |
+## Accelerators (optional)
 
-## Workflow
+```text
+if ArtifactGraph available: recommend/check unit-gen allowlist
+else: run codegenkit unit-gen directly
+```
 
-0. MCP `analyze` / `gaps` on hub `ir/spec.yaml`; `unitGen` / `unitGenDry` khi wired.
-1. `pnpm portal:unit-gen --id W-AD-AUTH-001` (cần `portal:gen --id` trước — manifest trên hub Code).
-2. Clear `needsUnit[]` per manifest.
-3. `pnpm exec vitest run <paths from manifest.written>`
-4. Pattern mới → promote `registries/unit-test.registry.json` + MCP `remember`.
-
-## Handoff
-
-→ `/grill-unit`
+Missing ArtifactGraph never blocks unit generation. Complete the direct,
+deterministic Codegenkit fallback first, then follow
+`.cursor/rules/codegenkit-optional-integrations.mdc` for once-per-run telemetry.

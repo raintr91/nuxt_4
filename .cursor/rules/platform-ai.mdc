@@ -1,12 +1,13 @@
 ---
-description: Code-lane harness bias — gen/MCP first; app only when asked
+description: Platform AI — frontend lane boundary and portability
 alwaysApply: true
 ---
 
-# Platform AI
+# Platform AI — frontend
 
-- **Harness SSOT:** `.cursor/` trên **repo code đang mở**.
-- **Gen / analyze / tags:** Artifactgraph MCP + `pnpm portal:gen --id` / `unit-gen` / `testcase:gen` — AI = gap (`#needs-*`, Mo*).
-- **Skills code:** `/prototype` · `/grill-prototype` · `/platform-base` · `/platform-mark` · `/wire` · `/test` · `/unit` · `/model` (+ `/api` trên BE/fullstack).
-- **Không** author handbook/spec/plans trên code repo.
-- Bảo trì harness: `/platform-ai`.
+- Current repository is the FE implementation lane.
+- Installed Codegenkit/Testkit/Processkit skills are local; docs and BE authoring are handoffs.
+- Run generation through product `pnpm portal:*` shims, which delegate to the
+  owning kits; ArtifactGraph only recommends allowlisted commands.
+- Read external docs/tests roots only when explicitly configured.
+- Never infer sibling checkout paths or load docs/BE skill families into this lane.
