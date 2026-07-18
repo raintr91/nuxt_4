@@ -1,9 +1,9 @@
 # Portal codegen — `portal:gen` + `portal:unit-gen`
 
-> **R2/R3:** Product Code + architecture → [`base-docs`](https://github.com/raintr91/base_docs) · E2E plans → [`base-tests`](https://github.com/raintr91/base_test) · gen: `pnpm portal:gen --id …` / `pnpm testcase:gen --id …` · [HUBS](https://github.com/raintr91/base_docs/blob/1.0.0/platform/toolchain/HUBS.md) / [DOCS-HUB](https://github.com/raintr91/base_docs/blob/1.0.0/platform/toolchain/DOCS-HUB.md) / [TESTS-HUB](https://github.com/raintr91/base_docs/blob/1.0.0/platform/toolchain/TESTS-HUB.md)
+> **R2/R3:** Product Code + architecture → [`base-docs`](https://github.com/raintr91/base_docs) · E2E plans → [`base-tests`](https://github.com/raintr91/base_test) · gen: `pnpm portal:gen --id …` / `pnpm testcase:gen --id …` · [Hub split](https://github.com/raintr91/base_test/blob/main/docs/HUBS.md) / [Docs hub](https://github.com/raintr91/base_docs) / [Tests hub](https://github.com/raintr91/base_test/blob/main/docs/TESTS-HUB.md)
 
 
-> **Doc chính (đọc file này trước).** Layout: [CODEGEN-LAYOUT](https://github.com/raintr91/base_docs/blob/1.0.0/platform/toolchain/CODEGEN-LAYOUT.md) · Lệnh: [FEATURE-ARTIFACT-COMMANDS](https://github.com/raintr91/base_docs/blob/1.0.0/platform/toolchain/FEATURE-ARTIFACT-COMMANDS.md) · Flow: [FEATURE-ARTIFACT-FLOWS](https://github.com/raintr91/base_docs/blob/1.0.0/platform/toolchain/FEATURE-ARTIFACT-FLOWS.md).
+> **Doc chính (đọc file này trước).** Layout: [CODEGEN-LAYOUT](https://github.com/raintr91/codegenkit/blob/main/docs/CODEGEN-LAYOUT.md) · Lệnh: [FEATURE-ARTIFACT-COMMANDS](https://github.com/raintr91/base_docs/blob/1.0.0/platform/toolchain/FEATURE-ARTIFACT-COMMANDS.md) · Flow: [FEATURE-ARTIFACT-FLOWS](https://github.com/raintr91/base_docs/blob/1.0.0/platform/toolchain/FEATURE-ARTIFACT-FLOWS.md).
 > Chi tiết tag: `.cursor/extracts/codegen/tags.md` (docs hub) · unit/design tag tables live in the FE checkout.
 > **Dev lane Vitest:** [UNIT-PHASE-DIAGRAM](https://github.com/raintr91/base_docs/blob/1.0.0/platform/toolchain/UNIT-PHASE-DIAGRAM.md) · **E2E lane:** [TEST-PHASE-DIAGRAM](https://github.com/raintr91/base_docs/blob/1.0.0/platform/toolchain/TEST-PHASE-DIAGRAM.md)
 
