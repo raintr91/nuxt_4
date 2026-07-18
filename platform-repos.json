@@ -114,6 +114,20 @@
           "model"
         ],
         "note": "Monorepo FE+BE — prototype + /api"
+      },
+      "fe": {
+        "groups": [
+          "fe"
+        ],
+        "skills": [
+          "prototype",
+          "wire",
+          "unit",
+          "grill-prototype",
+          "grill-unit",
+          "model"
+        ],
+        "adapter": "nuxt4"
       }
     }
   },
@@ -209,6 +223,13 @@
         "backend": "next-nest-be",
         "sourceOfTruth": "docs-features-ir-spec"
       }
+    },
+    "fe": {
+      "description": "FE current repository",
+      "primary": "portal",
+      "projects": [
+        "portal"
+      ]
     }
   },
   "projects": {

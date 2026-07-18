@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "package": "@platform/codegenkit",
-  "packageVersion": "0.3.4",
+  "packageVersion": "0.5.0",
   "type": "fe",
   "adapters": {
     "fe": "nuxt4"
@@ -41,13 +41,17 @@
       "source": "harness/fe/skills/grill-unit/SKILL.md",
       "sha256": "d7ef43a83eb7c9a9786f7b5865dcd8fb9e1f76a2e76c38fcfffe12faa96b2c2a"
     },
+    ".cursor/skills/model/SKILL.md": {
+      "source": "harness/fe/skills/model/SKILL.md",
+      "sha256": "a48afc63fb5455c7f67d899a0ee53aabb77e2ed15d5064c0e962ffe08bd04ba9"
+    },
     ".cursor/skills/prototype/SKILL.md": {
       "source": "harness/fe/skills/prototype/SKILL.md",
-      "sha256": "dfaafbf8a42e48f567b9dc5366ade7d2f8040cbd6fdfcfe25681863fcd196e16"
+      "sha256": "ff50ba675fb159704145f820b56a3a11cf021b17ed0cc14478e42085900cbb64"
     },
     ".cursor/skills/unit/SKILL.md": {
       "source": "harness/fe/skills/unit/SKILL.md",
-      "sha256": "3b7296992c69a706b0f3a710b9da65008bcbdf737d84b65df809a2eebea190b8"
+      "sha256": "f2594c1b0f3253307f4b9e8d33b726211c3464755daf24d2b313983c339b1106"
     },
     ".cursor/skills/wire/SKILL.md": {
       "source": "harness/fe/skills/wire/SKILL.md",
