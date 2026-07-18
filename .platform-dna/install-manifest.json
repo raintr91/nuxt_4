@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "package": "@platform/platform-dna",
-  "packageVersion": "0.1.5",
+  "packageVersion": "0.2.0",
   "type": "fe",
   "harnessApi": 1,
   "files": {
@@ -28,6 +28,11 @@
     ".cursor/rules/team-flow-router.mdc": {
       "source": "harness/fe/rules/team-flow-router.mdc",
       "sha256": "abd52cd9e3d62329f9f1d80b6cbac1bc8a37632d2327bcfc1fe03b7d0de6bc7c",
+      "state": "active"
+    },
+    ".cursor/skills/platform-base/SKILL.md": {
+      "source": "harness/fe/adapters/nuxt4/skills/platform-base/SKILL.md",
+      "sha256": "c40d56dd968b7b7858f867380ad1af7dd32c84bf3a71b058bb87ce9c284e91d0",
       "state": "active"
     }
   }
