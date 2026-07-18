@@ -1,32 +1,24 @@
 ---
 name: grill-test
-extractBundle: grill-test
-description: /grill-test — refine Playwright E2E on FE (not plan YAML authoring).
+description: /grill-test — FE grill gate before Playwright generation.
 disable-model-invocation: true
 ---
 
-# /grill-test — Playwright audit (FE)
+# /grill-test
 
-After `/test`. Plan YAML/MD → **base-tests** `/grill-testcase` (do not author plans here).
+**Owner:** Testkit (`--type=fe`)
 
-**Inputs (read):** `base-tests/cases/**/TC-*.yaml` + design `ui.testIds` (base-docs Code) + `tests/e2e/`.
+After `/test`. Plan YAML remains on the tests hub (`/grill-testcase`).
 
-## Traceability
+## Accelerators (optional)
 
-| Check | Pass |
-|-------|------|
-| Playwright spec | `tests/e2e/{module}/{id}.spec.ts` exists |
-| Page Object | used by spec; no raw `getByTestId` in spec files |
-| `testIds.required` | used in PO; present on UI |
-| Semantic | match `base-docs/platform/toolchain/E2E-SEMANTIC-UI-ASSERTIONS.md` when plan has `assertions.semantic` |
-
-## Verify
-
-```bash
-pnpm test:e2e tests/e2e/{module}/
+```text
+if ArtifactGraph available: recommend/check testcase gen
+else: local deterministic search, then testkit testcase:gen:dry …
 ```
 
-## Out of scope
-
-- Editing `base-tests` plans / `cases:render`
-- Vitest `/unit` · backend `/api`
+Use one stable `runId` per run. When ArtifactGraph is missing, finish the local
+fallback before emitting exactly one `testkit.missing-optional` event for that
+`runId` + `artifactgraph`; retries must not emit again. Conform to
+`.cursor/schemas/testkit/missing-optional-event.schema.json` and include only
+actual successful `fileReads` and exact raw `contextBytes`, never estimates.

@@ -1,34 +1,30 @@
 ---
 name: test
-extractBundle: test
-description: /test — Playwright E2E from base-tests plan YAML (FE only).
+description: /test — Playwright E2E from tests-hub plan YAML (FE only).
 disable-model-invocation: true
 ---
 
-# /test — Playwright (FE)
+# /test
 
-**Plans SSOT:** `base-tests` (read-only). **Scripts output:** `tests/e2e/` on this repo.
-
-Author/grill plans → **base-tests** `/testcase` · `/grill-testcase`.  
-Hub: `base-docs/platform/toolchain/TESTS-HUB.md` · template: `base-tests/templates/testcase.yaml`
-
-## Gen
+**Owner:** Testkit (`--type=fe`)
 
 ```bash
-pnpm testcase:gen:dry --id TC-LOGIN-VALID
-pnpm testcase:gen --id W-AD-AUTH-001
-pnpm testcase:gen --id smoke
+testkit testcase:gen:dry --tests-root=/path/to/tests-hub --docs-root=/path/to/docs-hub -- --id TC-…
+testkit testcase:gen --tests-root=/path/to/tests-hub --docs-root=/path/to/docs-hub -- --id TC-…
 ```
 
-`--id` resolves via `base-tests/registries/tests-index.json`. Design `ui.testIds` enrich from **base-docs** `refs.screen` → `ir/spec.yaml`.
+Use `TESTKIT_TESTS_ROOT` (or `--tests-root`) when the tests hub is not local.
 
-Do **not** edit SC/TC YAML here — handoff bugs to tests hub.
+## Accelerators (optional)
 
-## Rules
+```text
+if ArtifactGraph available: recommend/check generation allowlist
+else: local deterministic search, then run testkit testcase:gen directly
+```
 
-1. `getByTestId()` via Page Object · vertical slice · mock until `/wire`
-2. Verify: `pnpm test:e2e tests/e2e/...`
-
-## Handoff
-
-`/grill-test` when suite green.
+Assign one stable `runId` at run start. If ArtifactGraph is missing, complete
+the local fallback, count successful file reads and exact raw bytes read into
+context, then emit exactly one `testkit.missing-optional` JSON event for the
+`runId` + `artifactgraph` pair. Deduplicate retries. Validate against
+`.cursor/schemas/testkit/missing-optional-event.schema.json`; report only actual
+`fileReads` and `contextBytes`, never estimated token or savings claims.

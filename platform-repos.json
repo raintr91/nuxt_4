@@ -12,7 +12,7 @@
     },
     "syncPolicy": {
       "mode": "propose",
-      "description": "Resolve profile per project → compare .cursor/skills to profiles.*.skills; propose add/remove. Do not bulk-sync all lanes. platform-bases = open cluster only, not a sync target."
+      "description": "Resolve profile per project \u2192 compare .cursor/skills to profiles.*.skills; propose add/remove. Do not bulk-sync all lanes. platform-bases = open cluster only, not a sync target."
     },
     "profiles": {
       "full": {
@@ -23,7 +23,6 @@
         "skills": [
           "platform-ai",
           "platform-base",
-          "platform-mark",
           "prototype",
           "grill-prototype",
           "wire",
@@ -33,7 +32,7 @@
           "grill-unit",
           "model"
         ],
-        "note": "FE — prototype + wire/test/unit (no /api)"
+        "note": "FE \u2014 prototype + wire/test/unit (no /api)"
       },
       "shared": {
         "groups": [
@@ -42,14 +41,13 @@
         "skills": [
           "platform-ai",
           "platform-base",
-          "platform-mark",
           "api",
           "grill-api",
           "wire",
           "unit",
           "grill-unit"
         ],
-        "note": "BE only — api / wire / unit"
+        "note": "BE only \u2014 api / wire / unit"
       },
       "docs": {
         "groups": [
@@ -57,7 +55,6 @@
         ],
         "skills": [
           "platform-ai",
-          "platform-mark",
           "artifactgraph",
           "spec",
           "legacy-spec",
@@ -69,7 +66,7 @@
           "dynamics",
           "flow-trace"
         ],
-        "note": "base-docs hub — spec / grill / dynamics only"
+        "note": "base-docs hub \u2014 spec / grill / dynamics only"
       },
       "tests": {
         "groups": [
@@ -77,22 +74,20 @@
         ],
         "skills": [
           "platform-ai",
-          "platform-mark",
           "artifactgraph",
           "testcase",
           "grill-testcase"
         ],
-        "note": "base-tests hub — testcase / grill-testcase only"
+        "note": "base-tests hub \u2014 testcase / grill-testcase only"
       },
       "tooling": {
         "groups": [
           "mcp"
         ],
         "skills": [
-          "platform-ai",
-          "platform-mark"
+          "platform-ai"
         ],
-        "note": "MCP packages — thin DNA; Artifactgraph = the MCP itself"
+        "note": "MCP packages \u2014 thin DNA; Artifactgraph = the MCP itself"
       },
       "fullstack": {
         "groups": [
@@ -101,7 +96,6 @@
         "skills": [
           "platform-ai",
           "platform-base",
-          "platform-mark",
           "prototype",
           "grill-prototype",
           "api",
@@ -113,7 +107,7 @@
           "grill-unit",
           "model"
         ],
-        "note": "Monorepo FE+BE — prototype + /api"
+        "note": "Monorepo FE+BE \u2014 prototype + /api"
       },
       "fe": {
         "groups": [
@@ -125,7 +119,9 @@
           "unit",
           "grill-prototype",
           "grill-unit",
-          "model"
+          "model",
+          "test",
+          "grill-test"
         ],
         "adapter": "nuxt4"
       }
@@ -133,7 +129,7 @@
   },
   "groups": {
     "platform-bases": {
-      "description": "Full cluster — open all bases; not a harness sync target",
+      "description": "Full cluster \u2014 open all bases; not a harness sync target",
       "primary": "portal",
       "projects": [
         "portal",
@@ -151,7 +147,7 @@
       ]
     },
     "code-fe": {
-      "description": "FE — portal, nextjs, line (profile full)",
+      "description": "FE \u2014 portal, nextjs, line (profile full)",
       "primary": "portal",
       "projects": [
         "portal",
@@ -160,7 +156,7 @@
       ]
     },
     "code-be": {
-      "description": "BE — api, fast-api-base, integration (profile shared)",
+      "description": "BE \u2014 api, fast-api-base, integration (profile shared)",
       "primary": "api",
       "projects": [
         "api",
@@ -169,7 +165,7 @@
       ]
     },
     "code-fullstack": {
-      "description": "Monorepo FE+BE — nuxt_nest, next_nest (profile full)",
+      "description": "Monorepo FE+BE \u2014 nuxt_nest, next_nest (profile full)",
       "primary": "nuxt-nest",
       "projects": [
         "nuxt-nest",
@@ -177,21 +173,21 @@
       ]
     },
     "docs": {
-      "description": "Docs hub — base-docs only (profile docs)",
+      "description": "Docs hub \u2014 base-docs only (profile docs)",
       "primary": "base-docs",
       "projects": [
         "base-docs"
       ]
     },
     "tests": {
-      "description": "E2E plans hub — base-tests only (profile tests)",
+      "description": "E2E plans hub \u2014 base-tests only (profile tests)",
       "primary": "base-tests",
       "projects": [
         "base-tests"
       ]
     },
     "mcp": {
-      "description": "MCP tooling — artifactgraph, hubdocs (profile tooling)",
+      "description": "MCP tooling \u2014 artifactgraph, hubdocs (profile tooling)",
       "primary": "artifactgraph",
       "projects": [
         "artifactgraph",
@@ -304,7 +300,7 @@
       "stack": "dotnet-line",
       "repo": "line",
       "skill": "platform-base",
-      "description": "Base WinForms — override in platform-repos.local.json for D:/workspace/line",
+      "description": "Base WinForms \u2014 override in platform-repos.local.json for D:/workspace/line",
       "write": true
     },
     "base-docs": {
@@ -313,7 +309,7 @@
       "stack": "docs-c4",
       "repo": "base-docs",
       "skill": "platform-ai",
-      "description": "Base docs hub (R2) — C4 + product Code/common",
+      "description": "Base docs hub (R2) \u2014 C4 + product Code/common",
       "write": true,
       "specRoots": {
         "architecture": "architecture",
@@ -332,7 +328,7 @@
       "stack": "e2e-plans",
       "repo": "base-tests",
       "skill": "platform-ai",
-      "description": "Base tests hub (R3) — E2E yaml/md plans only",
+      "description": "Base tests hub (R3) \u2014 E2E yaml/md plans only",
       "write": true,
       "testRoots": {
         "landscape": "landscape",
@@ -347,7 +343,7 @@
       "stack": "mcp",
       "repo": "artifactgraph",
       "skill": "platform-ai",
-      "description": "Local MCP artifactgraph — gaps/tags/gen allowlist (raintr91/artifactgraph)",
+      "description": "Local MCP artifactgraph \u2014 gaps/tags/gen allowlist (raintr91/artifactgraph)",
       "write": true,
       "harnessProfile": "tooling"
     },
@@ -357,7 +353,7 @@
       "stack": "mcp-docs",
       "repo": "hubdocs",
       "skill": "platform-ai",
-      "description": "MCP hubdocs — docs index / hub tooling (optional sibling repo)",
+      "description": "MCP hubdocs \u2014 docs index / hub tooling (optional sibling repo)",
       "write": true,
       "harnessProfile": "tooling"
     },

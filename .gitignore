@@ -71,3 +71,7 @@ legacy-repos.local.json
 .codegraph/
 .codegraph-*/
 
+
+# Generated per machine by package init
+.cursor/mcp.json
+.mcp.json
