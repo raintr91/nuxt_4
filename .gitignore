@@ -6,17 +6,18 @@
 .cache
 dist
 
-# Some local runs created by CLI flags (Nuxt có thể coi tên này là rootDir nếu truyền sai cờ)
+# Leftover Next.js build dir (portal is Nuxt-only)
+.next
+
+# Accidental Nuxt CLI output (wrong flags — Nuxt coi tên này là rootDir)
 --host/
 --port/
 
 # Node dependencies
 node_modules
 .pnpm-store
-
-# Accidental Nuxt CLI output (wrong flags)
---host/
---port/
+pnpm-lock.yaml
+pnpm-workspace.yaml
 
 # Logs
 logs
@@ -33,7 +34,7 @@ storybook-static
 # Generated stories (keep hand-written stories in /stories)
 stories/auto/
 
-# Cypress artifacts
+# Playwright artifacts
 playwright-report/
 test-results/
 blob-report/
@@ -47,31 +48,12 @@ playwright/.cache/
 .env.*
 !.env.example
 !docker/.env.example
-node_modules
 docker/.env
 
-# Local project maps (repo root SSOT — see docs/operational/PROJECT-MAPS.md)
-platform-repos.local.json
-legacy-repos.local.json
-.cursor/legacy-repos.local.json
-.cursor/platform-repos.local.json
+# Toolkit-generated entries (harness .cursor/, agent wiring, platform maps,
+# package install-state) are merged here by each toolkit's `init` — do not
+# hand-maintain them. Template SSOT: platform-dna/TODO-GITIGNORE.md.
 
-# Legacy vendor install paths (removed — use .cursor/extracts/ instead)
-.cursor/skills/vendor/
-.cursor/rules-vendor/
-.cursor/skills-vendor/
-
-# Optional Kilo mirror (SSOT: .cursor/skills|rules|extracts)
-.kilo/skills/
-.kilo/instructions/
-.kilo/extracts/
-.kilo/command/
-
-# CodeGraph local index (do not commit)
+# CodeGraph local index (external tool — keep default ignore)
 .codegraph/
 .codegraph-*/
-
-
-# Generated per machine by package init
-.cursor/mcp.json
-.mcp.json

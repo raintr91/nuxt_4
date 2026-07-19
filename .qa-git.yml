@@ -1,9 +1,0 @@
-# Created by: qa-git init   (edit member_name before starting tasks)
-parent_default: main
-member_name: vutv
-remote: origin
-allowed_types:
-  - spec
-  - update-spec
-  - test
-  - update-test
