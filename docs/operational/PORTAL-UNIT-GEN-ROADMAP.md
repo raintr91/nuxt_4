@@ -2,7 +2,7 @@
 
 > Hub: [PORTAL-CODEGEN](./PORTAL-CODEGEN.md) · Script: `unitgen/runners/README.md`
 
-**Phạm vi:** chỉ **Portal FE** (`portal:unit-gen`). **`api:unit-gen` / BE PHPUnit** — **để sau**, repo `~/workspace/api` track riêng khi portal PR3–11 ổn.
+**Phạm vi:** chỉ **Portal FE** (`portal:unit-gen`). **`api:unit-gen` / BE PHPUnit** — **để sau**, repo `<api-checkout>` track riêng khi portal PR3–11 ổn.
 
 Trạng thái tại **2026-06-27** (cập nhật khi xong từng PR).
 
@@ -39,7 +39,7 @@ Trạng thái tại **2026-06-27** (cập nhật khi xong từng PR).
 - `portal:unit-gen` script tách `portal-gen`
 - Pattern `schema.parseListColumns` → `tests/unit/models/{entity}/{entity}.schema.test.ts`
 - `unit.manifest.json`, `UNIT-HANDOFF.md`
-- Extract: `portal-unit-test-tags.md`
+- Extract: FE checkout `portal-unit-test-tags` (not vendored into docs hub)
 
 ### PR2 — Service list ✅
 
@@ -110,7 +110,7 @@ pnpm portal:unit-gen --spec … --phase wire
 - Input: `testcases/*.yaml` + spec cross-check testIds
 - Output: Page Object + `*.spec.ts` + session/mock registry
 - Pilot: `chain/hotel` 3 specs green
-- Diagram: [TEST-PHASE-DIAGRAM](./TEST-PHASE-DIAGRAM.md)
+- Diagram: [TEST-PHASE-DIAGRAM](https://github.com/raintr91/base_docs/blob/1.0.0/platform/toolchain/TEST-PHASE-DIAGRAM.md)
 
 ### PR13a — E2E semantic + axe registry ✅
 
@@ -131,7 +131,7 @@ pnpm portal:unit-gen --spec … --phase wire
 
 | Item | Repo | Khi nào |
 |------|------|---------|
-| `api:unit-gen` | `~/workspace/api` | Sau portal PR3–11 ổn (hoặc khi có feature BE pilot riêng) |
+| `api:unit-gen` | `<api-checkout>` | Sau portal PR3–11 ổn (hoặc khi có feature BE pilot riêng) |
 | `RefreshDatabase` opt-in | API `TestCase` | Cùng đợt `api:unit-gen` |
 | `unit-mocking.md` (BE) | API extracts | `#test-mock:db-none`, `Http::fake`, `Mail::fake` |
 

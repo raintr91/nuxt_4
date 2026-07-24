@@ -1,8 +1,11 @@
 # Portal codegen — `portal:gen` + `portal:unit-gen`
 
-> **Doc chính (đọc file này trước).** Layout: [CODEGEN-LAYOUT](./CODEGEN-LAYOUT.md) · Lệnh: [FEATURE-ARTIFACT-COMMANDS](./FEATURE-ARTIFACT-COMMANDS.md) · Flow: [FEATURE-ARTIFACT-FLOWS](./FEATURE-ARTIFACT-FLOWS.md).  
-> Chi tiết tag: `.cursor/extracts/codegen/tags.md`, `.cursor/extracts/portal-unit-test-tags.md`, …  
-> **Dev lane Vitest:** [UNIT-PHASE-DIAGRAM](./UNIT-PHASE-DIAGRAM.md) · **E2E lane:** [TEST-PHASE-DIAGRAM](./TEST-PHASE-DIAGRAM.md)
+> **R2/R3:** Product Code + architecture → [`base-docs`](https://github.com/raintr91/base_docs) · E2E plans → [`base-tests`](https://github.com/raintr91/base_test) · gen: `pnpm portal:gen --id …` / `pnpm testcase:gen --id …` · [Hub split](https://github.com/raintr91/base_test/blob/main/docs/HUBS.md) / [Docs hub](https://github.com/raintr91/base_docs) / [Tests hub](https://github.com/raintr91/base_test/blob/main/docs/TESTS-HUB.md)
+
+
+> **Doc chính (đọc file này trước).** Layout: [CODEGEN-LAYOUT](https://github.com/raintr91/codegenkit/blob/main/docs/CODEGEN-LAYOUT.md) · Lệnh: [FEATURE-ARTIFACT-COMMANDS](https://github.com/raintr91/base_docs/blob/1.0.0/platform/toolchain/FEATURE-ARTIFACT-COMMANDS.md) · Flow: [FEATURE-ARTIFACT-FLOWS](https://github.com/raintr91/base_docs/blob/1.0.0/platform/toolchain/FEATURE-ARTIFACT-FLOWS.md).
+> Chi tiết tag: `.cursor/extracts/codegen/tags.md` (docs hub) · unit/design tag tables live in the FE checkout.
+> **Dev lane Vitest:** [UNIT-PHASE-DIAGRAM](https://github.com/raintr91/base_docs/blob/1.0.0/platform/toolchain/UNIT-PHASE-DIAGRAM.md) · **E2E lane:** [TEST-PHASE-DIAGRAM](https://github.com/raintr91/base_docs/blob/1.0.0/platform/toolchain/TEST-PHASE-DIAGRAM.md)
 
 Hai pipeline app + unit **tách script**, **tách registry** — E2E `testcase:gen` pipeline thứ ba (Playwright only):
 
@@ -17,48 +20,39 @@ Hai pipeline app + unit **tách script**, **tách registry** — E2E `testcase:g
 ## Thứ tự chạy (feature mới)
 
 ```text
-/dev-grill-docs  →  bundle.gen / ir/spec.yaml
+/dev-grill-docs  →  base-docs Code …/ir/spec.yaml
        ↓
-pnpm portal:gen:dry --spec docs/features/yaml/.../ir/spec.yaml
-pnpm portal:gen --spec docs/features/yaml/.../ir/spec.yaml
+pnpm portal:gen:dry --id W-AD-AUTH-001
+pnpm portal:gen --id W-AD-AUTH-001
        ↓
-/prototype  →  implement Mo* / gap từ {function}/generated/HANDOFF.md
+/prototype  →  implement Mo* / gap từ HANDOFF
        ↓
-pnpm portal:gen --force          # wire slot khi component đã có
+pnpm portal:unit-gen --id W-AD-AUTH-001   # khi unit-gen hỗ trợ --id; else --spec path
        ↓
-pnpm portal:unit-gen --spec …    # smoke — unit.manifest.json + UNIT-HANDOFF.md
-       ↓
-/dev lane (Vitest, độc lập E2E): /unit → /grill-unit  — [UNIT-PHASE-DIAGRAM](./UNIT-PHASE-DIAGRAM.md)
-       ↓
-/test (E2E): testcase YAML → testcase:gen → /grill-test  — [TEST-PHASE-DIAGRAM](./TEST-PHASE-DIAGRAM.md)
+/test: pnpm testcase:gen --id W-AD-AUTH-001 → /grill-test
        ↓
 /wire
 ```
-
-**Phase wire:** chạy lại `portal:unit-gen --spec … --phase wire` khi có template service (PR2+) — bổ sung test mock API, không đổi schema trừ `--force`.
-
----
 
 ## Lệnh nhanh
 
 ### App — `portal:gen`
 
 ```bash
-pnpm portal:registry                    # validate UI registry
-pnpm portal:gen:dry --spec docs/features/yaml/chain/hotel/list/ir/spec.yaml
-pnpm portal:gen --spec docs/features/yaml/chain/hotel/list/ir/spec.yaml
-pnpm portal:gen --spec … --force        # overwrite file đã gen
-pnpm portal:remove --spec …             # xóa feature scaffold
-pnpm portal:lifecycle sync              # đồng bộ page registry
+pnpm portal:registry
+pnpm portal:gen:dry --id W-AD-AUTH-001
+pnpm portal:gen --id W-AD-AUTH-001
+pnpm portal:gen --id W-AD-AUTH-001 --force
+pnpm portal:lifecycle sync
 ```
 
 ### Unit — `portal:unit-gen`
 
 ```bash
 pnpm portal:unit-registry               # validate unit-test registry
-pnpm portal:unit-gen:dry --spec docs/features/yaml/chain/hotel/list/ir/spec.yaml
-pnpm portal:unit-gen --spec docs/features/yaml/chain/hotel/list/ir/spec.yaml
-pnpm portal:unit-gen --spec … --force
+pnpm portal:unit-gen:dry --id W-AD-AUTH-001
+pnpm portal:unit-gen --id W-AD-AUTH-001
+pnpm portal:unit-gen --id <W-…> --force
 pnpm exec vitest run tests/unit/models/chain-hotel/chain-hotel.schema.test.ts
 ```
 
@@ -66,17 +60,17 @@ pnpm exec vitest run tests/unit/models/chain-hotel/chain-hotel.schema.test.ts
 
 ```bash
 pnpm portal:e2e-registry
-pnpm testcase:gen:dry --testcase docs/features/yaml/admin/hotel/list/hotel-list.test.yaml
-pnpm testcase:gen --feature admin/hotel
-pnpm testcase:gen --testcase … --force
-pnpm test:e2e tests/e2e/chain-hotels/
+pnpm testcase:gen:dry --id TC-LOGIN-VALID
+pnpm testcase:gen --id W-AD-AUTH-001
+pnpm testcase:gen --id smoke
+pnpm test:e2e tests/e2e/...
 ```
 
 ---
 
 ## `portal:gen` — app scaffold
 
-**Input:** `docs/features/yaml/.../{function}/ir/spec.yaml` với `codegen.profile`, `ui.*`, `api.endpoints`, `tags`.
+**Input:** ``base-docs` Code `…/code/W-*/ir/spec.yaml` (or `pnpm portal:gen --id`)` với `codegen.profile`, `ui.*`, `api.endpoints`, `tags`.
 
 **Template:** `codegen/templates/` (Handlebars).
 
@@ -85,14 +79,14 @@ pnpm test:e2e tests/e2e/chain-hotels/
 | Artifact | Path |
 |----------|------|
 | App layers | `models/`, `services/`, `composables/`, `pages/`, `mocks/`, `validations/` (create) |
-| Manifest | `docs/features/yaml/.../{function}/generated/codegen.manifest.json` |
-| Handoff prototype | `docs/features/yaml/.../{function}/generated/HANDOFF.md` |
+| Manifest | ``base-docs` Code `…/code/W-*/generated/` (handoff) + app layers in FE repocodegen.manifest.json` |
+| Handoff prototype | ``base-docs` Code `…/code/W-*/generated/` (handoff) + app layers in FE repoHANDOFF.md` |
 
 **Profiles:** `list` · `create` (sau này `edit` / `detail`).
 
-**UI registry:** `#shell: DataListPage`, `#needs-component:…`, `#wire-only:…` — xem [DESIGN-REGISTRY-PROMOTION](./DESIGN-REGISTRY-PROMOTION.md), [NEEDS-COMPONENT-FLOW](./NEEDS-COMPONENT-FLOW.md).
+**UI registry:** `#shell: DataListPage`, `#needs-component:…`, `#wire-only:…` — xem [DESIGN-REGISTRY-PROMOTION](https://github.com/raintr91/base_docs/blob/1.0.0/platform/toolchain/DESIGN-REGISTRY-PROMOTION.md), [NEEDS-COMPONENT-FLOW](https://github.com/raintr91/base_docs/blob/1.0.0/platform/toolchain/NEEDS-COMPONENT-FLOW.md).
 
-**Lifecycle:** ghi `pages/*.vue` → cập nhật stage `prototype` — [PAGE-LIFECYCLE](./PAGE-LIFECYCLE.md).
+**Lifecycle:** ghi `pages/*.vue` → cập nhật stage `prototype` — [PAGE-LIFECYCLE](https://github.com/raintr91/base_docs/blob/1.0.0/platform/toolchain/PAGE-LIFECYCLE.md).
 
 **Không gen:** component `Mo*` (prototype implement); unit test (pipeline riêng).
 
@@ -112,8 +106,8 @@ pnpm test:e2e tests/e2e/chain-hotels/
 |----------|------|
 | Schema test (v1) | `tests/unit/models/{entity}/{entity}.schema.test.ts` |
 | Service list test (v2) | `tests/unit/services/{entity}.service.test.ts` |
-| Manifest | `docs/features/yaml/.../{function}/generated/unit.manifest.json` |
-| Handoff unit | `docs/features/yaml/.../{function}/generated/UNIT-HANDOFF.md` |
+| Manifest | ``base-docs` Code `…/code/W-*/generated/` (handoff) + app layers in FE repounit.manifest.json` |
+| Handoff unit | ``base-docs` Code `…/code/W-*/generated/` (handoff) + app layers in FE repoUNIT-HANDOFF.md` |
 
 **Helper chung:** `tests/unit/_helpers/mockApiFetch.ts` (`#test-mock:api-fetch` — service tests PR2+).
 
@@ -131,7 +125,7 @@ Patterns **planned** (chưa gen): validation, composable, export — xem registr
 
 ## `testcase:gen` — Playwright skeleton (PR12–13)
 
-**Phạm vi:** E2E từ `docs/features/**/testcases/*.yaml` — **không** gộp `portal:unit-gen`.
+**Phạm vi:** E2E từ ``base-docs` + `base-tests`/testcases/*.yaml` — **không** gộp `portal:unit-gen`.
 
 **Prerequisite:** prototype + `ui.testIds` trên page; session/mock registry trong `tests/e2e/helpers/`.
 
@@ -144,7 +138,7 @@ Patterns **planned** (chưa gen): validation, composable, export — xem registr
 | Page Object | `tests/e2e/pages/{module}/{Page}.ts` |
 | Spec | `tests/e2e/{module}/{testcase-id}.spec.ts` |
 
-**Diagram:** [TEST-PHASE-DIAGRAM](./TEST-PHASE-DIAGRAM.md) · **Matcher design:** [E2E-SEMANTIC-UI-ASSERTIONS](./E2E-SEMANTIC-UI-ASSERTIONS.md)
+**Diagram:** [TEST-PHASE-DIAGRAM](https://github.com/raintr91/base_docs/blob/1.0.0/platform/toolchain/TEST-PHASE-DIAGRAM.md) · **Matcher design:** [E2E-SEMANTIC-UI-ASSERTIONS](https://github.com/raintr91/base_docs/blob/1.0.0/platform/toolchain/E2E-SEMANTIC-UI-ASSERTIONS.md)
 
 ---
 
@@ -154,10 +148,10 @@ Patterns **planned** (chưa gen): validation, composable, export — xem registr
 |--|-----------|-----------|
 | File | `registries/design.registry.json` | `registries/unit-test.registry.json` |
 | Validate | `pnpm portal:registry` | `pnpm portal:unit-registry` |
-| Promote doc | [DESIGN-REGISTRY-PROMOTION](./DESIGN-REGISTRY-PROMOTION.md) | [UNIT-REGISTRY-PROMOTION](./UNIT-REGISTRY-PROMOTION.md) |
+| Promote doc | [DESIGN-REGISTRY-PROMOTION](https://github.com/raintr91/base_docs/blob/1.0.0/platform/toolchain/DESIGN-REGISTRY-PROMOTION.md) | [UNIT-REGISTRY-PROMOTION](https://github.com/raintr91/base_docs/blob/1.0.0/platform/toolchain/UNIT-REGISTRY-PROMOTION.md) |
 | Tag ví dụ | `#shell: DataListPage`, `#needs-component:` | `#gen:test-schema`, `#needs-unit-test:` |
 
-**E2E** (pipeline riêng): `registries/e2e-test.registry.json` · `#e2e:semantic-*`, `#e2e:a11y-*` · [TEST-PHASE-DIAGRAM](./TEST-PHASE-DIAGRAM.md)
+**E2E** (pipeline riêng): `registries/e2e-test.registry.json` · `#e2e:semantic-*`, `#e2e:a11y-*` · [TEST-PHASE-DIAGRAM](https://github.com/raintr91/base_docs/blob/1.0.0/platform/toolchain/TEST-PHASE-DIAGRAM.md)
 
 ---
 
@@ -192,7 +186,7 @@ Patterns **planned** (chưa gen): validation, composable, export — xem registr
 | `#e2e:a11y-wcag` | Axe WCAG scan scoped `rootTestId` |
 | `#skip-e2e-assert:{matcher}` | Bỏ một matcher khỏi union |
 
-Chi tiết: `.cursor/extracts/platform-e2e-semantic-tags.md` · tag đầy đủ: [bảng tag tham chiếu](#tag-tham-chieu) · `.cursor/extracts/codegen/tags.md`, `.cursor/extracts/portal-unit-test-tags.md`
+Chi tiết: `.cursor/extracts/codegen/tags.md` · FE unit tags live in the FE checkout.
 
 ---
 
@@ -206,11 +200,11 @@ Chi tiết: `.cursor/extracts/platform-e2e-semantic-tags.md` · tag đầy đủ
 
 ## Workflow team
 
-- Pipeline tổng: [FEATURE-ARTIFACT-FLOWS](./FEATURE-ARTIFACT-FLOWS.md) · [FULL-CYCLE-PIPELINE-DIAGRAM](./FULL-CYCLE-PIPELINE-DIAGRAM.md)
-- **Dev lane unit:** [UNIT-PHASE-DIAGRAM](./UNIT-PHASE-DIAGRAM.md) · `.cursor/skills/unit/SKILL.md` · `.cursor/skills/grill-unit/SKILL.md`
-- **E2E lane:** [TEST-PHASE-DIAGRAM](./TEST-PHASE-DIAGRAM.md) · `.cursor/skills/test/SKILL.md` · `.cursor/skills/grill-test/SKILL.md`
+- Pipeline tổng: [FEATURE-ARTIFACT-FLOWS](https://github.com/raintr91/base_docs/blob/1.0.0/platform/toolchain/FEATURE-ARTIFACT-FLOWS.md) · [FULL-CYCLE-PIPELINE-DIAGRAM](https://github.com/raintr91/base_docs/blob/1.0.0/platform/toolchain/FULL-CYCLE-PIPELINE-DIAGRAM.md)
+- **Dev lane unit:** [UNIT-PHASE-DIAGRAM](https://github.com/raintr91/base_docs/blob/1.0.0/platform/toolchain/UNIT-PHASE-DIAGRAM.md) · `.cursor/skills/unit/SKILL.md` · `.cursor/skills/grill-unit/SKILL.md`
+- **E2E lane:** [TEST-PHASE-DIAGRAM](https://github.com/raintr91/base_docs/blob/1.0.0/platform/toolchain/TEST-PHASE-DIAGRAM.md) · `.cursor/skills/test/SKILL.md` · `.cursor/skills/grill-test/SKILL.md`
 - Phase prototype: `.cursor/skills/prototype/SKILL.md`
-- Render docs review: `pnpm docs:render` → `docs/features/**/generated/*.md`
+- Render docs review: `pnpm docs:render` → ``base-docs` + `base-tests`/generated/*.md`
 
 ---
 
@@ -218,16 +212,16 @@ Chi tiết: `.cursor/extracts/platform-e2e-semantic-tags.md` · tag đầy đủ
 
 ```bash
 # Sau grill + portal:gen
-pnpm portal:gen --spec docs/features/yaml/chain/hotel/list/ir/spec.yaml
+pnpm portal:gen --id W-AD-AUTH-001
 
 # Unit schema (auto — pattern implemented)
-pnpm portal:unit-gen --spec docs/features/yaml/chain/hotel/list/ir/spec.yaml
+pnpm portal:unit-gen --id W-AD-AUTH-001
 pnpm exec vitest run tests/unit/models/chain-hotel/chain-hotel.schema.test.ts
 
 # Đọc gap
-cat docs/features/chain/hotel/generated/UNIT-HANDOFF.md
+cat base-docs Product Code /  chain/hotel/generated/UNIT-HANDOFF.md
 
 # E2E (sau /test)
-pnpm testcase:gen --feature chain/hotel --force
+pnpm testcase:gen --id <W-|TC-|suite> --force
 pnpm test:e2e tests/e2e/chain-hotels/
 ```

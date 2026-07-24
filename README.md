@@ -1,6 +1,6 @@
 # Platform Base (Nuxt 4)
 
-Auth-first Nuxt 4 template — shadcn dashboard, kiến trúc 4 tầng, harness AI cho feature mới.
+Auth-first Nuxt 4 — shadcn dashboard, kiến trúc 4 tầng, harness AI (code lane).
 
 ## Quick start
 
@@ -16,25 +16,33 @@ pnpm dev
 | Command | Mô tả |
 |---------|--------|
 | `pnpm dev` | Nuxt dev |
+| `pnpm build` / `preview` | Production build |
 | `pnpm storybook` | UI catalog (port 6006) |
 | `pnpm test:unit` | Vitest |
-| `pnpm test:e2e` | Playwright — đọc [E2E-TESTIDS](docs/operational/E2E-TESTIDS.md) trước |
-| `pnpm docs:dev` | VitePress (`pnpm docs:render` trước) |
+| `pnpm test:e2e` | Playwright |
 
-## Documentation
-
-- [Docs hub](docs/index.md)
-- [Architecture](docs/operational/ARCHITECTURE.md)
-- [Feature artifact flows](docs/operational/FEATURE-ARTIFACT-FLOWS.md)
-- [Common UI](docs/common-ui/index.md)
-- [Docker / WSL](docs/dev-environment/DOCKER-DEV-LIGHT.md) · [Cursor perf](docs/dev-environment/WSL-CURSOR-PERF.md)
+Codegen / testgen / registry: chạy trực tiếp CLI toolkit sau `platform-dna init` — `codegenkit gen|unit-gen|registry --adapter=nuxt4`, `testkit testcase:gen|e2e-registry`. Không giữ engine hoặc wrapper trong product repo.
 
 ## Repo này
 
-Auth-first skeleton: `/auth/*`, `/password/reset/*`, `/` (protected), `404`, `forbidden`. Chi tiết route/middleware: `pages/`, `middleware/`.
+Skeleton: `/auth/*`, `/password/reset/*`, `/` (protected), `404`, `forbidden`.  
+Chi tiết: `pages/`, `middleware/`, `components/`, `composables/`, `services/`, `stores/`.
 
 API client (`$apiFetch`) dùng prefix **`/api/auth/*`**.
 
-## Team AI harness
+Registries product: `registries/`. Engines gen/unitgen sống trong Codegenkit; testcase engine sống trong Testkit.
 
-Commands và skills: [docs/operational/FEATURE-ARTIFACT-FLOWS.md](docs/operational/FEATURE-ARTIFACT-FLOWS.md) · [docs/operational/PROMPT-TEMPLATES.md](docs/operational/PROMPT-TEMPLATES.md). AI harness hiện nằm trong `.cursor/extracts/` và `.cursor/skills/`.
+Product docs + architecture → [`base-docs`](https://github.com/raintr91/base_docs). E2E plans → [`base-tests`](https://github.com/raintr91/base_test).
+
+## AI harness (code lane)
+
+Skills: `/prototype` · `/grill-prototype` · `/platform-base` · `/platform-mark` · `/wire` · `/test` · `/unit` · `/model` (+ grill-*)  
+BE/fullstack: thêm `/api` · `/grill-api`.
+
+Gen / gaps: **Artifactgraph MCP** + `codegenkit gen --id …` / `testkit testcase:gen --id …` / `codegenkit unit-gen`.
+
+| Always | Theo file / slash |
+|--------|-------------------|
+| `platform-ai.mdc` | `platform-invariants` · contract-naming · base-ui/e2e/data · size/split/import · design-vocab · team-flow-prototype/unit/e2e/wire/model · codegraph |
+
+SSOT harness: `.cursor/` tại repo này (sync bằng toolkit `init`).
